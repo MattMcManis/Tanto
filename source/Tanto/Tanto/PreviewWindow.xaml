@@ -1,0 +1,83 @@
+﻿<!-- 
+    Tanto
+    Copyright (C) 2018 Matt McManis
+    http://github.com/MattMcManis/Tanto
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program. If not, see<http://www.gnu.org/licenses/>. 
+ -->
+<Window x:Class="Tanto.Preview"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
+        xmlns:Themes1="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" 
+        xmlns:local="clr-namespace:Tanto"
+        mc:Ignorable="d"
+        
+        Title="Preview" 
+
+        Width="900"
+        Height="600"
+        
+        Loaded="Window_Loaded">
+
+    <Grid Margin="10">
+
+        <!-- File List -->
+        <ListView Name="lsvPreview" Margin="0,0,0,44" >
+            <ListView.Resources>
+                <DataTemplate x:Key="Templ">
+                    <TextBlock HorizontalAlignment="Left" Text="{Binding}"/>
+                </DataTemplate>
+                <Style x:Key="HeaderStyle" TargetType="GridViewColumnHeader">
+                    <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                </Style>
+                <Style TargetType="{x:Type GridViewColumnHeader}">
+                    <Setter Property="Width" Value="Auto" />
+                </Style>
+            </ListView.Resources>
+            <ListView.View>
+                <GridView>
+                    <!-- Original Column -->
+                    <GridViewColumn HeaderTemplate="{StaticResource Templ}" 
+                                        HeaderContainerStyle="{StaticResource HeaderStyle}"
+                                        DisplayMemberBinding="{Binding Original}"
+                                        Width="Auto" 
+                                        Header="Original" />
+                    <!-- New Column -->
+                    <GridViewColumn HeaderTemplate="{StaticResource Templ}" 
+                                        HeaderContainerStyle="{StaticResource HeaderStyle}"
+                                        DisplayMemberBinding="{Binding New}"
+                                        Width="Auto"
+                                        >
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
+        <!-- Confirm Button -->
+        <Button x:Name="btnConfirm" 
+                Content="Confirm"
+                HorizontalAlignment="Center"
+                Margin="0,0,0,7" 
+                VerticalAlignment="Bottom" 
+                Width="76" 
+                Height="22"
+                Click="btnConfirm_Click" 
+                Background="White" />
+
+    </Grid>
+</Window>
