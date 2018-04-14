@@ -16,11 +16,15 @@ Batch Format Media File Names
 
 I built this program to standardize the file naming in my media library.
 
+---
+
 #### Simplify
 
 Before: `Example.Title.01.The.Episode.Name.(1080p).[x265].mp4`
 
 After: `Example Title S01E01 The Episode Name.mp4`
+
+---
 
 #### Standardize
 
@@ -28,11 +32,15 @@ Before: `Example Title - 01 - The Episode Name.mp4`
 
 After: `Eample.Title.S01E01.The.Episode.Name.1080p.HEVC-AAC.mp4`
 
+---
+
 #### Customize
 
 Before: `Example.Title.01.The.Episode.Name.(1080p).[x265].mp4`
 
 After: `Example Title (2018) - S01E01 - The Episode Name - 1080p HEVC.mp4`
+
+---
 
 #### Caution
 
