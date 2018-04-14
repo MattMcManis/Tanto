@@ -10,6 +10,8 @@ Media Library Formatter
 * [Installation](#installation)
 * [Build](#build)
 
+&nbsp;
+
 ## Overview
 
 Batch Format Media File Names
