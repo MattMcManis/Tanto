@@ -44,9 +44,9 @@ namespace Tanto
     /// </summary>
     public partial class MainWindow : Window
     {
-        // Axiom Current Version
+        // Tanto Current Version
         public static Version currentVersion;
-        // Axiom GitHub Latest Version
+        // Tanto GitHub Latest Version
         public static Version latestVersion;
         // Alpha, Beta, Stable
         public static string currentBuildPhase = "alpha";
@@ -577,7 +577,7 @@ the Free Software Foundation, either version 3 of the License, or
                     //MessageBox.Show(latestBuildPhase);
 
 
-                    // Check if Axiom is the Latest Version
+                    // Check if Tanto is the Latest Version
                     // Update Available
                     if (latestVersion > currentVersion)
                     {

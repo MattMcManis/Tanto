@@ -17,7 +17,7 @@ namespace Tanto
     {
         // Windows AppData Temp Directory
         public static string tempDir = Path.GetTempPath();
-        // Axiom Exe Current Directory
+        // Tanto Exe Current Directory
         //public static string currentDir = Directory.GetCurrentDirectory().TrimEnd('\\') + @"\";
 
         // Web Downloads
@@ -100,7 +100,7 @@ namespace Tanto
 
 
         // -------------------------
-        // Axiom Self-Update Download
+        // Tanto Self-Update Download
         // -------------------------
         public void StartDownload()
         {
@@ -112,7 +112,7 @@ namespace Tanto
                 // -------------------------
                 waiter = new ManualResetEvent(false); //start a new waiter for next pass (clicking update again)
 
-                Uri downloadUrl = new Uri("https://github.com/MattMcManis/Axiom/releases/download/" + "v" + Convert.ToString(MainWindow.latestVersion) + "-" + MainWindow.latestBuildPhase + "/Axiom.zip"); // v1.0.0.0-alpha/Axiom.zip
+                Uri downloadUrl = new Uri("https://github.com/MattMcManis/Tanto/releases/download/" + "v" + Convert.ToString(MainWindow.latestVersion) + "-" + MainWindow.latestBuildPhase + "/Tanto.zip"); // v1.0.0.0-alpha/Tanto.zip
 
                 ServicePointManager.Expect100Continue = true;
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
@@ -121,10 +121,10 @@ namespace Tanto
                 //Async
                 wc.DownloadProgressChanged += new DownloadProgressChangedEventHandler(wc_DownloadProgressChanged);
                 wc.DownloadFileCompleted += new AsyncCompletedEventHandler(wc_DownloadFileCompleted);
-                wc.DownloadFileAsync(downloadUrl, tempDir + "Axiom.zip");
+                wc.DownloadFileAsync(downloadUrl, tempDir + "Tanto.zip");
 
                 // Progress Info
-                progressInfo = "Downloading Axiom...";
+                progressInfo = "Downloading Tanto...";
 
                 // Wait for Download to finish
                 waiter.WaitOne();
@@ -134,7 +134,7 @@ namespace Tanto
                 // Extract
                 // -------------------------
                 // Progress Info
-                progressInfo = "Extracting Axiom...";
+                progressInfo = "Extracting Tanto...";
 
                 List<string> extractArgs = new List<string>() {
                     // Powershell Launch Parameters
@@ -142,23 +142,23 @@ namespace Tanto
                     "$Host.UI.RawUI.WindowSize = New-Object System.Management.Automation.Host.Size (80, 30); ",
                     "$Host.UI.RawUI.BufferSize = New-Object System.Management.Automation.Host.Size (80, 30); ",
                     // Message
-                    "Write-Host \"Updating Axiom to version " + Convert.ToString(MainWindow.latestVersion) + ".\";",
+                    "Write-Host \"Updating Tanto to version " + Convert.ToString(MainWindow.latestVersion) + ".\";",
                     "Write-Host \"`nPlease wait for program to close.\";",
                     // Wait
                     "timeout 3;",
                     // Extract
                     "$shell = new-object -com shell.application;",
-                    "$zip = $shell.NameSpace('" + tempDir + "Axiom.zip');",
+                    "$zip = $shell.NameSpace('" + tempDir + "Tanto.zip');",
                     //"foreach ($item in $zip.items()) {$shell.Namespace('" + MainWindow.appDir + "').CopyHere($item, 0x14)};", //all files
-                    "foreach ($item in $zip.items()) {$name = [string]$item.Name; if ($name -match 'Axiom.exe') {$shell.Namespace('" + MainWindow.appDir + "').CopyHere($item, 0x14)}};",
+                    "foreach ($item in $zip.items()) {$name = [string]$item.Name; if ($name -match 'Tanto.exe') {$shell.Namespace('" + MainWindow.appDir + "').CopyHere($item, 0x14)}};",
                     // Delete Temp
                     "Write-Host \"`nDeleting Temp File\";",
-                    "del " + "\"" + tempDir + "Axiom.zip" + "\";",
+                    "del " + "\"" + tempDir + "Tanto.zip" + "\";",
                     // Complete
-                    "Write-Host \"`nUpdate Complete. Relaunching Axiom.\";",
+                    "Write-Host \"`nUpdate Complete. Relaunching Tanto.\";",
                     "timeout 3;",
-                    // Relaunch Axiom
-                    "& '" + MainWindow.appDir + "Axiom.exe'",
+                    // Relaunch Tanto
+                    "& '" + MainWindow.appDir + "Tanto.exe'",
                 };
 
                 // Join List with Spaces
@@ -167,7 +167,7 @@ namespace Tanto
                 // Start
                 Process.Start("powershell.exe", arguments);
 
-                // Close Axiom before updating exe
+                // Close Tanto before updating exe
                 Environment.Exit(0);
             });
 
