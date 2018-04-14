@@ -104,7 +104,7 @@ namespace Tanto
         public static String ExtractYear(string filename)
         {
             // (2018)
-            Regex regex = new Regex(@"\(.*?(\d+).*\)");
+            Regex regex = new Regex(@"\((\d\d\d\d)\)");
             MatchCollection matches = regex.Matches(filename);
 
             string year = string.Empty;

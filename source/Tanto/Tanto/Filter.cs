@@ -280,7 +280,7 @@ namespace Tanto
             // -------------------------
             // Remove Year
             // -------------------------
-            filename = Regex.Replace(filename, @"\(.*?(\d+).*\)", "");
+            filename = Regex.Replace(filename, @"\((\d\d\d\d)\)", "");
 
             // -------------------------
             // Remove Strange Episode Abbreviations
