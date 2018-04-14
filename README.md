@@ -48,10 +48,13 @@ After: `Example Title (2018) - S01E01 - The Episode Name - 1080p HEVC.mp4`
 
 >This program will rename your files. Clicking the Rename button will open a Preview to confirm changes before making them. You can ruin your filenames and ordering if a mistake is made. This program is in alpha and may have bugs.
 
+&nbsp;
+
 ## Guide
 
 https://github.com/MattMcManis/Tanto/wiki/Guide
 
+&nbsp;
 
 ## Downloads
 #### Releases
@@ -60,6 +63,7 @@ https://github.com/MattMcManis/Tanto/releases
 #### Requires
 [Microsoft .NET Framework 4.5.2](https://www.microsoft.com/net/download/dotnet-framework-runtime/net452)
 
+&nbsp;
 
 ## Installation
 Tanto is portable and can be run from any location on the computer.
@@ -67,6 +71,7 @@ Tanto is portable and can be run from any location on the computer.
 1. Extract `Tanto.zip` to a location of your choice.
 2. Run the program `Tanto.exe` or create a shortcut on the Desktop.
 
+&nbsp;
 
 ## Build
 Visual Studio 2015  
