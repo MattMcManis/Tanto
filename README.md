@@ -16,6 +16,8 @@ Batch Format Media File Names
 
 I built this program to standardize the file naming in my media library.
 
+![Tanto](https://raw.githubusercontent.com/MattMcManis/Tanto/master/images/tanto.png) 
+
 ---
 
 #### Simplify
