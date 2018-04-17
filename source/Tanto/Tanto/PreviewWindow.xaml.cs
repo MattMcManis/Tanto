@@ -67,7 +67,6 @@ namespace Tanto
                 lsvPreview.Items.Add(new MyItem {
                                 Original = Path.GetFileNameWithoutExtension(MainWindow.listFilePaths[i]),
                                 New = Path.GetFileNameWithoutExtension(MainWindow.listNewFileNames[i])
-                                //New = MainWindow.listNewFileNames[i]
                 });
 
             }
@@ -128,13 +127,10 @@ namespace Tanto
                     // -------------------------
                     // File
                     // -------------------------
-                    //string dir = Path.GetDirectoryName(listFilePaths[i]).TrimEnd('\\') + @"\";
                     string filename = Path.GetFileNameWithoutExtension(MainWindow.listFilePaths[i]);
-                    //string ext = Path.GetExtension(listFilePaths[i]);
 
                     string original = MainWindow.listFilePaths[i]; // path + filename + ext
                     string newName = MainWindow.listNewFileNames[i]; // path + filename + ext
-                    //string newName = dir + listNewFileNames[i] + ext;
 
                     // -------------------------
                     // Rename

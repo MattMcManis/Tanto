@@ -192,10 +192,62 @@ namespace Tanto
             }
 
             // -------------------------
+            // Remove Tags
+            // -------------------------
+            if (mainwindow.cbxFilterRemoveTags.IsChecked == true)
+            {
+                List<string> filter = new List<string>()
+                {
+                    "(8k)", "(4k)", "(2k)",
+                    "8k", "4k", "2k",
+                    "(8K)", "(4K)", "(2K)",
+                    "8K", "4K", "2K",
+                    "(1080p)", "(720p)", "(480p)",
+                    "1080p", "720p", "480p",
+                    "(1080P)", "(720P)", "(480P)",
+                    "1080P", "720P", "480P",
+
+                    "(DVD)", "(BD)", "(Blu-Ray)", "(BluRay)",
+                    "DVD", "Blu-Ray", "BLU-RAY", "BluRay",  "BLURAY",
+
+                    "(x264)", "(x265)", "(hevc)",
+                    "x264", "x265", "hevc",
+                    "(X264)", "(X265)", "(HEVC)",
+                    "X264", "X265", "HEVC",
+
+                     "(H264)", "(H265)",
+                     "H264", "H265",
+                     "(h264)", "(h265)",
+                     "h264", "h265",
+
+                     "(2CH)", "(6CH)", "(DD5.1)",
+                     "2CH", "6CH", "DD5.1",
+                     "(2ch)", "(6ch)", "(dd5.1)",
+                     "2ch", "6ch", "dd5.1"
+                };
+
+                for (var i = 0; i < filter.Count; i++)
+                {
+                    if (filename.Contains(filter[i]))
+                    {
+                        if (!filename.StartsWith(filter[i]))
+                        {
+                            int index = filename.IndexOf(filter[i]);
+
+                            if (index >= 0)
+                            {
+                                filename = filename.Substring(0, index);
+                            }
+                        }
+                    }
+                }
+            }
+
+            // -------------------------
             // Remove Double Spaces
             // -------------------------
             // Use at the very end of all filters
-            // Also in Initial Filter
+            // Also in File Name Filter
             if (mainwindow.cbxFilterDoubleSpaces.IsChecked == true)
             {
                 filename = Regex.Replace(filename, @"\s+", " ");
@@ -210,7 +262,7 @@ namespace Tanto
         ///    Filter Replace (Method)
         /// </summary>
         /// <remarks>
-        ///    This filter is applied to Final New File Name.
+        ///    This filter is applied to New File Name.
         /// </remarks>
         public static String FilterReplace(MainWindow mainwindow, string filename)
         {
@@ -252,10 +304,6 @@ namespace Tanto
         /// <summary>
         ///    Serites Title Filter (Method)
         /// </summary>
-        /// <remarks>
-        ///    Unlike the Initial Filter, this does not remove Season/Episode Numbering,
-        ///    allowing Prefix to be captured when there is no Episode Name.
-        /// </remarks>
         public static String SeriesTitleFilter(MainWindow mainwindow, string filename)
         {
             //MessageBox.Show(filename); //debug
@@ -321,8 +369,7 @@ namespace Tanto
         ///    Finalize Filter (Method)
         /// </summary>
         /// <remarks>
-        ///    Unlike the Initial Filter, this does not remove Season/Episode Numbering,
-        ///    allowing Prefix to be captured when there is no Episode Name.
+        ///    Applied to the New File Name.
         /// </remarks>
         public static String FilterFinalize(MainWindow mainwindow, string filename)
         {

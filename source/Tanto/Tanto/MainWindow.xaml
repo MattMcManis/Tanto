@@ -108,7 +108,7 @@
                 HorizontalAlignment="Left" 
                 Width="22" 
                 Background="White">
-            <TextBlock Text="▴" Margin="0,0,0,0"/>
+            <TextBlock Text="▴" Margin="0,-2,0,0"/>
         </Button>
         <!-- Sort Down -->
         <Button x:Name="btnSortDown" 
@@ -120,14 +120,26 @@
                     Click="btnSortDown_Click"
                     Margin="312,20,0,0" 
                     Background="White">
-            <TextBlock Text="▾" Margin="0,0,0,0"/>
+            <TextBlock Text="▾" Margin="0,-2,0,0"/>
+        </Button>
+        <!-- Remove -->
+        <Button x:Name="btnRemove" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top" 
+                    Width="22" 
+                    Height="22" 
+                    Cursor="Hand" 
+                    Click="btnRemove_Click"
+                    Margin="339,20,0,0" 
+                    Background="White">
+            <TextBlock Text="-" Margin="0,-2,0,0"/>
         </Button>
 
         <!-- Auto Sort -->
         <CheckBox x:Name="cbxAutoSort"
                   Content="Auto Sort"
                   HorizontalAlignment="Left"
-                  Margin="339,24,0,0"
+                  Margin="366,24,0,0"
                   VerticalAlignment="Top" 
                   ToolTipService.InitialShowDelay="500" 
                   ToolTip="Sort the file list by Name."/>
@@ -197,6 +209,7 @@
                           VerticalAlignment="Top">
 
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="35"/>
                             <RowDefinition Height="35"/>
                             <RowDefinition Height="35"/>
                             <RowDefinition Height="35"/>
@@ -363,6 +376,27 @@
                          Grid.Column="1"
                          Grid.Row="5" />
 
+                        <!-- Audio Channels -->
+                        <Label Content="Channels" 
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Top"
+                       Width="75" 
+                       ToolTipService.InitialShowDelay="500" 
+                       ToolTip="Audio Channels (e.g. 2CH, 6CH, DD5.1, Stereo, Mono)"
+                       Grid.Row="6"/>
+                        <TextBox x:Name="tbxAudioChannels"
+                         HorizontalAlignment="Left" 
+                         Height="22"
+                         Margin="0,2,0,0" 
+                         TextWrapping="NoWrap"
+                         Text="" 
+                         VerticalAlignment="Top"
+                         MaxLines="1"
+                         Width="170"
+                         KeyDown="tbxAudioChannels_KeyDown"
+                         Grid.Column="1"
+                         Grid.Row="6" />
+
                         <!-- Language -->
                         <Label Content="Language" 
                        HorizontalAlignment="Left" 
@@ -370,7 +404,7 @@
                        Width="75" 
                        ToolTipService.InitialShowDelay="500" 
                        ToolTip="e.g. ENG"
-                       Grid.Row="6"/>
+                       Grid.Row="7"/>
                         <TextBox x:Name="tbxLanguage"
                          HorizontalAlignment="Left" 
                          Height="22"
@@ -382,7 +416,7 @@
                          Width="170"
                          KeyDown="tbxLanguage_KeyDown"
                          Grid.Column="1"
-                         Grid.Row="6" />
+                         Grid.Row="7" />
 
                         <!-- Subtitles -->
                         <Label Content="Subtitles" 
@@ -391,7 +425,7 @@
                        Width="75" 
                        ToolTipService.InitialShowDelay="500" 
                        ToolTip="e.g. JPN"
-                       Grid.Row="7"/>
+                       Grid.Row="8"/>
                         <TextBox x:Name="tbxSubtitles"
                          HorizontalAlignment="Left" 
                          Height="22"
@@ -403,7 +437,7 @@
                          Width="170"
                          KeyDown="tbxSubtitles_KeyDown"
                          Grid.Column="1"
-                         Grid.Row="7" />
+                         Grid.Row="8" />
 
                         <!-- Encoding TextBox -->
                         <Label Content="Encoding" 
@@ -412,7 +446,7 @@
                        Width="75" 
                        ToolTipService.InitialShowDelay="500" 
                        ToolTip="e.g. h264, HEVC, VP8, MP3, AAC"
-                       Grid.Row="8"/>
+                       Grid.Row="9"/>
                         <TextBox x:Name="tbxEncoding"
                          HorizontalAlignment="Left" 
                          Height="22"
@@ -424,14 +458,14 @@
                          Width="170"
                          KeyDown="tbxEncoding_KeyDown"
                          Grid.Column="1" 
-                         Grid.Row="8" />
+                         Grid.Row="9" />
 
                         <!-- Misc TextBox -->
                         <Label Content="Misc" 
                        HorizontalAlignment="Left" 
                        VerticalAlignment="Top"
                        Width="75" 
-                       Grid.Row="9"/>
+                       Grid.Row="10"/>
                         <TextBox x:Name="tbxMisc"
                          HorizontalAlignment="Left" 
                          Height="22"
@@ -443,7 +477,7 @@
                          Width="170" 
                          KeyDown="tbxMisc_KeyDown"
                          Grid.Column="1" 
-                         Grid.Row="9" />
+                         Grid.Row="10" />
 
                         <!-- Separator TextBox -->
                         <Label Content="Separator" 
@@ -452,7 +486,7 @@
                        Width="75" 
                        ToolTipService.InitialShowDelay="500" 
                        ToolTip="Properties will be separated by this character(s)."
-                       Grid.Row="10"/>
+                       Grid.Row="11"/>
                         <TextBox x:Name="tbxSeparator"
                          HorizontalAlignment="Left" 
                          Height="22"
@@ -465,7 +499,7 @@
                          TextChanged="tbxSeparator_TextChanged" 
                          KeyDown="tbxSeparator_KeyDown"
                          Grid.Column="1" 
-                         Grid.Row="10" />
+                         Grid.Row="11" />
 
                         <!-- Spacing TextBox -->
                         <Label Content="Spacing" 
@@ -474,7 +508,7 @@
                        Width="75" 
                        ToolTipService.InitialShowDelay="500" 
                        ToolTip="Spaces will be replaced by this character(s)."
-                       Grid.Row="11"/>
+                       Grid.Row="12"/>
                         <TextBox x:Name="tbxSpacing"
                          HorizontalAlignment="Left" 
                          Height="22"
@@ -487,7 +521,7 @@
                          TextChanged="tbxSpacing_TextChanged" 
                          KeyDown="tbxSpacing_KeyDown"
                          Grid.Column="1" 
-                         Grid.Row="11" />
+                         Grid.Row="12" />
 
                     </Grid>
 
@@ -749,8 +783,9 @@
                           VerticalAlignment="Top">
 
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="165"/>
-                            <RowDefinition Height="165"/>
+                            <RowDefinition Height="85"/>
+                            <RowDefinition Height="105"/>
+                            <RowDefinition Height="185"/>
                             <RowDefinition Height="35"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
@@ -758,20 +793,17 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <!-- Filters -->
-                        <!--<Label Content="Filters" 
-                       VerticalAlignment="Top" 
-                       FontSize="14"
-                       HorizontalAlignment="Left" 
-                       Width="90" 
-                       Grid.Row="0"/>-->
+                        <!-- Detect -->
+                        <Label Content="Detect" 
+                               VerticalAlignment="Top" 
+                               HorizontalAlignment="Left" 
+                               Width="65"/>
 
                         <!-- Keep -->
                         <Label Content="Keep" 
-                       VerticalAlignment="Top" 
-                       HorizontalAlignment="Left" 
-                       Width="65" 
-                       Grid.Row="0"/>
+                               VerticalAlignment="Top" 
+                               HorizontalAlignment="Left" 
+                               Width="65" Grid.Row="1"/>
                         <!-- Auto Series Title -->
                         <CheckBox x:Name="cbxAutoSeriesTitle"
                           Content="Auto Title"
@@ -782,8 +814,7 @@
                           ToolTip="Auto-Detect Series Title."
                           Grid.Column="1" 
                           Checked="cbxSeriesTitle_Checked" 
-                          Unchecked="cbxSeriesTitle_Unchecked"
-                          Grid.Row="0"/>
+                          Unchecked="cbxSeriesTitle_Unchecked"/>
                         <!-- Auto Year -->
                         <CheckBox x:Name="cbxFilterAutoYear"
                           Content="Auto Year"
@@ -794,8 +825,7 @@
                           ToolTip="Auto-Detect Year in parenthese."
                           Grid.Column="1" 
                           Checked="cbxFilterAutoYear_Checked" 
-                          Unchecked="cbxFilterAutoYear_Unchecked"
-                          Grid.Row="0"/>
+                          Unchecked="cbxFilterAutoYear_Unchecked"/>
                         <!-- Auto Season Number -->
                         <CheckBox x:Name="cbxAutoSeasonNumber"
                           Content="Auto Season"
@@ -806,63 +836,62 @@
                           ToolTip="Auto-Detect Season Number."
                           Grid.Column="1" 
                           Checked="cbxSeasonNumber_Checked" 
-                          Unchecked="cbxSeasonNumber_Unchecked"
-                          Grid.Row="0"/>
+                          Unchecked="cbxSeasonNumber_Unchecked"/>
                         <!-- Episode Names -->
                         <CheckBox x:Name="cbxEpisodeNames"
                           Content="Episode Names"
                           HorizontalAlignment="Left"
-                          Margin="0,72,0,0"
+                          Margin="0,6,0,0"
                           VerticalAlignment="Top" 
                           ToolTipService.InitialShowDelay="500" 
                           ToolTip="Preserve existing episode names."
                           Grid.Column="1" 
                           Checked="cbxEpisodeNames_Checked" 
                           Unchecked="cbxEpisodeNames_Unchecked"
-                          Grid.Row="0"/>
+                          Grid.Row="1"/>
                         <!-- Enable Title Case -->
                         <CheckBox x:Name="cbxFilterTitleCase"
                           Content="Enable Title Case"
                           HorizontalAlignment="Left"
-                          Margin="0,94,0,0"
+                          Margin="0,28,0,0"
                           VerticalAlignment="Top" 
                           ToolTipService.InitialShowDelay="500" 
                           ToolTip="Capitalizes the first letter of each word."
                           Grid.Column="1" 
                           Checked="cbxFilterTitleCase_Checked" 
                           Unchecked="cbxFilterTitleCase_Unchecked"
-                          Grid.Row="0"/>
+                          Grid.Row="1"/>
                         <!-- Original Spacing -->
                         <CheckBox x:Name="cbxFilterOriginalSpacing"
                           Content="Original Spacing"
                           HorizontalAlignment="Left"
-                          Margin="0,116,0,0"
+                          Margin="0,50,0,0"
                           VerticalAlignment="Top" 
                           ToolTipService.InitialShowDelay="500" 
                           ToolTip="Keep original spacing. This.is.period.spacing. This_is_underscore_spacing."
                           Grid.Column="1" 
                           Checked="cbxFilterOriginalSpacing_Checked" 
                           Unchecked="cbxFilterOriginalSpacing_Unchecked"
-                          Grid.Row="0"/>
+                          Grid.Row="1"/>
                         <!-- Hyphens -->
                         <CheckBox x:Name="cbxFilterHyphens"
                           Content="Hyphens"
                           HorizontalAlignment="Left"
-                          Margin="0,138,0,0"
+                          Margin="0,72,0,0"
                           VerticalAlignment="Top" 
                           ToolTipService.InitialShowDelay="500" 
                           ToolTip="Keep hyphenated-words when removing - dashes."
                           Grid.Column="1" 
                           Checked="cbxFilterHyphens_Checked" 
                           Unchecked="cbxFilterHyphens_Unchecked"
-                          Grid.Row="0"/>
+                          Grid.Row="1"/>
 
                         <!-- Remove -->
                         <Label Content="Remove" 
                        VerticalAlignment="Top" 
                        HorizontalAlignment="Left" 
                        Width="65" 
-                       Grid.Row="1"/>
+                       Grid.Row="2"/>
                         <!-- Episode Numbering -->
                         <CheckBox x:Name="cbxFilterEpisodeNumbering"
                           Content="Episode Numbering"
@@ -870,81 +899,93 @@
                           Margin="0,6,0,0"
                           VerticalAlignment="Top" 
                           ToolTipService.InitialShowDelay="500" 
-                          ToolTip="Remove leftover Episode Numbering such as 1, 01, 001, EP1."
+                          ToolTip="Remove leftover Episode Numbering. (eg. 1, 01, 001, EP1)."
                           Grid.Column="1" 
                           Checked="cbxFilterEpisodeNumbering_Checked" 
                           Unchecked="cbxFilterEpisodeNumbering_Unchecked"
-                          Grid.Row="1"/>
+                          Grid.Row="2"/>
+                        <!-- Episode Name Tags -->
+                        <CheckBox x:Name="cbxFilterRemoveTags"
+                          Content="Episode Name Tags"
+                          HorizontalAlignment="Left"
+                          Margin="0,28,0,0"
+                          VerticalAlignment="Top" 
+                          ToolTipService.InitialShowDelay="500" 
+                          ToolTip="Remove leftover Tags in Episode Name. (eg. 1080p, 6CH, BluRay)."
+                          Grid.Column="1" 
+                          Checked="cbxFilterRemoveTags_Checked" 
+                          Unchecked="cbxFilterRemoveTags_Unchecked"
+                          Grid.Row="2"/>
                         <!-- Year -->
                         <CheckBox x:Name="cbxFilterRemoveYear"
                           Content="Year"
                           HorizontalAlignment="Left"
-                          Margin="0,28,0,0"
+                          Margin="0,50,0,0"
                           VerticalAlignment="Top" 
                           ToolTipService.InitialShowDelay="500" 
                           ToolTip="Remove year in parenthese (2018)."
                           Grid.Column="1" 
                           Checked="cbxFilterRemoveYear_Checked" 
                           Unchecked="cbxFilterRemoveYear_Unchecked"
-                          Grid.Row="1"/>
+                          Grid.Row="2"/>
                         <!-- Period Spacing -->
                         <CheckBox x:Name="cbxFilterPeriodSpacing"
                           Content="Period Spacing"
                           HorizontalAlignment="Left"
-                          Margin="0,50,0,0"
+                          Margin="0,72,0,0"
                           VerticalAlignment="Top" 
                           ToolTipService.InitialShowDelay="500" 
                           ToolTip="This.is.period.spacing."
                           Grid.Column="1" 
                           Checked="cbxFilterPeriodSpacing_Checked" 
                           Unchecked="cbxFilterPeriodSpacing_Unchecked"
-                          Grid.Row="1"/>
+                          Grid.Row="2"/>
                         <!-- Underscore Spacing -->
                         <CheckBox x:Name="cbxFilterUnderscoreSpacing"
                           Content="Underscore Spacing"
                           HorizontalAlignment="Left"
-                          Margin="0,72,0,0"
+                          Margin="0,94,0,0"
                           VerticalAlignment="Top"
                           ToolTipService.InitialShowDelay="500" 
                           ToolTip="This_is_underscore_spacing."
                           Grid.Column="1" 
                           Checked="cbxFilterUnderscoreSpacing_Checked" 
                           Unchecked="cbxFilterUnderscoreSpacing_Unchecked"
-                          Grid.Row="1"/>
+                          Grid.Row="2"/>
                         <!-- Dash Spacing -->
                         <CheckBox x:Name="cbxFilterDashSpacing"
                           Content="Dash Spacing"
                           HorizontalAlignment="Left"
-                          Margin="0,94,0,0"
+                          Margin="0,116,0,0"
                           VerticalAlignment="Top" 
                           Grid.Column="1" 
                           ToolTipService.InitialShowDelay="500" 
                           ToolTip="This-is-dash-spacing."
                           Checked="cbxFilterDashSpacing_Checked" 
                           Unchecked="cbxFilterDashSpacing_Unchecked"
-                          Grid.Row="1"/>
+                          Grid.Row="2"/>
                         <!-- Dashes Between Words-->
                         <CheckBox x:Name="cbxFilterDashes"
                           Content="Dashes Between Words"
                           HorizontalAlignment="Left"
-                          Margin="0,116,0,0"
+                          Margin="0,138,0,0"
                           VerticalAlignment="Top" 
                           Grid.Column="1" 
                           ToolTipService.InitialShowDelay="500" 
                           ToolTip="These - are dashes between - words."
                           Checked="cbxFilterDashes_Checked" 
                           Unchecked="cbxFilterDashes_Unchecked"
-                          Grid.Row="1"/>
+                          Grid.Row="2"/>
                         <!-- Remove Double Spaces -->
                         <CheckBox x:Name="cbxFilterDoubleSpaces"
                           Content="Double Spaces"
                           HorizontalAlignment="Left"
-                          Margin="0,138,0,0"
+                          Margin="0,160,0,0"
                           VerticalAlignment="Top" 
                           Grid.Column="1" 
                           Checked="cbxFilterDoubleSpaces_Checked" 
                           Unchecked="cbxFilterDoubleSpaces_Unchecked"
-                          Grid.Row="1"/>
+                          Grid.Row="2"/>
 
                     </Grid>
 

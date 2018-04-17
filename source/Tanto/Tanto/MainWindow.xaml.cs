@@ -312,6 +312,21 @@ namespace Tanto
 
             }
 
+            // Filter Remove Episode Name Tags
+            //
+            // Safeguard Against Corrupt Saved Settings
+            try
+            {
+                // --------------------------
+                // First time use
+                // --------------------------
+                cbxFilterRemoveTags.IsChecked = Convert.ToBoolean(Settings.Default.FilterRemoveTags);
+            }
+            catch
+            {
+
+            }
+
 
             // Filter Remove Year
             //
@@ -406,7 +421,8 @@ namespace Tanto
             // -------------------------
             // Load Textboxes
             // -------------------------
-            // Filter Remove Double Spaces
+
+            // Separator
             //
             // Safeguard Against Corrupt Saved Settings
             try
@@ -775,12 +791,12 @@ the Free Software Foundation, either version 3 of the License, or
                     lsvFileNames.Items.RemoveAt(selectedIndex);
                     lsvFileNames.Items.Insert(selectedIndex - 1, itemlsvFileNames);
                     
-                    // List FilePaths
+                    // List File Paths
                     string itemFilePaths = listFilePaths[selectedIndex];
                     listFilePaths.RemoveAt(selectedIndex);
                     listFilePaths.Insert(selectedIndex - 1, itemFilePaths);
 
-                    // Clear and Re-Add List Filename to ListView
+                    // Clear and Re-Add List File Name to ListView
                     // Preserves Column Numbering
                     lsvFileNames.Items.Clear();
                     foreach (var name in listFilePaths.Select(f => Path.GetFileName(f)))
@@ -815,12 +831,12 @@ the Free Software Foundation, either version 3 of the License, or
                     lsvFileNames.Items.RemoveAt(selectedIndex);
                     lsvFileNames.Items.Insert(selectedIndex + 1, itemlsvFileNames);
 
-                    // List FilePaths
+                    // List File Paths
                     string itemFilePaths = listFilePaths[selectedIndex];
                     listFilePaths.RemoveAt(selectedIndex);
                     listFilePaths.Insert(selectedIndex + 1, itemFilePaths);
 
-                    // Clear and Re-Add List Filename to ListView
+                    // Clear and Re-Add List File Name to ListView
                     // Preserves Column Numbering
                     lsvFileNames.Items.Clear();
                     foreach (var name in listFilePaths.Select(f => Path.GetFileName(f)))
@@ -836,7 +852,37 @@ the Free Software Foundation, either version 3 of the License, or
                 }
             }
         }
-        
+
+        /// <summary>
+        ///    Remove Button Down
+        /// </summary>
+        private void btnRemove_Click(object sender, RoutedEventArgs e)
+        {
+            // Progress Info
+            lblProgressInfo.Content = "";
+
+            if (lsvFileNames.SelectedItems.Count > 0)
+            {
+                var selectedIndex = lsvFileNames.SelectedIndex;
+
+                // ListView Items
+                var itemlsvFileNames = lsvFileNames.Items[selectedIndex];
+                lsvFileNames.Items.RemoveAt(selectedIndex);
+
+                // List File Paths
+                string itemFilePaths = listFilePaths[selectedIndex];
+                listFilePaths.RemoveAt(selectedIndex);
+
+                // Clear and Re-Add List File Name to ListView
+                // Preserves Column Numbering
+                lsvFileNames.Items.Clear();
+                foreach (var name in listFilePaths.Select(f => Path.GetFileName(f)))
+                {
+                    lsvFileNames.Items.Add(name);
+                }
+            }
+        }
+
 
         /// <summary>
         ///    Clear List Button
@@ -956,6 +1002,14 @@ the Free Software Foundation, either version 3 of the License, or
         ///     Format TextBox
         /// </summary>
         private void tbxFormat_KeyDown(object sender, KeyEventArgs e)
+        {
+            DenySpecialKeys(e);
+        }
+
+        /// <summary>
+        ///     Audio Channels TextBox
+        /// </summary>
+        private void tbxAudioChannels_KeyDown(object sender, KeyEventArgs e)
         {
             DenySpecialKeys(e);
         }
@@ -1689,6 +1743,62 @@ the Free Software Foundation, either version 3 of the License, or
                 else if (cbxFilterHyphens.IsChecked == false)
                 {
                     Settings.Default.FilterHyphens = false;
+                    Settings.Default.Save();
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+
+        /// <summary>
+        ///     Filter Remove - Episode Name Tags
+        ///     Checkbox - Checked
+        /// </summary>
+        private void cbxFilterRemoveTags_Checked(object sender, RoutedEventArgs e)
+        {
+            //Prevent Saving Corrupt App.Config
+            try
+            {
+                // Save Toggle Settings
+
+                if (cbxFilterRemoveTags.IsChecked == true)
+                {
+                    Settings.Default.FilterRemoveTags = true;
+                    Settings.Default.Save();
+                }
+                else if (cbxFilterRemoveTags.IsChecked == false)
+                {
+                    Settings.Default.FilterRemoveTags = false;
+                    Settings.Default.Save();
+                }
+            }
+            catch
+            {
+            }
+        }
+
+        /// <summary>
+        ///     Filter Remove - Episode Name Tags
+        ///     Checkbox - Unchecked
+        /// </summary>
+        private void cbxFilterRemoveTags_Unchecked(object sender, RoutedEventArgs e)
+        {
+            // Prevent Saving Corrupt App.Config
+            try
+            {
+                // Save Toggle Settings
+
+                if (cbxFilterRemoveTags.IsChecked == true)
+                {
+                    Settings.Default.FilterRemoveTags = true;
+                    Settings.Default.Save();
+                }
+                else if (cbxFilterRemoveTags.IsChecked == false)
+                {
+                    Settings.Default.FilterRemoveTags = false;
                     Settings.Default.Save();
                 }
             }

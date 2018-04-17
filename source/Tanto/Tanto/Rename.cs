@@ -163,6 +163,11 @@ namespace Tanto
                 string format = mainwindow.tbxFormat.Text;
 
                 // -------------------------
+                // Audio Channels
+                // -------------------------
+                string channels = mainwindow.tbxAudioChannels.Text;
+
+                // -------------------------
                 // Language
                 // -------------------------
                 string language = mainwindow.tbxLanguage.Text;
@@ -199,6 +204,7 @@ namespace Tanto
                     episodeName,
                     resolution,
                     format,
+                    channels,
                     language,
                     subtitles,
                     encoding,
