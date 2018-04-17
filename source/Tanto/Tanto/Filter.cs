@@ -113,7 +113,7 @@ namespace Tanto
             // -------------------------
             // Remove Episode Numbering
             // -------------------------
-            if (mainwindow.cbxFilterEpisodeNumbering.IsChecked == true)
+            if (mainwindow.cbxFilterRemoveEpisodeNumbering.IsChecked == true)
             {
                 filename = Regex.Replace(
                                 filename

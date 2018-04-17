@@ -158,24 +158,24 @@ namespace Tanto.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool EpisodeNumbering {
+        public bool FilterRemoveEpisodeNumbering {
             get {
-                return ((bool)(this["EpisodeNumbering"]));
+                return ((bool)(this["FilterRemoveEpisodeNumbering"]));
             }
             set {
-                this["EpisodeNumbering"] = value;
+                this["FilterRemoveEpisodeNumbering"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool OriginalSpacing {
+        public bool FilterOriginalSpacing {
             get {
-                return ((bool)(this["OriginalSpacing"]));
+                return ((bool)(this["FilterOriginalSpacing"]));
             }
             set {
-                this["OriginalSpacing"] = value;
+                this["FilterOriginalSpacing"] = value;
             }
         }
         
@@ -206,24 +206,24 @@ namespace Tanto.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool SeriesTitle {
+        public bool FilterSeriesTitle {
             get {
-                return ((bool)(this["SeriesTitle"]));
+                return ((bool)(this["FilterSeriesTitle"]));
             }
             set {
-                this["SeriesTitle"] = value;
+                this["FilterSeriesTitle"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool SeasonNumber {
+        public bool FilterAutoSeasonNumber {
             get {
-                return ((bool)(this["SeasonNumber"]));
+                return ((bool)(this["FilterAutoSeasonNumber"]));
             }
             set {
-                this["SeasonNumber"] = value;
+                this["FilterAutoSeasonNumber"] = value;
             }
         }
         
@@ -296,6 +296,18 @@ namespace Tanto.Properties {
             }
             set {
                 this["FilterRemoveTags"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool FilterAutoStartingEpisodeNumber {
+            get {
+                return ((bool)(this["FilterAutoStartingEpisodeNumber"]));
+            }
+            set {
+                this["FilterAutoStartingEpisodeNumber"] = value;
             }
         }
     }

@@ -99,6 +99,74 @@ namespace Tanto
 
 
         /// <summary>
+        ///    Extract Episode Number
+        /// </summary>
+        public static void ExtractEpisodeNumber(MainWindow mainwindow)
+        {
+            try
+            {
+                List<string> seasonEpisodeNumbersList = new List<string>();
+                List<string> episodeNumbersList = new List<string>();
+                List<int> numbersList = new List<int>();
+
+                // S00E00
+                Regex regex = new Regex(@"\b(S\d\d\d?E\d\d\d?)\b\s*", RegexOptions.IgnoreCase);
+
+                for (var i = 0; i < MainWindow.listFilePaths.Count; i++)
+                {
+                    MatchCollection matches = regex.Matches(Path.GetFileNameWithoutExtension(MainWindow.listFilePaths[i]));
+
+                    if (Path.GetFileNameWithoutExtension(MainWindow.listFilePaths[i]).Contains(matches[0].Value.ToString()))
+                    {
+                        seasonEpisodeNumbersList.Add(matches[0].Value.ToString());
+                    }
+                }
+                   
+
+                // E00
+                regex = new Regex(@"(E\d\d\d?)\s*", RegexOptions.IgnoreCase);
+
+                for (var i = 0; i < seasonEpisodeNumbersList.Count; i++)
+                {
+                    MatchCollection matches = regex.Matches(seasonEpisodeNumbersList[i]);
+
+                    if (seasonEpisodeNumbersList[i].Contains(matches[0].Value.ToString()))
+                    {
+                        episodeNumbersList.Add(matches[0].Value.ToString());
+                    }
+                }
+
+                // 00
+                regex = new Regex(@"(\d\d\d?)\s*", RegexOptions.IgnoreCase);
+
+                for (var i = 0; i < episodeNumbersList.Count; i++)
+                {
+                    MatchCollection matches = regex.Matches(episodeNumbersList[i]);
+
+                    if (episodeNumbersList[i].Contains(matches[0].Value.ToString()))
+                    {
+                        numbersList.Add(int.Parse(matches[0].Value));
+                    }
+                }
+
+                // Update Textbox
+                if (numbersList.Count > 0)
+                {
+                    int lowestNumber = numbersList.Min(c => c);
+
+                    //MessageBox.Show(lowestNumber.ToString()); //debug
+
+                    mainwindow.tbxStartEpisodeAt.Text = lowestNumber.ToString();
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+
+        /// <summary>
         ///    Extract Year
         /// </summary>
         public static String ExtractYear(string filename)

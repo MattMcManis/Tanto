@@ -35,10 +35,10 @@
     <Setting Name="FilterUnderscoreSpacing" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="EpisodeNumbering" Type="System.Boolean" Scope="User">
+    <Setting Name="FilterRemoveEpisodeNumbering" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="OriginalSpacing" Type="System.Boolean" Scope="User">
+    <Setting Name="FilterOriginalSpacing" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="FilterDoubleSpaces" Type="System.Boolean" Scope="User">
@@ -47,10 +47,10 @@
     <Setting Name="FilterTitleCase" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="SeriesTitle" Type="System.Boolean" Scope="User">
+    <Setting Name="FilterSeriesTitle" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="SeasonNumber" Type="System.Boolean" Scope="User">
+    <Setting Name="FilterAutoSeasonNumber" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="FilterHyphens" Type="System.Boolean" Scope="User">
@@ -70,6 +70,9 @@
     </Setting>
     <Setting Name="FilterRemoveTags" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="FilterAutoStartingEpisodeNumber" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

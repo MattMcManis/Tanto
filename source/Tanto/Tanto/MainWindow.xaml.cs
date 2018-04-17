@@ -185,7 +185,7 @@ namespace Tanto
                 // --------------------------
                 // First time use
                 // --------------------------
-                cbxEpisodeNumbering.IsChecked = Convert.ToBoolean(Settings.Default.EpisodeNumbering);
+                cbxEpisodeNumbering.IsChecked = Convert.ToBoolean(Settings.Default.FilterEpisodeNumbering);
             }
             catch
             {
@@ -215,14 +215,14 @@ namespace Tanto
                 // --------------------------
                 // First time use
                 // --------------------------
-                cbxAutoSeriesTitle.IsChecked = Convert.ToBoolean(Settings.Default.SeriesTitle);
+                cbxAutoSeriesTitle.IsChecked = Convert.ToBoolean(Settings.Default.FilterSeriesTitle);
             }
             catch
             {
 
             }
 
-            // Filter Keep Season Number
+            // Filter Auto Season Number
             //
             // Safeguard Against Corrupt Saved Settings
             try
@@ -230,7 +230,22 @@ namespace Tanto
                 // --------------------------
                 // First time use
                 // --------------------------
-                cbxAutoSeasonNumber.IsChecked = Convert.ToBoolean(Settings.Default.SeasonNumber);
+                cbxAutoSeasonNumber.IsChecked = Convert.ToBoolean(Settings.Default.FilterAutoSeasonNumber);
+            }
+            catch
+            {
+
+            }
+
+            // Filter Auto Starting Episode Number
+            //
+            // Safeguard Against Corrupt Saved Settings
+            try
+            {
+                // --------------------------
+                // First time use
+                // --------------------------
+                cbxAutoStartingEpisodeNumber.IsChecked = Convert.ToBoolean(Settings.Default.FilterAutoStartingEpisodeNumber);
             }
             catch
             {
@@ -275,7 +290,7 @@ namespace Tanto
                 // --------------------------
                 // First time use
                 // --------------------------
-                cbxFilterEpisodeNumbering.IsChecked = Convert.ToBoolean(Settings.Default.FilterEpisodeNumbering);
+                cbxFilterRemoveEpisodeNumbering.IsChecked = Convert.ToBoolean(Settings.Default.FilterRemoveEpisodeNumbering);
             }
             catch
             {
@@ -305,7 +320,7 @@ namespace Tanto
                 // --------------------------
                 // First time use
                 // --------------------------
-                cbxFilterOriginalSpacing.IsChecked = Convert.ToBoolean(Settings.Default.OriginalSpacing);
+                cbxFilterOriginalSpacing.IsChecked = Convert.ToBoolean(Settings.Default.FilterOriginalSpacing);
             }
             catch
             {
@@ -719,11 +734,19 @@ the Free Software Foundation, either version 3 of the License, or
                 }
 
                 // -------------------------
-                // Extract Season
+                // Extract Season Number
                 // -------------------------
                 if (cbxAutoSeasonNumber.IsChecked == true)
                 {
                     Extract.ExtractSeasonNumber(this);
+                }
+
+                // -------------------------
+                // Extract Episode Number
+                // -------------------------
+                if (cbxAutoStartingEpisodeNumber.IsChecked == true)
+                {
+                    Extract.ExtractEpisodeNumber(this);
                 }
 
                 // -------------------------
@@ -1207,12 +1230,12 @@ the Free Software Foundation, either version 3 of the License, or
                 
                 if (cbxEpisodeNumbering.IsChecked == true)
                 {
-                    Settings.Default.EpisodeNumbering = true;
+                    Settings.Default.FilterRemoveEpisodeNumbering = true;
                     Settings.Default.Save();
                 }
                 else if (cbxEpisodeNumbering.IsChecked == false)
                 {
-                    Settings.Default.EpisodeNumbering = false;
+                    Settings.Default.FilterRemoveEpisodeNumbering = false;
                     Settings.Default.Save();
                 }
             }
@@ -1233,12 +1256,12 @@ the Free Software Foundation, either version 3 of the License, or
                 
                 if (cbxEpisodeNumbering.IsChecked == true)
                 {
-                    Settings.Default.EpisodeNumbering = true;
+                    Settings.Default.FilterRemoveEpisodeNumbering = true;
                     Settings.Default.Save();
                 }
                 else if (cbxEpisodeNumbering.IsChecked == false)
                 {
-                    Settings.Default.EpisodeNumbering = false;
+                    Settings.Default.FilterRemoveEpisodeNumbering = false;
                     Settings.Default.Save();
                 }
             }
@@ -1369,12 +1392,12 @@ the Free Software Foundation, either version 3 of the License, or
                 
                 if (cbxAutoSeriesTitle.IsChecked == true)
                 {
-                    Settings.Default.SeriesTitle = true;
+                    Settings.Default.FilterSeriesTitle = true;
                     Settings.Default.Save();
                 }
                 else if (cbxAutoSeriesTitle.IsChecked == false)
                 {
-                    Settings.Default.SeriesTitle = false;
+                    Settings.Default.FilterSeriesTitle = false;
                     Settings.Default.Save();
                 }
             }
@@ -1395,12 +1418,12 @@ the Free Software Foundation, either version 3 of the License, or
                 
                 if (cbxAutoSeriesTitle.IsChecked == true)
                 {
-                    Settings.Default.SeriesTitle = true;
+                    Settings.Default.FilterSeriesTitle = true;
                     Settings.Default.Save();
                 }
                 else if (cbxAutoSeriesTitle.IsChecked == false)
                 {
-                    Settings.Default.SeriesTitle = false;
+                    Settings.Default.FilterSeriesTitle = false;
                     Settings.Default.Save();
                 }
             }
@@ -1423,12 +1446,12 @@ the Free Software Foundation, either version 3 of the License, or
                 
                 if (cbxAutoSeasonNumber.IsChecked == true)
                 {
-                    Settings.Default.SeasonNumber = true;
+                    Settings.Default.FilterAutoSeasonNumber = true;
                     Settings.Default.Save();
                 }
                 else if (cbxAutoSeasonNumber.IsChecked == false)
                 {
-                    Settings.Default.SeasonNumber = false;
+                    Settings.Default.FilterAutoSeasonNumber = false;
                     Settings.Default.Save();
                 }
             }
@@ -1449,12 +1472,66 @@ the Free Software Foundation, either version 3 of the License, or
                 
                 if (cbxAutoSeasonNumber.IsChecked == true)
                 {
-                    Settings.Default.SeasonNumber = true;
+                    Settings.Default.FilterAutoSeasonNumber = true;
                     Settings.Default.Save();
                 }
                 else if (cbxAutoSeasonNumber.IsChecked == false)
                 {
-                    Settings.Default.SeasonNumber = false;
+                    Settings.Default.FilterAutoSeasonNumber = false;
+                    Settings.Default.Save();
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+
+        /// <summary>
+        ///    Auto Starting Episode Number Checkbox - Checked
+        /// </summary>
+        private void cbxAutoStartingEpisodeNumber_Checked(object sender, RoutedEventArgs e)
+        {
+            //Prevent Saving Corrupt App.Config
+            try
+            {
+                // Save Toggle Settings
+
+                if (cbxAutoStartingEpisodeNumber.IsChecked == true)
+                {
+                    Settings.Default.FilterAutoStartingEpisodeNumber = true;
+                    Settings.Default.Save();
+                }
+                else if (cbxAutoStartingEpisodeNumber.IsChecked == false)
+                {
+                    Settings.Default.FilterAutoStartingEpisodeNumber = false;
+                    Settings.Default.Save();
+                }
+            }
+            catch
+            {
+            }
+        }
+
+        /// <summary>
+        ///    Auto Starting Episode Number Checkbox - Unchecked
+        /// </summary>
+        private void cbxAutoStartingEpisodeNumber_Unchecked(object sender, RoutedEventArgs e)
+        {
+            // Prevent Saving Corrupt App.Config
+            try
+            {
+                // Save Toggle Settings
+
+                if (cbxAutoStartingEpisodeNumber.IsChecked == true)
+                {
+                    Settings.Default.FilterAutoStartingEpisodeNumber = true;
+                    Settings.Default.Save();
+                }
+                else if (cbxAutoStartingEpisodeNumber.IsChecked == false)
+                {
+                    Settings.Default.FilterAutoStartingEpisodeNumber = false;
                     Settings.Default.Save();
                 }
             }
@@ -1522,21 +1599,21 @@ the Free Software Foundation, either version 3 of the License, or
         ///     Filter Remove - Episode Numbering 
         ///     Checkbox - Checked
         /// </summary>
-        private void cbxFilterEpisodeNumbering_Checked(object sender, RoutedEventArgs e)
+        private void cbxFilterRemoveEpisodeNumbering_Checked(object sender, RoutedEventArgs e)
         {
             //Prevent Saving Corrupt App.Config
             try
             {
                 // Save Toggle Settings
                 
-                if (cbxFilterEpisodeNumbering.IsChecked == true)
+                if (cbxFilterRemoveEpisodeNumbering.IsChecked == true)
                 {
-                    Settings.Default.FilterEpisodeNumbering = true;
+                    Settings.Default.FilterRemoveEpisodeNumbering = true;
                     Settings.Default.Save();
                 }
-                else if (cbxFilterEpisodeNumbering.IsChecked == false)
+                else if (cbxFilterRemoveEpisodeNumbering.IsChecked == false)
                 {
-                    Settings.Default.FilterEpisodeNumbering = false;
+                    Settings.Default.FilterRemoveEpisodeNumbering = false;
                     Settings.Default.Save();
                 }
             }
@@ -1549,21 +1626,21 @@ the Free Software Foundation, either version 3 of the License, or
         ///     Filter Remove - Episode Numbering 
         ///     Checkbox - Unchecked
         /// </summary>
-        private void cbxFilterEpisodeNumbering_Unchecked(object sender, RoutedEventArgs e)
+        private void cbxFilterRemoveEpisodeNumbering_Unchecked(object sender, RoutedEventArgs e)
         {
             // Prevent Saving Corrupt App.Config
             try
             {
                 // Save Toggle Settings
                 
-                if (cbxFilterEpisodeNumbering.IsChecked == true)
+                if (cbxFilterRemoveEpisodeNumbering.IsChecked == true)
                 {
-                    Settings.Default.FilterEpisodeNumbering = true;
+                    Settings.Default.FilterRemoveEpisodeNumbering = true;
                     Settings.Default.Save();
                 }
-                else if (cbxFilterEpisodeNumbering.IsChecked == false)
+                else if (cbxFilterRemoveEpisodeNumbering.IsChecked == false)
                 {
-                    Settings.Default.FilterEpisodeNumbering = false;
+                    Settings.Default.FilterRemoveEpisodeNumbering = false;
                     Settings.Default.Save();
                 }
             }
@@ -1648,12 +1725,12 @@ the Free Software Foundation, either version 3 of the License, or
                 
                 if (cbxFilterOriginalSpacing.IsChecked == true)
                 {
-                    Settings.Default.OriginalSpacing = true;
+                    Settings.Default.FilterOriginalSpacing = true;
                     Settings.Default.Save();
                 }
                 else if (cbxFilterOriginalSpacing.IsChecked == false)
                 {
-                    Settings.Default.OriginalSpacing = false;
+                    Settings.Default.FilterOriginalSpacing = false;
                     Settings.Default.Save();
                 }
             }
@@ -1676,12 +1753,12 @@ the Free Software Foundation, either version 3 of the License, or
                 
                 if (cbxFilterOriginalSpacing.IsChecked == true)
                 {
-                    Settings.Default.OriginalSpacing = true;
+                    Settings.Default.FilterOriginalSpacing = true;
                     Settings.Default.Save();
                 }
                 else if (cbxFilterOriginalSpacing.IsChecked == false)
                 {
-                    Settings.Default.OriginalSpacing = false;
+                    Settings.Default.FilterOriginalSpacing = false;
                     Settings.Default.Save();
                 }
             }

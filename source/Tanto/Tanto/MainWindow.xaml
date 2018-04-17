@@ -783,7 +783,7 @@
                           VerticalAlignment="Top">
 
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="85"/>
+                            <RowDefinition Height="105"/>
                             <RowDefinition Height="105"/>
                             <RowDefinition Height="185"/>
                             <RowDefinition Height="35"/>
@@ -804,9 +804,10 @@
                                VerticalAlignment="Top" 
                                HorizontalAlignment="Left" 
                                Width="65" Grid.Row="1"/>
+                       
                         <!-- Auto Series Title -->
                         <CheckBox x:Name="cbxAutoSeriesTitle"
-                          Content="Auto Title"
+                          Content="Auto Series Title"
                           HorizontalAlignment="Left"
                           Margin="0,6,0,0"
                           VerticalAlignment="Top" 
@@ -815,6 +816,7 @@
                           Grid.Column="1" 
                           Checked="cbxSeriesTitle_Checked" 
                           Unchecked="cbxSeriesTitle_Unchecked"/>
+                       
                         <!-- Auto Year -->
                         <CheckBox x:Name="cbxFilterAutoYear"
                           Content="Auto Year"
@@ -826,9 +828,10 @@
                           Grid.Column="1" 
                           Checked="cbxFilterAutoYear_Checked" 
                           Unchecked="cbxFilterAutoYear_Unchecked"/>
+                       
                         <!-- Auto Season Number -->
                         <CheckBox x:Name="cbxAutoSeasonNumber"
-                          Content="Auto Season"
+                          Content="Auto Season Number"
                           HorizontalAlignment="Left"
                           Margin="0,50,0,0"
                           VerticalAlignment="Top" 
@@ -837,6 +840,19 @@
                           Grid.Column="1" 
                           Checked="cbxSeasonNumber_Checked" 
                           Unchecked="cbxSeasonNumber_Unchecked"/>
+
+                        <!-- Auto Starting Episode Number -->
+                        <CheckBox x:Name="cbxAutoStartingEpisodeNumber"
+                          Content="Auto Episode Number"
+                          HorizontalAlignment="Left"
+                          Margin="0,72,0,0"
+                          VerticalAlignment="Top" 
+                          ToolTipService.InitialShowDelay="500" 
+                          ToolTip="Auto-Detect Starting Episode Number."
+                          Grid.Column="1" 
+                          Checked="cbxAutoStartingEpisodeNumber_Checked" 
+                          Unchecked="cbxAutoStartingEpisodeNumber_Unchecked"/>
+                        
                         <!-- Episode Names -->
                         <CheckBox x:Name="cbxEpisodeNames"
                           Content="Episode Names"
@@ -849,6 +865,7 @@
                           Checked="cbxEpisodeNames_Checked" 
                           Unchecked="cbxEpisodeNames_Unchecked"
                           Grid.Row="1"/>
+                     
                         <!-- Enable Title Case -->
                         <CheckBox x:Name="cbxFilterTitleCase"
                           Content="Enable Title Case"
@@ -861,6 +878,7 @@
                           Checked="cbxFilterTitleCase_Checked" 
                           Unchecked="cbxFilterTitleCase_Unchecked"
                           Grid.Row="1"/>
+                      
                         <!-- Original Spacing -->
                         <CheckBox x:Name="cbxFilterOriginalSpacing"
                           Content="Original Spacing"
@@ -873,6 +891,7 @@
                           Checked="cbxFilterOriginalSpacing_Checked" 
                           Unchecked="cbxFilterOriginalSpacing_Unchecked"
                           Grid.Row="1"/>
+                     
                         <!-- Hyphens -->
                         <CheckBox x:Name="cbxFilterHyphens"
                           Content="Hyphens"
@@ -892,8 +911,9 @@
                        HorizontalAlignment="Left" 
                        Width="65" 
                        Grid.Row="2"/>
+                    
                         <!-- Episode Numbering -->
-                        <CheckBox x:Name="cbxFilterEpisodeNumbering"
+                        <CheckBox x:Name="cbxFilterRemoveEpisodeNumbering"
                           Content="Episode Numbering"
                           HorizontalAlignment="Left"
                           Margin="0,6,0,0"
@@ -901,9 +921,10 @@
                           ToolTipService.InitialShowDelay="500" 
                           ToolTip="Remove leftover Episode Numbering. (eg. 1, 01, 001, EP1)."
                           Grid.Column="1" 
-                          Checked="cbxFilterEpisodeNumbering_Checked" 
-                          Unchecked="cbxFilterEpisodeNumbering_Unchecked"
+                          Checked="cbxFilterRemoveEpisodeNumbering_Checked" 
+                          Unchecked="cbxFilterRemoveEpisodeNumbering_Unchecked"
                           Grid.Row="2"/>
+                  
                         <!-- Episode Name Tags -->
                         <CheckBox x:Name="cbxFilterRemoveTags"
                           Content="Episode Name Tags"
@@ -916,6 +937,7 @@
                           Checked="cbxFilterRemoveTags_Checked" 
                           Unchecked="cbxFilterRemoveTags_Unchecked"
                           Grid.Row="2"/>
+                    
                         <!-- Year -->
                         <CheckBox x:Name="cbxFilterRemoveYear"
                           Content="Year"
@@ -928,6 +950,7 @@
                           Checked="cbxFilterRemoveYear_Checked" 
                           Unchecked="cbxFilterRemoveYear_Unchecked"
                           Grid.Row="2"/>
+                    
                         <!-- Period Spacing -->
                         <CheckBox x:Name="cbxFilterPeriodSpacing"
                           Content="Period Spacing"
@@ -940,6 +963,7 @@
                           Checked="cbxFilterPeriodSpacing_Checked" 
                           Unchecked="cbxFilterPeriodSpacing_Unchecked"
                           Grid.Row="2"/>
+                    
                         <!-- Underscore Spacing -->
                         <CheckBox x:Name="cbxFilterUnderscoreSpacing"
                           Content="Underscore Spacing"
@@ -952,6 +976,7 @@
                           Checked="cbxFilterUnderscoreSpacing_Checked" 
                           Unchecked="cbxFilterUnderscoreSpacing_Unchecked"
                           Grid.Row="2"/>
+                     
                         <!-- Dash Spacing -->
                         <CheckBox x:Name="cbxFilterDashSpacing"
                           Content="Dash Spacing"
@@ -964,6 +989,7 @@
                           Checked="cbxFilterDashSpacing_Checked" 
                           Unchecked="cbxFilterDashSpacing_Unchecked"
                           Grid.Row="2"/>
+                   
                         <!-- Dashes Between Words-->
                         <CheckBox x:Name="cbxFilterDashes"
                           Content="Dashes Between Words"
@@ -976,6 +1002,7 @@
                           Checked="cbxFilterDashes_Checked" 
                           Unchecked="cbxFilterDashes_Unchecked"
                           Grid.Row="2"/>
+                  
                         <!-- Remove Double Spaces -->
                         <CheckBox x:Name="cbxFilterDoubleSpaces"
                           Content="Double Spaces"
