@@ -79,3 +79,9 @@ Tanto is portable and can be run from any location on the computer.
 Visual Studio 2015  
 WPF, C#, XAML  
 Visual C++ 19.0 Compiler
+
+&nbsp;
+
+![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VTUE7KQ8RS3DN) 
+
+Thank you for donating to help further development on this software.
