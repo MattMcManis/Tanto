@@ -116,9 +116,12 @@ namespace Tanto
                 {
                     MatchCollection matches = regex.Matches(Path.GetFileNameWithoutExtension(MainWindow.listFilePaths[i]));
 
-                    if (Path.GetFileNameWithoutExtension(MainWindow.listFilePaths[i]).Contains(matches[0].Value.ToString()))
+                    if (matches.Count > 0)
                     {
-                        seasonEpisodeNumbersList.Add(matches[0].Value.ToString());
+                        if (Path.GetFileNameWithoutExtension(MainWindow.listFilePaths[i]).Contains(matches[0].Value.ToString()))
+                        {
+                            seasonEpisodeNumbersList.Add(matches[0].Value.ToString());
+                        }
                     }
                 }
                    
@@ -130,9 +133,12 @@ namespace Tanto
                 {
                     MatchCollection matches = regex.Matches(seasonEpisodeNumbersList[i]);
 
-                    if (seasonEpisodeNumbersList[i].Contains(matches[0].Value.ToString()))
+                    if (matches.Count > 0)
                     {
-                        episodeNumbersList.Add(matches[0].Value.ToString());
+                        if (seasonEpisodeNumbersList[i].Contains(matches[0].Value.ToString()))
+                        {
+                            episodeNumbersList.Add(matches[0].Value.ToString());
+                        }
                     }
                 }
 
@@ -143,9 +149,12 @@ namespace Tanto
                 {
                     MatchCollection matches = regex.Matches(episodeNumbersList[i]);
 
-                    if (episodeNumbersList[i].Contains(matches[0].Value.ToString()))
+                    if (matches.Count > 0)
                     {
-                        numbersList.Add(int.Parse(matches[0].Value));
+                        if (episodeNumbersList[i].Contains(matches[0].Value.ToString()))
+                        {
+                            numbersList.Add(int.Parse(matches[0].Value));
+                        }
                     }
                 }
 

@@ -107,7 +107,7 @@ namespace Tanto
             // -------------------------
             if (mainwindow.cbxFilterRemoveYear.IsChecked == true)
             {
-                filename = Regex.Replace(filename, @"\(.*?(\d+).*\)", "");
+                filename = Regex.Replace(filename, @"\((\d\d\d\d)\)", "");
             }
 
             // -------------------------
