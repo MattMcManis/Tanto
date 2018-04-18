@@ -122,12 +122,12 @@ namespace Tanto.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool FilterEpisodeNumbering {
+        public bool EpisodeNumbering {
             get {
-                return ((bool)(this["FilterEpisodeNumbering"]));
+                return ((bool)(this["EpisodeNumbering"]));
             }
             set {
-                this["FilterEpisodeNumbering"] = value;
+                this["EpisodeNumbering"] = value;
             }
         }
         

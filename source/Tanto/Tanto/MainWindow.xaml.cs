@@ -185,7 +185,7 @@ namespace Tanto
                 // --------------------------
                 // First time use
                 // --------------------------
-                cbxEpisodeNumbering.IsChecked = Convert.ToBoolean(Settings.Default.FilterEpisodeNumbering);
+                cbxEpisodeNumbering.IsChecked = Convert.ToBoolean(Settings.Default.EpisodeNumbering);
             }
             catch
             {
@@ -282,7 +282,7 @@ namespace Tanto
 
             }
 
-            // Filter Keep Episode Numbering
+            // Filter Remove Episode Numbering
             //
             // Safeguard Against Corrupt Saved Settings
             try
@@ -442,7 +442,21 @@ namespace Tanto
             // Safeguard Against Corrupt Saved Settings
             try
             {
-                tbxSeparator.Text = Settings.Default.Separator;
+                //// --------------------------
+                //// First time use
+                //// --------------------------
+                //if (string.IsNullOrEmpty(Settings.Default.Separator.ToString()))
+                //{
+                //    tbxSeparator.Text = " ";
+                //}
+
+                //// --------------------------
+                //// Load Saved
+                //// --------------------------
+                //else if (!string.IsNullOrEmpty(Settings.Default.Separator.ToString()))
+                //{
+                //    tbxSeparator.Text = Settings.Default.Separator;
+                //}
             }
             catch
             {
@@ -579,6 +593,14 @@ the Free Software Foundation, either version 3 of the License, or
         }
 
         /// <summary>
+        ///    Website Button
+        /// </summary>
+        private void btnWebsite_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("https://github.com/MattMcManis/Tanto");
+        }
+
+        /// <summary>
         ///    Update Button
         /// </summary>
         private Boolean IsUpdateWindowOpened = false;
@@ -691,6 +713,40 @@ the Free Software Foundation, either version 3 of the License, or
             }
         }
 
+
+        /// <summary>
+        ///    Settings Button
+        /// </summary>
+        private void btnSettings_Click(object sender, RoutedEventArgs e)
+        {
+            // Yes/No Dialog Confirmation
+            //
+            MessageBoxResult result = MessageBox.Show(
+                                                "Reset Saved Settings?",
+                                                "Settings",
+                                                MessageBoxButton.YesNo,
+                                                MessageBoxImage.Exclamation
+                                                );
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+
+                    // Reset AppData Settings
+                    Settings.Default.Reset();
+                    Settings.Default.Reload();
+
+                    System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
+                    Application.Current.Shutdown();
+
+                    break;
+
+                case MessageBoxResult.No:
+
+                    break;
+            }
+        }
+
+
         /// <summary>
         ///    Input Button
         /// </summary>
@@ -800,6 +856,19 @@ the Free Software Foundation, either version 3 of the License, or
             if (cbxAutoSort.IsChecked == true)
             {
                 Sort.Sorting(this);
+            }
+
+            // -------------------------
+            // Clear and Re-Add List Filename to ListView
+            // -------------------------
+            if (lsvFileNames.Items.Count > 0)
+            {
+                lsvFileNames.Items.Clear();
+            }
+
+            foreach (var name in listFilePaths.Select(f => Path.GetFileName(f)))
+            {
+                lsvFileNames.Items.Add(name);
             }
 
             //MessageBox.Show(string.Join("\n", listFilePaths)); //debug
@@ -1115,10 +1184,9 @@ the Free Software Foundation, either version 3 of the License, or
         }
         private void tbxSeparator_TextChanged(object sender, TextChangedEventArgs e)
         {
-            // Save Previous Path
+            // Save Settings
             Settings.Default.Separator = tbxSeparator.Text.ToString();
             Settings.Default.Save();
-            //Settings.Default.Reload();
         }
 
         /// <summary>
@@ -1268,12 +1336,12 @@ the Free Software Foundation, either version 3 of the License, or
                 
                 if (cbxEpisodeNumbering.IsChecked == true)
                 {
-                    Settings.Default.FilterRemoveEpisodeNumbering = true;
+                    Settings.Default.EpisodeNumbering = true;
                     Settings.Default.Save();
                 }
                 else if (cbxEpisodeNumbering.IsChecked == false)
                 {
-                    Settings.Default.FilterRemoveEpisodeNumbering = false;
+                    Settings.Default.EpisodeNumbering = false;
                     Settings.Default.Save();
                 }
             }
@@ -1294,12 +1362,12 @@ the Free Software Foundation, either version 3 of the License, or
                 
                 if (cbxEpisodeNumbering.IsChecked == true)
                 {
-                    Settings.Default.FilterRemoveEpisodeNumbering = true;
+                    Settings.Default.EpisodeNumbering = true;
                     Settings.Default.Save();
                 }
                 else if (cbxEpisodeNumbering.IsChecked == false)
                 {
-                    Settings.Default.FilterRemoveEpisodeNumbering = false;
+                    Settings.Default.EpisodeNumbering = false;
                     Settings.Default.Save();
                 }
             }

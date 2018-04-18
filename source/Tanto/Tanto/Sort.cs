@@ -35,15 +35,6 @@ namespace Tanto
             // File Paths
             // -------------------------
             MainWindow.listFilePaths.Sort();
-
-            // -------------------------
-            // Clear and Re-Add List Filename to ListView
-            // -------------------------
-            mainwindow.lsvFileNames.Items.Clear();
-            foreach (var name in MainWindow.listFilePaths.Select(f => Path.GetFileName(f)))
-            {
-                mainwindow.lsvFileNames.Items.Add(name);
-            }
         }
     }
 }

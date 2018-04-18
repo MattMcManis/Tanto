@@ -142,7 +142,9 @@
                   Margin="366,24,0,0"
                   VerticalAlignment="Top" 
                   ToolTipService.InitialShowDelay="500" 
-                  ToolTip="Sort the file list by Name."/>
+                  ToolTip="Sort the file list by Name."
+                  Checked="cbxAutoSort_Checked" 
+                  Unchecked="cbxAutoSort_Unchecked"/>
 
         <!-- File List View -->
         <ListView Name="lsvFileNames" 
@@ -493,18 +495,18 @@
                        ToolTip="Properties will be separated by this character(s)."
                        Grid.Row="11"/>
                         <TextBox x:Name="tbxSeparator"
-                         HorizontalAlignment="Left" 
-                         Height="22"
-                         Margin="0,2,0,0" 
-                         TextWrapping="NoWrap"
-                         Text=" " 
-                         VerticalAlignment="Top"
-                         MaxLines="1"
-                         Width="170"
-                         TextChanged="tbxSeparator_TextChanged" 
-                         KeyDown="tbxSeparator_KeyDown"
-                         Grid.Column="1" 
-                         Grid.Row="11" />
+                                 Text=" " 
+                                 HorizontalAlignment="Left" 
+                                 Height="22"
+                                 Margin="0,2,0,0" 
+                                 TextWrapping="NoWrap"
+                                 VerticalAlignment="Top"
+                                 MaxLines="1"
+                                 Width="170"
+                                 TextChanged="tbxSeparator_TextChanged" 
+                                 KeyDown="tbxSeparator_KeyDown"
+                                 Grid.Column="1" 
+                                 Grid.Row="11" />
 
                         <!-- Spacing TextBox -->
                         <Label Content="Spacing" 
@@ -1043,23 +1045,63 @@
                 Click="btnInfo_Click" 
                 Height="22" 
                 VerticalAlignment="Bottom" 
-                Background="White">
+                Background="White"
+                ToolTipService.InitialShowDelay="500" 
+                ToolTip="Info" >
             <TextBlock Text="i"
-                       Margin="0,-1,0,0"/>
+                       Margin="0,-1,0,0" 
+                       Foreground="#FF939393"/>
+        </Button>
+
+        <!-- Website Button -->
+        <Button x:Name="btnWebsite" 
+                HorizontalAlignment="Left" 
+                Margin="37,0,0,14"
+                Width="22" 
+                Click="btnWebsite_Click" 
+                Height="22" 
+                VerticalAlignment="Bottom" 
+                Background="White"
+                ToolTipService.InitialShowDelay="500" 
+                ToolTip="Website" >
+            <TextBlock Text="&#127758;"
+                       FontSize="12"
+                       Margin="0,-2,0,0" 
+                       Foreground="#FF939393"/>
         </Button>
 
         <!-- Update Button -->
         <Button x:Name="btnUpdate" 
                 HorizontalAlignment="Left" 
-                Margin="37,0,0,14"
+                Margin="64,0,0,14"
                 Width="22" 
                 Click="btnUpdate_Click" 
                 Height="22" 
                 VerticalAlignment="Bottom" 
-                Background="White">
-            <TextBlock Text="&#8679;"
+                Background="White"
+                ToolTipService.InitialShowDelay="500" 
+                ToolTip="Update" >
+            <TextBlock Text="&#11014;"
                        FontSize="15"
-                       Margin="0,-1,0,0"/>
+                       Margin="0,-2,0,0"
+                       Foreground="#FF939393"/>
+        </Button>
+
+        <!-- Settings -->
+        <Button x:Name="btnSettings" 
+                HorizontalAlignment="Left" 
+                Margin="91,0,0,14"
+                Width="22" 
+                Click="btnSettings_Click" 
+                Height="22" 
+                VerticalAlignment="Bottom" 
+                Background="White"
+                ToolTipService.InitialShowDelay="500" 
+                ToolTip="Reset Saved Settings" >
+            <TextBlock Text="&#9881;"
+                       FontSize="12"
+                       Margin="0,-2,0,0"
+                       Foreground="#FF939393"/>
         </Button>
 
         <!-- Progress Info -->
