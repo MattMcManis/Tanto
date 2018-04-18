@@ -29,9 +29,13 @@
         Title="Preview" 
 
         Width="900"
-        Height="600"
+        Height="600"      
+        MinWidth="450"
+        MinHeight="350"      
         
-        Loaded="Window_Loaded">
+        Loaded="Window_Loaded" 
+        SizeChanged="Window_SizeChanged"
+        Icon="Resources/images/icon.ico">
 
     <Grid Margin="10">
 

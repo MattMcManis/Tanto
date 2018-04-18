@@ -146,7 +146,12 @@
 
         <!-- File List View -->
         <ListView Name="lsvFileNames" 
-                  Margin="10,52,307,45">
+                  Margin="10,52,304,45"
+                  AllowDrop="True"
+                  PreviewDragOver="lsvFileNames_PreviewDragOver"
+                  PreviewDragEnter="lsvFileNames_PreviewDragOver"
+                  PreviewDrop="lsvFileNames_PreviewDrop"
+                  >
             <ListView.Resources>
                 <DataTemplate x:Key="Templ">
                     <TextBlock HorizontalAlignment="Left" Text="{Binding}"/>
@@ -550,6 +555,7 @@
                           VerticalAlignment="Top">
 
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
                             <RowDefinition Height="35"/>
                             <RowDefinition Height="35"/>
                             <RowDefinition Height="35"/>
@@ -565,13 +571,21 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
+                        <!-- Remove Characters TextBox -->
+                        <Label Content="Applied to Extracted Episode Name." 
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Top"
+                       Width="245" 
+                       Grid.Row="0" 
+                               Grid.ColumnSpan="2"/>
+
                         <!-- Remove -->
                         <Label Content="Remove" 
                        VerticalAlignment="Top" 
                        FontSize="14"
                        HorizontalAlignment="Left" 
                        Width="90" 
-                       Grid.Row="0"/>
+                       Grid.Row="1"/>
 
                         <!-- Remove Characters TextBox -->
                         <Label Content="Characters" 
@@ -580,7 +594,7 @@
                        Width="75" 
                        ToolTipService.InitialShowDelay="500" 
                        ToolTip="Remove these characters or symbols. Separate with commas."
-                       Grid.Row="1"/>
+                       Grid.Row="2"/>
                         <TextBox x:Name="tbxRemoveChars"
                          HorizontalAlignment="Left" 
                          Height="22"
@@ -591,7 +605,7 @@
                          Width="170"
                          KeyDown="tbxRemoveChars_KeyDown"
                          Grid.Column="1" 
-                         Grid.Row="1" />
+                         Grid.Row="2" />
 
                         <!-- Remove Words TextBox -->
                         <Label Content="Words" 
@@ -600,7 +614,7 @@
                        Width="75" 
                        ToolTipService.InitialShowDelay="500" 
                        ToolTip="Remove these words. Separate with commas."
-                       Grid.Row="2"/>
+                       Grid.Row="3"/>
                         <TextBox x:Name="tbxRemoveWords"
                          HorizontalAlignment="Left" 
                          Height="22"
@@ -611,7 +625,7 @@
                          Width="170"
                          KeyDown="tbxRemoveWords_KeyDown"
                          Grid.Column="1" 
-                         Grid.Row="2" />
+                         Grid.Row="3" />
 
                         <!-- Remove Between TextBox -->
                         <Label Content="Range" 
@@ -620,7 +634,7 @@
                        Width="75" 
                        ToolTipService.InitialShowDelay="500" 
                        ToolTip="Remove characters within these range of characters. Example: [ and ]"
-                       Grid.Row="3"/>
+                       Grid.Row="4"/>
                         <TextBox x:Name="tbxRemoveRangeStart"
                          HorizontalAlignment="Left" 
                          Height="22"
@@ -631,7 +645,7 @@
                          Width="67"
                          KeyDown="tbxRemoveRangeStart_KeyDown"
                          Grid.Column="1" 
-                         Grid.Row="3" />
+                         Grid.Row="4" />
                         <!-- and -->
                         <Label Content="and" 
                        VerticalAlignment="Top" 
@@ -639,7 +653,7 @@
                        HorizontalContentAlignment="Center"
                        Width="36" 
                        Grid.Column="1"
-                       Grid.Row="3" 
+                       Grid.Row="4" 
                        Margin="67,0,0,0"/>
                         <TextBox x:Name="tbxRemoveRangeEnd"
                          HorizontalAlignment="Left" 
@@ -651,7 +665,7 @@
                          Width="67"
                          KeyDown="tbxRemoveRangeEnd_KeyDown"
                          Grid.Column="1" 
-                         Grid.Row="3" />
+                         Grid.Row="4" />
 
                         <!-- Replace -->
                         <Label Content="Replace" 
@@ -659,13 +673,13 @@
                        FontSize="14"
                        HorizontalAlignment="Left" 
                        Width="90" 
-                       Grid.Row="4"/>
+                       Grid.Row="5"/>
                         <!-- Characters -->
                         <Label Content="Characters" 
                        VerticalAlignment="Top" 
                        HorizontalAlignment="Left" 
                        Width="65" 
-                       Grid.Row="5"/>
+                       Grid.Row="6"/>
                         <TextBox x:Name="tbxReplaceChars"
                          HorizontalAlignment="Left" 
                          Height="22"
@@ -675,44 +689,6 @@
                          MaxLines="1"
                          Width="67"
                          KeyDown="tbxReplaceChars_KeyDown"
-                         Grid.Column="1" 
-                         Grid.Row="5" />
-                        <!-- with -->
-                        <Label Content="with" 
-                       VerticalAlignment="Top" 
-                       HorizontalAlignment="Left" 
-                       HorizontalContentAlignment="Center"
-                       Width="36" 
-                       Grid.Column="1"
-                       Grid.Row="5" 
-                       Margin="67,0,0,0"/>
-                        <TextBox x:Name="tbxReplaceCharsWith"
-                         HorizontalAlignment="Left" 
-                         Height="22"
-                         Margin="103,2,0,0" 
-                         TextWrapping="NoWrap"
-                         VerticalAlignment="Top"
-                         MaxLines="1"
-                         Width="67"
-                         KeyDown="tbxReplaceCharsWith_KeyDown"
-                         Grid.Column="1" 
-                         Grid.Row="5" />
-
-                        <!-- Words -->
-                        <Label Content="Words" 
-                       VerticalAlignment="Top" 
-                       HorizontalAlignment="Left" 
-                       Width="65" 
-                       Grid.Row="6"/>
-                        <TextBox x:Name="tbxReplaceWords"
-                         HorizontalAlignment="Left" 
-                         Height="22"
-                         Margin="0,2,0,0" 
-                         TextWrapping="NoWrap"
-                         VerticalAlignment="Top"
-                         MaxLines="1"
-                         Width="67"
-                         KeyDown="tbxReplaceWords_KeyDown"
                          Grid.Column="1" 
                          Grid.Row="6" />
                         <!-- with -->
@@ -724,6 +700,44 @@
                        Grid.Column="1"
                        Grid.Row="6" 
                        Margin="67,0,0,0"/>
+                        <TextBox x:Name="tbxReplaceCharsWith"
+                         HorizontalAlignment="Left" 
+                         Height="22"
+                         Margin="103,2,0,0" 
+                         TextWrapping="NoWrap"
+                         VerticalAlignment="Top"
+                         MaxLines="1"
+                         Width="67"
+                         KeyDown="tbxReplaceCharsWith_KeyDown"
+                         Grid.Column="1" 
+                         Grid.Row="6" />
+
+                        <!-- Words -->
+                        <Label Content="Words" 
+                       VerticalAlignment="Top" 
+                       HorizontalAlignment="Left" 
+                       Width="65" 
+                       Grid.Row="7"/>
+                        <TextBox x:Name="tbxReplaceWords"
+                         HorizontalAlignment="Left" 
+                         Height="22"
+                         Margin="0,2,0,0" 
+                         TextWrapping="NoWrap"
+                         VerticalAlignment="Top"
+                         MaxLines="1"
+                         Width="67"
+                         KeyDown="tbxReplaceWords_KeyDown"
+                         Grid.Column="1" 
+                         Grid.Row="7" />
+                        <!-- with -->
+                        <Label Content="with" 
+                       VerticalAlignment="Top" 
+                       HorizontalAlignment="Left" 
+                       HorizontalContentAlignment="Center"
+                       Width="36" 
+                       Grid.Column="1"
+                       Grid.Row="7" 
+                       Margin="67,0,0,0"/>
                         <TextBox x:Name="tbxReplaceWordsWith"
                          HorizontalAlignment="Left" 
                          Height="22"
@@ -734,7 +748,7 @@
                          Width="67"
                          KeyDown="tbxReplaceWordsWith_KeyDown"
                          Grid.Column="1" 
-                         Grid.Row="6" />
+                         Grid.Row="7" />
 
 
                         <!-- Spaces -->
@@ -744,7 +758,7 @@
                        Width="65" 
                        ToolTipService.InitialShowDelay="500" 
                        ToolTip="Replace all spaces with this character(s)."
-                       Grid.Row="7"/>
+                       Grid.Row="8"/>
                         <!-- with -->
                         <TextBox x:Name="tbxReplaceSpacesWith"
                          HorizontalAlignment="Left" 
@@ -756,7 +770,7 @@
                          Width="170"
                          KeyDown="tbxReplaceSpacesWith_KeyDown"
                          Grid.Column="1" 
-                         Grid.Row="7" />
+                         Grid.Row="8" />
 
                     </Grid>
 
@@ -804,7 +818,7 @@
                                VerticalAlignment="Top" 
                                HorizontalAlignment="Left" 
                                Width="65" Grid.Row="1"/>
-                       
+
                         <!-- Auto Series Title -->
                         <CheckBox x:Name="cbxAutoSeriesTitle"
                           Content="Auto Series Title"
@@ -816,7 +830,7 @@
                           Grid.Column="1" 
                           Checked="cbxSeriesTitle_Checked" 
                           Unchecked="cbxSeriesTitle_Unchecked"/>
-                       
+
                         <!-- Auto Year -->
                         <CheckBox x:Name="cbxFilterAutoYear"
                           Content="Auto Year"
@@ -828,7 +842,7 @@
                           Grid.Column="1" 
                           Checked="cbxFilterAutoYear_Checked" 
                           Unchecked="cbxFilterAutoYear_Unchecked"/>
-                       
+
                         <!-- Auto Season Number -->
                         <CheckBox x:Name="cbxAutoSeasonNumber"
                           Content="Auto Season Number"
@@ -852,7 +866,7 @@
                           Grid.Column="1" 
                           Checked="cbxAutoStartingEpisodeNumber_Checked" 
                           Unchecked="cbxAutoStartingEpisodeNumber_Unchecked"/>
-                        
+
                         <!-- Episode Names -->
                         <CheckBox x:Name="cbxEpisodeNames"
                           Content="Episode Names"
@@ -865,7 +879,7 @@
                           Checked="cbxEpisodeNames_Checked" 
                           Unchecked="cbxEpisodeNames_Unchecked"
                           Grid.Row="1"/>
-                     
+
                         <!-- Enable Title Case -->
                         <CheckBox x:Name="cbxFilterTitleCase"
                           Content="Enable Title Case"
@@ -878,7 +892,7 @@
                           Checked="cbxFilterTitleCase_Checked" 
                           Unchecked="cbxFilterTitleCase_Unchecked"
                           Grid.Row="1"/>
-                      
+
                         <!-- Original Spacing -->
                         <CheckBox x:Name="cbxFilterOriginalSpacing"
                           Content="Original Spacing"
@@ -891,7 +905,7 @@
                           Checked="cbxFilterOriginalSpacing_Checked" 
                           Unchecked="cbxFilterOriginalSpacing_Unchecked"
                           Grid.Row="1"/>
-                     
+
                         <!-- Hyphens -->
                         <CheckBox x:Name="cbxFilterHyphens"
                           Content="Hyphens"
@@ -911,7 +925,7 @@
                        HorizontalAlignment="Left" 
                        Width="65" 
                        Grid.Row="2"/>
-                    
+
                         <!-- Episode Numbering -->
                         <CheckBox x:Name="cbxFilterRemoveEpisodeNumbering"
                           Content="Episode Numbering"
@@ -924,7 +938,7 @@
                           Checked="cbxFilterRemoveEpisodeNumbering_Checked" 
                           Unchecked="cbxFilterRemoveEpisodeNumbering_Unchecked"
                           Grid.Row="2"/>
-                  
+
                         <!-- Episode Name Tags -->
                         <CheckBox x:Name="cbxFilterRemoveTags"
                           Content="Episode Name Tags"
@@ -937,7 +951,7 @@
                           Checked="cbxFilterRemoveTags_Checked" 
                           Unchecked="cbxFilterRemoveTags_Unchecked"
                           Grid.Row="2"/>
-                    
+
                         <!-- Year -->
                         <CheckBox x:Name="cbxFilterRemoveYear"
                           Content="Year"
@@ -950,7 +964,7 @@
                           Checked="cbxFilterRemoveYear_Checked" 
                           Unchecked="cbxFilterRemoveYear_Unchecked"
                           Grid.Row="2"/>
-                    
+
                         <!-- Period Spacing -->
                         <CheckBox x:Name="cbxFilterPeriodSpacing"
                           Content="Period Spacing"
@@ -963,7 +977,7 @@
                           Checked="cbxFilterPeriodSpacing_Checked" 
                           Unchecked="cbxFilterPeriodSpacing_Unchecked"
                           Grid.Row="2"/>
-                    
+
                         <!-- Underscore Spacing -->
                         <CheckBox x:Name="cbxFilterUnderscoreSpacing"
                           Content="Underscore Spacing"
@@ -976,7 +990,7 @@
                           Checked="cbxFilterUnderscoreSpacing_Checked" 
                           Unchecked="cbxFilterUnderscoreSpacing_Unchecked"
                           Grid.Row="2"/>
-                     
+
                         <!-- Dash Spacing -->
                         <CheckBox x:Name="cbxFilterDashSpacing"
                           Content="Dash Spacing"
@@ -989,7 +1003,7 @@
                           Checked="cbxFilterDashSpacing_Checked" 
                           Unchecked="cbxFilterDashSpacing_Unchecked"
                           Grid.Row="2"/>
-                   
+
                         <!-- Dashes Between Words-->
                         <CheckBox x:Name="cbxFilterDashes"
                           Content="Dashes Between Words"
@@ -1002,7 +1016,7 @@
                           Checked="cbxFilterDashes_Checked" 
                           Unchecked="cbxFilterDashes_Unchecked"
                           Grid.Row="2"/>
-                  
+
                         <!-- Remove Double Spaces -->
                         <CheckBox x:Name="cbxFilterDoubleSpaces"
                           Content="Double Spaces"

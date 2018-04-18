@@ -540,6 +540,27 @@ namespace Tanto
         }
 
         /// <summary>
+        ///    List View File Names - Drag and Drop
+        /// </summary>
+        private void lsvFileNames_PreviewDragOver(object sender, DragEventArgs e)
+        {
+            e.Handled = true;
+            e.Effects = DragDropEffects.Copy;
+        }
+
+        private void lsvFileNames_PreviewDrop(object sender, DragEventArgs e)
+        {
+            string[] dropFiles = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+            // convert array to list
+            List<string> files = new List<string>(dropFiles);
+
+            AddFiles(files);
+        }
+
+
+
+        /// <summary>
         ///    Info Button
         /// </summary>
         private void btnInfo_Click(object sender, RoutedEventArgs e)
@@ -695,80 +716,96 @@ the Free Software Foundation, either version 3 of the License, or
             Nullable<bool> result = selectFiles.ShowDialog();
             if (result == true)
             {
-                // Clear ListView
-                lsvFileNames.Items.Clear();
-
-                // -------------------------
-                // Add Path+Filename to List
-                // -------------------------
+                List<string> files = new List<string>();
                 for (var i = 0; i < selectFiles.FileNames.Length; i++)
                 {
-                    // Used for file renaming/moving
-                    listFilePaths.Add(selectFiles.FileNames[i]);
-
-                    // ListView Display File Names + Ext
-                    lsvFileNames.Items.Add(Path.GetFileName(selectFiles.FileNames[i])); 
+                    files.Add(selectFiles.FileNames[i]);
                 }
 
-                // -------------------------
-                // Extract Series Title
-                // -------------------------
-                if (cbxAutoSeriesTitle.IsChecked == true)
-                {
-                    try
-                    {
-                        Extract.ExtractSeriesTitle(this);
-                    }
-                    catch
-                    {
-
-                    }
-                }
-
-                // -------------------------
-                // Extract Year
-                // -------------------------
-                if (cbxFilterAutoYear.IsChecked == true)
-                {
-                    tbxYear.Text = Extract.ExtractYear(Path.GetFileNameWithoutExtension(listFilePaths[0]));
-                }
-
-                // -------------------------
-                // Extract Season Number
-                // -------------------------
-                if (cbxAutoSeasonNumber.IsChecked == true)
-                {
-                    Extract.ExtractSeasonNumber(this);
-                }
-
-                // -------------------------
-                // Extract Episode Number
-                // -------------------------
-                if (cbxAutoStartingEpisodeNumber.IsChecked == true)
-                {
-                    Extract.ExtractEpisodeNumber(this);
-                }
-
-                // -------------------------
-                // Extract Spacing
-                // -------------------------
-                if (cbxFilterOriginalSpacing.IsChecked == true)
-                {
-                    tbxSpacing.Text = Extract.ExtractSpacing(Path.GetFileNameWithoutExtension(listFilePaths[0]));
-                }
-
-                // -------------------------
-                // Auto Sort
-                // -------------------------
-                if (cbxAutoSort.IsChecked == true)
-                {
-                    Sort.Sorting(this);
-                }
-
-                //MessageBox.Show(string.Join("\n", listFilePaths)); //debug
-                //MessageBox.Show(string.Join("\n", listEpisodeNames)); //debug
+                AddFiles(files);
             }
         }
+
+
+        /// <summary>
+        ///    Add Files (Method)
+        /// </summary>
+        public void AddFiles(List<string> files)
+        {
+            // Clear ListView
+            lsvFileNames.Items.Clear();
+
+            // -------------------------
+            // Add Path+Filename to List
+            // -------------------------
+            for (var i = 0; i < files.Count; i++)
+            {
+                // Used for file renaming/moving
+                listFilePaths.Add(files[i]);
+
+                // ListView Display File Names + Ext
+                lsvFileNames.Items.Add(Path.GetFileName(files[i]));
+            }
+
+            // -------------------------
+            // Extract Series Title
+            // -------------------------
+            if (cbxAutoSeriesTitle.IsChecked == true)
+            {
+                try
+                {
+                    Extract.ExtractSeriesTitle(this);
+                }
+                catch
+                {
+
+                }
+            }
+
+            // -------------------------
+            // Extract Year
+            // -------------------------
+            if (cbxFilterAutoYear.IsChecked == true)
+            {
+                tbxYear.Text = Extract.ExtractYear(Path.GetFileNameWithoutExtension(listFilePaths[0]));
+            }
+
+            // -------------------------
+            // Extract Season Number
+            // -------------------------
+            if (cbxAutoSeasonNumber.IsChecked == true)
+            {
+                Extract.ExtractSeasonNumber(this);
+            }
+
+            // -------------------------
+            // Extract Episode Number
+            // -------------------------
+            if (cbxAutoStartingEpisodeNumber.IsChecked == true)
+            {
+                Extract.ExtractEpisodeNumber(this);
+            }
+
+            // -------------------------
+            // Extract Spacing
+            // -------------------------
+            if (cbxFilterOriginalSpacing.IsChecked == true)
+            {
+                tbxSpacing.Text = Extract.ExtractSpacing(Path.GetFileNameWithoutExtension(listFilePaths[0]));
+            }
+
+            // -------------------------
+            // Auto Sort
+            // -------------------------
+            if (cbxAutoSort.IsChecked == true)
+            {
+                Sort.Sorting(this);
+            }
+
+            //MessageBox.Show(string.Join("\n", listFilePaths)); //debug
+            //MessageBox.Show(string.Join("\n", listEpisodeNames)); //debug
+        }
+
 
         /// <summary>
         ///    Open Directory Button
@@ -1081,6 +1118,7 @@ the Free Software Foundation, either version 3 of the License, or
             // Save Previous Path
             Settings.Default.Separator = tbxSeparator.Text.ToString();
             Settings.Default.Save();
+            //Settings.Default.Reload();
         }
 
         /// <summary>

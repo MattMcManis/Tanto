@@ -41,8 +41,11 @@ namespace Tanto
 
             this.mainwindow = mainwindow;
 
-            this.MinWidth = 400;
-            this.MinHeight = 300;
+            // Reset Max Height
+            //this.MaxHeight = SystemParameters.PrimaryScreenHeight;
+
+            //this.MinWidth = 450;
+            //this.MinHeight = 350;
 
             var gridView = new GridView();
             lsvPreview.View = gridView;
@@ -77,10 +80,6 @@ namespace Tanto
         /// </summary>
         private void Window_Loaded(object sender, EventArgs e)
         {
-            //base.OnContentRendered(e);
-
-            //this.UpdateLayout();
-
             try
             {
                 // Detect which screen we're on
@@ -97,6 +96,26 @@ namespace Tanto
 
             }
 
+        }
+
+
+        /// <summary>
+        ///    On Content Rendered
+        /// </summary>
+        protected override void OnContentRendered(EventArgs e)
+        {
+            base.OnContentRendered(e);
+
+            //this.Height = startingHeight;
+        }
+
+        /// <summary>
+        ///    Window Size Changed
+        /// </summary>
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            // Reset Height
+            //this.MaxHeight = SystemParameters.PrimaryScreenHeight;
         }
 
 
