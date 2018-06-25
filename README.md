@@ -48,7 +48,7 @@ After: `Example Title (2018) - S01E01 - The Episode Name - 1080p HEVC.mp4`
 
 #### Caution
 
->This program will rename your files. Clicking the Rename button will open a Preview to confirm changes before making them. You can ruin your filenames and ordering if a mistake is made. This program is in alpha and may have bugs.
+>This program will rename your files. Clicking the Preview button will open a Window to confirm rename changes before making them. You can ruin your filenames and ordering if a mistake is made. This program is in alpha and may have bugs.
 
 &nbsp;
 
