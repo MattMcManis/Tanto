@@ -88,7 +88,6 @@ namespace Tanto
                 // File
                 // -------------------------
                 string dir = Path.GetDirectoryName(MainWindow.listFilePaths[i]).TrimEnd('\\') + @"\";
-                //string filename = Path.GetFileNameWithoutExtension(MainWindow.listFilePaths[i]);
                 string ext = Path.GetExtension(MainWindow.listFilePaths[i]);
 
                 // --------------------------------------------------
@@ -236,6 +235,11 @@ namespace Tanto
                 //MessageBox.Show(string.Join("\n", listFileNames)); //debug
                 //MessageBox.Show(string.Join("\n", listNewFileNames)); //debug
             }
+
+            // -------------------------
+            // Close Thread
+            // -------------------------
+            MainWindow.th.Abort();
         }
 
 

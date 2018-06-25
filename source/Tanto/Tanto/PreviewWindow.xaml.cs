@@ -218,7 +218,51 @@ namespace Tanto
                 mainwindow.lblProgressInfo.Content = "Complete";
             }
 
+
+
+            // -------------------------
+            // Clear List Path+Filename
+            // -------------------------
+            MainWindow.listFilePaths.Clear();
+            MainWindow.listFilePaths.TrimExcess();
+
+            // -------------------------
+            // Add Path+Filename to List
+            // -------------------------
+            for (var i = 0; i < MainWindow.listNewFileNames.Count; i++)
+            {
+                // Used for file renaming/moving
+                MainWindow.listFilePaths.Add(MainWindow.listNewFileNames[i]);
+
+                // ListView Display File Names + Ext
+                mainwindow.lsvFileNames.Items.Add(Path.GetFileName(MainWindow.listNewFileNames[i]));
+            }
+
+            // -------------------------
+            // Auto Sort
+            // -------------------------
+            if (mainwindow.cbxAutoSort.IsChecked == true)
+            {
+                Sort.Sorting(mainwindow);
+            }
+
+            // -------------------------
+            // Clear and Re-Add List Filename to ListView
+            // -------------------------
+            if (mainwindow.lsvFileNames.Items.Count > 0)
+            {
+                mainwindow.lsvFileNames.Items.Clear();
+            }
+
+            foreach (var name in MainWindow.listFilePaths.Select(f => Path.GetFileName(f)))
+            {
+                mainwindow.lsvFileNames.Items.Add(name);
+            }
+
+
+            // -------------------------
             // Close Window
+            // -------------------------
             this.Close();
         }
 

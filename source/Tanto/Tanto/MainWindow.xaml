@@ -1115,7 +1115,7 @@
 
         <!-- Rename -->
         <Button x:Name="btnPreview" 
-                Content="Rename"
+                Content="Preview"
                 HorizontalAlignment="Right"
                 Margin="0,0,10,14" 
                 VerticalAlignment="Bottom" 
