@@ -22,6 +22,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Tanto
 {
@@ -35,9 +36,11 @@ namespace Tanto
             // -------------------------
             // File Paths
             // -------------------------
-            MainWindow.listFilePaths.Sort();
+            //MainWindow.listFilePaths.Sort();
 
-            //MainWindow.listFilePaths.OrderBy(s => s.Length).OrderBy(s => s.Name);
+            // Natural Sorting
+            MainWindow.listFilePaths = MainWindow.listFilePaths.OrderBy(x => Regex.Replace(x, @"\d+", n => n.Value.PadLeft(5, '0'))).ToList();
         }
     }
+
 }

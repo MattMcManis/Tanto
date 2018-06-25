@@ -33,7 +33,7 @@
         
         UseLayoutRounding="True"
         Width="800"
-        Height="500" 
+        Height="500"
         
         Top="{Binding Top, Source={x:Static settings:Settings.Default}, Mode=TwoWay}"
         Left="{Binding Left, Source={x:Static settings:Settings.Default}, Mode=TwoWay}" 
@@ -62,7 +62,8 @@
                 Width="75"
                 Height="22"
                 Click="btnInput_Click"
-                Background="White"/>
+                Background="White"
+                Cursor="Hand"/>
 
         <!-- Input Button -->
         <Button x:Name="btnOpenDir" 
@@ -74,6 +75,7 @@
                 Height="22"
                 Click="btnOpenDir_Click"
                 Background="White"
+                Cursor="Hand"
                 ToolTipService.InitialShowDelay="500" 
                 ToolTip="Open File List Directory."/>
 
@@ -86,7 +88,8 @@
                 Width="75" 
                 Height="22"
                 Click="btnClearList_Click" 
-                Background="White"/>
+                Background="White"
+                Cursor="Hand" />
 
         <!-- Sort Button -->
         <Button x:Name="btnSort" 
@@ -97,7 +100,8 @@
                 Width="75" 
                 Height="22"
                 Click="btnSort_Click" 
-                Background="White"/>
+                Background="White"
+                Cursor="Hand" />
         <!-- Sort Up -->
         <Button x:Name="btnSortUp" 
                 VerticalAlignment="Top" 
@@ -802,7 +806,7 @@
                             <RowDefinition Height="105"/>
                             <RowDefinition Height="105"/>
                             <RowDefinition Height="185"/>
-                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="65"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="75"/>
@@ -1021,14 +1025,26 @@
 
                         <!-- Remove Double Spaces -->
                         <CheckBox x:Name="cbxFilterDoubleSpaces"
-                          Content="Double Spaces"
-                          HorizontalAlignment="Left"
-                          Margin="0,160,0,0"
-                          VerticalAlignment="Top" 
-                          Grid.Column="1" 
-                          Checked="cbxFilterDoubleSpaces_Checked" 
-                          Unchecked="cbxFilterDoubleSpaces_Unchecked"
-                          Grid.Row="2"/>
+                                Content="Double Spaces"
+                                HorizontalAlignment="Left"
+                                Margin="0,160,0,0"
+                                VerticalAlignment="Top" 
+                                Grid.Column="1" 
+                                Checked="cbxFilterDoubleSpaces_Checked" 
+                                Unchecked="cbxFilterDoubleSpaces_Unchecked"
+                                Grid.Row="2"/>
+
+                        <!-- Filters Default -->
+                        <Button x:Name="btnFiltersDefault" 
+                                Content="Default" 
+                                HorizontalAlignment="Left" 
+                                Margin="0,0,0,10" 
+                                VerticalAlignment="Bottom"
+                                Width="75"
+                                Background="White"
+                                Cursor="Hand"
+                                Grid.Column="1"
+                                Grid.Row="3" Click="btnFiltersDefault_Click"/>
 
                     </Grid>
 
@@ -1046,6 +1062,7 @@
                 Height="22" 
                 VerticalAlignment="Bottom" 
                 Background="White"
+                Cursor="Hand"
                 ToolTipService.InitialShowDelay="500" 
                 ToolTip="Info" >
             <TextBlock Text="i"
@@ -1062,6 +1079,7 @@
                 Height="22" 
                 VerticalAlignment="Bottom" 
                 Background="White"
+                Cursor="Hand"
                 ToolTipService.InitialShowDelay="500" 
                 ToolTip="Website" >
             <TextBlock Text="&#127758;"
@@ -1079,6 +1097,7 @@
                 Height="22" 
                 VerticalAlignment="Bottom" 
                 Background="White"
+                Cursor="Hand"
                 ToolTipService.InitialShowDelay="500" 
                 ToolTip="Update" >
             <TextBlock Text="&#11014;"
@@ -1096,6 +1115,7 @@
                 Height="22" 
                 VerticalAlignment="Bottom" 
                 Background="White"
+                Cursor="Hand"
                 ToolTipService.InitialShowDelay="500" 
                 ToolTip="Reset Saved Settings" >
             <TextBlock Text="&#9881;"
@@ -1122,7 +1142,8 @@
                 Width="75" 
                 Height="22"
                 Click="btnPreview_Click" 
-                Background="White" />
+                Background="White"
+                Cursor="Hand" />
 
     </Grid>
 </Window>

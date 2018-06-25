@@ -896,10 +896,28 @@ the Free Software Foundation, either version 3 of the License, or
         /// </summary>
         private void btnSort_Click(object sender, RoutedEventArgs e)
         {
+            // -------------------------
             // Progress Info
+            // -------------------------
             lblProgressInfo.Content = "";
 
+            // -------------------------
+            // Sort
+            // -------------------------
             Sort.Sorting(this);
+
+            // -------------------------
+            // Clear and Re-Add List Filename to ListView
+            // -------------------------
+            if (lsvFileNames.Items.Count > 0)
+            {
+                lsvFileNames.Items.Clear();
+            }
+
+            foreach (var name in MainWindow.listFilePaths.Select(f => Path.GetFileName(f)))
+            {
+                lsvFileNames.Items.Add(name);
+            }
         }
         /// <summary>
         ///    Sort Button Up
@@ -2281,6 +2299,36 @@ the Free Software Foundation, either version 3 of the License, or
             }
         }
 
+
+        /// <summary>
+        ///     Filters Default
+        /// </summary>
+        private void btnFiltersDefault_Click(object sender, RoutedEventArgs e)
+        {
+            // Detect
+            cbxAutoSeriesTitle.IsChecked = true;
+            cbxFilterAutoYear.IsChecked = true;
+            cbxAutoSeasonNumber.IsChecked = true;
+            cbxAutoStartingEpisodeNumber.IsChecked = false;
+
+            // Keep
+            cbxEpisodeNames.IsChecked = true;
+            cbxFilterTitleCase.IsChecked = false;
+            cbxFilterOriginalSpacing.IsChecked = false;
+            cbxFilterHyphens.IsChecked = true;
+
+            // Remove
+            cbxFilterRemoveEpisodeNumbering.IsChecked = true;
+            cbxFilterRemoveTags.IsChecked = true;
+            cbxFilterRemoveYear.IsChecked = true;
+            cbxFilterPeriodSpacing.IsChecked = true;
+            cbxFilterUnderscoreSpacing.IsChecked = true;
+            cbxFilterDashSpacing.IsChecked = false;
+            cbxFilterDashes.IsChecked = true;
+            cbxFilterDoubleSpaces.IsChecked = true;
+        }
+
+
         /// <summary>
         ///    Preview Button
         /// </summary>
@@ -2393,8 +2441,8 @@ the Free Software Foundation, either version 3 of the License, or
 
             return ready;
         }
-        
-    } 
+
+    }
     // End Main Class
 
 
