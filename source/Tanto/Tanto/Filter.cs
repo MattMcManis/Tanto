@@ -127,10 +127,10 @@ namespace Tanto
             // -------------------------
             if (mainwindow.cbxFilterRemoveEpisodeNumbering.IsChecked == true)
             {
-                //S00E00, EP00, E00, 00, 000v0-9
+                //S000E000, EP000, E000, 000x000, " 000 ", 000v0-9
                 filename = Regex.Replace(
                                 filename
-                                , @"\b(S\d\d\d?E\d\d\d?|EP\d?|Ep\d?|ep\d?|E\d\d?|\d\d\d?|\d\d\d?v[0-9])\b\s*"
+                                , @"\b(S\d\d\d?E\d\d\d?|EP\d?|Ep\d?|ep\d?|E\d\d?|\d\d?\d?x\d?\d?\d?| \d\d\d? |\d?\d?\d?v\d?\d?\d?)\b\s*"
                                 , ""
                                 , RegexOptions.IgnoreCase
                                 );

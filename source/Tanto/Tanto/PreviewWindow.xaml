@@ -81,7 +81,8 @@
                 Width="76" 
                 Height="22"
                 Click="btnConfirm_Click" 
-                Background="White" />
+                Background="White" 
+                Cursor="Hand" />
 
     </Grid>
 </Window>
