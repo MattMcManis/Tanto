@@ -119,7 +119,7 @@ namespace Tanto
             // -------------------------
             if (mainwindow.cbxFilterRemoveYear.IsChecked == true)
             {
-                filename = Regex.Replace(filename, @"\((\d\d\d\d)\)", "");
+                filename = Regex.Replace(filename, @"(\((1|2)\d?\d?\d?\))", "");
             }
 
             // -------------------------
@@ -127,10 +127,10 @@ namespace Tanto
             // -------------------------
             if (mainwindow.cbxFilterRemoveEpisodeNumbering.IsChecked == true)
             {
-                //S000E000, EP000, E000, 000x000, " 000 ", 000v0-9
+                //S000E000, EP000, E000, 000x000, 000v000, 000, 000v0-9
                 filename = Regex.Replace(
                                 filename
-                                , @"\b(S\d\d\d?E\d\d\d?|EP\d?|Ep\d?|ep\d?|E\d\d?|\d\d?\d?x\d?\d?\d?| \d\d\d? |\d?\d?\d?v\d?\d?\d?)\b\s*"
+                                , @"\b(?i)(S\d\d\d?E\d\d\d?|EP\d\d\d?|E\d\d\d?|\d\d\d?|(E|EP)?(\s*)\d\d?\d?(x|v)\d\d?\d?)\b"
                                 , ""
                                 , RegexOptions.IgnoreCase
                                 );
@@ -256,51 +256,12 @@ namespace Tanto
             // -------------------------
             if (mainwindow.cbxFilterRemoveTags.IsChecked == true)
             {
-                List<string> filter = new List<string>()
-                {
-                    "(8k)", "(4k)", "(2k)",
-                    "8k", "4k", "2k",
-                    "(8K)", "(4K)", "(2K)",
-                    "8K", "4K", "2K",
-                    "(1080p)", "(720p)", "(480p)",
-                    "1080p", "720p", "480p",
-                    "(1080P)", "(720P)", "(480P)",
-                    "1080P", "720P", "480P",
-
-                    "(DVD)", "(BD)", "(Blu-Ray)", "(BluRay)",
-                    "DVD", "Blu-Ray", "Blu-ray", "BLU-RAY", "BluRay", "Bluray", "BLURAY",
-
-                    "(x264)", "(x265)", "(hevc)",
-                    "x264", "x265", "hevc",
-                    "(X264)", "(X265)", "(HEVC)",
-                    "X264", "X265", "HEVC",
-
-                     "(H264)", "(H265)",
-                     "H264", "H265",
-                     "(h264)", "(h265)",
-                     "h264", "h265",
-
-                     "(2CH)", "(6CH)", "(DD5.1)",
-                     "2CH", "6CH", "DD5.1",
-                     "(2ch)", "(6ch)", "(dd5.1)",
-                     "2ch", "6ch", "dd5.1"
-                };
-
-                for (var i = 0; i < filter.Count; i++)
-                {
-                    if (filename.Contains(filter[i]))
-                    {
-                        if (!filename.StartsWith(filter[i]))
-                        {
-                            int index = filename.IndexOf(filter[i]);
-
-                            if (index >= 0)
-                            {
-                                filename = filename.Substring(0, index);
-                            }
-                        }
-                    }
-                }
+                filename = Regex.Replace(
+                filename
+                    , @"(?i)(\[).*?(\])|(\(*)(480p|576p|720p|1080p|2k|4k|8k|60fps|DVD|BD|BRD|Bluray|Blu-Ray|WebDL|Web-DL|WebRip|Web-Rip|RAW|HEVC|(h|x)(265|264)|AV1|VP8|VP9|Theora|AAC|AC3|Vorbis|Opus|FLAC|MP3|(2|DTS5\.1|DD5\.1|6|7\.1)(CH| CH)|Dual-Audio|Multi-Sub|English Dub)(\)*)(\,*)"
+                    , ""
+                    , RegexOptions.IgnoreCase
+                );
             }
 
             // -------------------------

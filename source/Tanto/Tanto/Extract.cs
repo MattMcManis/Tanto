@@ -284,7 +284,17 @@ namespace Tanto
                 }
             }
 
-            return matchingPattern.ToString();
+            // -------------------------
+            // Remove Title Tags
+            // -------------------------
+            string title = Regex.Replace(
+                matchingPattern.ToString()
+                , @"(?i)(\[).*?(\])"
+                , ""
+                , RegexOptions.IgnoreCase
+            );
+
+            return title;
         }
 
 
