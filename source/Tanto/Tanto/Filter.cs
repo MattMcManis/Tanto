@@ -130,7 +130,7 @@ namespace Tanto
                 //S000E000, EP000, E000, 000x000, 000v000, 000, 000v0-9
                 filename = Regex.Replace(
                                 filename
-                                , @"\b(?i)(S\d\d\d?E\d\d\d?|EP\d\d\d?|E\d\d\d?|\d\d\d?|(E|EP)?(\s*)\d\d?\d?(x|v)\d\d?\d?)\b"
+                                , @"(?i)\b(S\d\d\d?E\d\d\d?|(EP|EP((\s*)|-))\d\d\d?|E\d\d\d?|(?<![.])\d\d?\d?|(E(\s*)|EP(\s*))?(?<![.])\d\d?\d?(x|v)\d\d?\d?)\b"
                                 , ""
                                 , RegexOptions.IgnoreCase
                                 );
