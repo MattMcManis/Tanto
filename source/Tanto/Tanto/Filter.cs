@@ -58,7 +58,6 @@ namespace Tanto
                                         MessageBoxButton.OK,
                                         MessageBoxImage.Error);
                     }
-
                 }
             }
 
