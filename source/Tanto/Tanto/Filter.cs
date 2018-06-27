@@ -257,7 +257,7 @@ namespace Tanto
             {
                 filename = Regex.Replace(
                 filename
-                    , @"(?i)(\[).*?(\])|(\(*)(480p|576p|720p|1080p|2k|4k|8k|60fps|DVD|BD|BRD|Bluray|Blu-Ray|WebDL|Web-DL|WebRip|Web-Rip|RAW|HEVC|(h|x)(265|264)|AV1|VP8|VP9|Theora|AAC|AC3|Vorbis|Opus|FLAC|MP3|(2|DTS5\.1|DD5\.1|6|7\.1)(CH| CH)|Dual-Audio|Multi-Sub|English Dub)(\)*)(\,*)"
+                    , @"(?i)(\[).*?(\])|(\(*)(480p|576p|720p|1080p|2k|4k|8k|60fps|DVD|BD|BRD|Bluray|Blu-Ray|WebDL|Web-DL|WebRip|Web-Rip|RAW|HEVC|(h|x)(265|264)|AV1|VP8|VP9|Theora|AAC|AC3|Vorbis|Opus|FLAC|MP3|(DTS\s?|DD\s?)(5\.1|7\.1)(\s?CH)?|(2|6|5\.1|7\.1)\s?CH|Dual-Audio|Multi-Sub|English Dub)(\)*)(\,*)"
                     , ""
                     , RegexOptions.IgnoreCase
                 );
