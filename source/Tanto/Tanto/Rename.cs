@@ -40,8 +40,10 @@ namespace Tanto
 
             List<string> listFileNames = new List<string>();
 
+            int FileNames_Count = MainWindow.listFilePaths.Count;
+
             // Add File Names to List
-            for (var i = 0; i < MainWindow.listFilePaths.Count; i++)
+            for (var i = 0; i < FileNames_Count; i++)
             {
                 string filename = Filter.FilterFileName(mainwindow, Path.GetFileNameWithoutExtension(MainWindow.listFilePaths[i]));
                 listFileNames.Add(filename);
@@ -62,6 +64,9 @@ namespace Tanto
             MainWindow.th.IsBackground = true;
             MainWindow.th.Start();
             MainWindow.th.Join();
+
+
+            //MessageBox.Show(string.Join("\n", listEpisodeNames)); //debug
 
 
             // Clear New File Names
@@ -123,8 +128,24 @@ namespace Tanto
                 string episodeNumber = string.Empty;
                 if (mainwindow.cbxEpisodeNumbering.IsChecked == true)
                 {
-                    ep++; // add 1 to filename
-                    episodeNumber = "E" + ep.ToString().PadLeft(2, '0');
+                    // Episode count less than 100
+                    if (FileNames_Count < 100)
+                    {
+                        ep++; // add 1 to filename
+                        episodeNumber = "E" + ep.ToString().PadLeft(2, '0');
+                    }
+                    // Episode count greater than 99
+                    else if (FileNames_Count >= 100)
+                    {
+                        ep++; // add 1 to filename
+                        episodeNumber = "E" + ep.ToString().PadLeft(3, '0');
+                    }
+                    // Episode count greater than 999
+                    else if (FileNames_Count >= 1000)
+                    {
+                        ep++; // add 1 to filename
+                        episodeNumber = "E" + ep.ToString().PadLeft(4, '0');
+                    }
                 }
 
                 // -------------------------
@@ -223,7 +244,7 @@ namespace Tanto
                 // -------------------------
                 // Filter Finalize
                 // -------------------------
-                newFilename = Filter.FilterFinalize(mainwindow, newFilename);
+                newFilename = Filter.FilterFinalize(mainwindow, newFilename).Trim();
 
                 // -------------------------
                 // New File Names List

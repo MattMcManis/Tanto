@@ -121,19 +121,19 @@ namespace Tanto
                 filename = Regex.Replace(filename, @"(\((1|2)\d?\d?\d?\))", "");
             }
 
-            // -------------------------
-            // Remove Episode Numbering
-            // -------------------------
-            if (mainwindow.cbxFilterRemoveEpisodeNumbering.IsChecked == true)
-            {
-                //S000E000, EP000, E000, 000x000, 000v000, 000, 000v0-9
-                filename = Regex.Replace(
-                                filename
-                                , @"(?i)\b(S\d\d\d?E\d\d\d?|(EP|EP((\s*)|-))\d\d\d?|E\d\d\d?|(?<![.])\d\d?\d?|(E(\s*)|EP(\s*))?(?<![.])\d\d?\d?(x|v)\d\d?\d?)\b"
-                                , ""
-                                , RegexOptions.IgnoreCase
-                                );
-            }
+            //// -------------------------
+            //// Remove Episode Numbering
+            //// -------------------------
+            //if (mainwindow.cbxFilterRemoveEpisodeNumbering.IsChecked == true)
+            //{
+            //    //S000E000, EP000, E000, 000x000, 000v000, 000, 000v0-9
+            //    filename = Regex.Replace(
+            //                    filename
+            //                    , @"(?i)\b(S\d\d\d?E\d\d\d?|(EP|EP((\s*)|-))\d\d\d?|E\d\d\d?|(?<![.])\d\d?\d?|(E(\s*)|EP(\s*))?(?<![.])\d\d?\d?(x|v)\d\d?\d?)\b"
+            //                    , ""
+            //                    , RegexOptions.IgnoreCase
+            //                    );
+            //}
 
             // -------------------------
             // Remove Double Spaces
@@ -143,6 +143,7 @@ namespace Tanto
             {
                 filename = Regex.Replace(filename, @"\s+", " ");
             }
+
 
             return filename;
         }
@@ -156,13 +157,18 @@ namespace Tanto
         public static String FilterRemove(MainWindow mainwindow, string filename)
         {
             // -------------------------
-            // Title Case
+            // Remove Episode Numbering
             // -------------------------
-            if (mainwindow.cbxFilterTitleCase.IsChecked == true)
+            if (mainwindow.cbxFilterRemoveEpisodeNumbering.IsChecked == true)
             {
-                int minLength = 2;
-                string regex = string.Format(@"(?<=(^|[.!?])\s*)\w|\b\w(?=[-\w]{{{0}}})", minLength);
-                filename = Regex.Replace(filename, Regex.Escape(regex), m => m.Value.ToUpperInvariant());
+                //S000E000, EP000, E000, 000x000, 000v000, 000, 000v0-9
+                filename = Regex.Replace(
+                                filename
+                                //, @"(?i)\b(S\d\d\d?E\d\d\d?|(EP|EP((\s*)|-))\d\d\d?|E\d\d\d?|(?<![.])\d\d?\d?|(E(\s*)|EP(\s*))?(?<![.])^\d\d?\d?(x|v)\d\d?\d?)\b" //old
+                                , @"(?i)\b(S\d+E\d+|(EP|EP((\s*)|-))\d+|E\d+|(?<![.])^\d+|(E(\s*)|EP(\s*))?(?<![.])\d\d?\d?(x|v)\d\d?\d?)\b"
+                                , ""
+                                , RegexOptions.IgnoreCase
+                                );
             }
 
             // -------------------------
@@ -273,6 +279,7 @@ namespace Tanto
                 filename = Regex.Replace(filename, @"\s+", " ");
             }
 
+            filename = filename.Trim();
 
             return filename;
         }
@@ -346,6 +353,7 @@ namespace Tanto
                 }
             }
 
+            filename = filename.Trim();
 
             return filename;
         }
@@ -420,6 +428,8 @@ namespace Tanto
             // -------------------------
             filename = Regex.Replace(filename, @"\s+", " ");
 
+            filename = filename.Trim();
+
 
             return filename;
         }
@@ -465,6 +475,19 @@ namespace Tanto
             {
                 filename = Regex.Replace(filename, @"( )", "");
             }
+
+            // -------------------------
+            // Title Case
+            // -------------------------
+            if (mainwindow.cbxFilterTitleCase.IsChecked == true)
+            {
+                string input = filename;
+                int minLength = 2;
+                string regexPattern = string.Format(@"(?<=(^|[.!?])\s*)\w|\b\w(?=[-\w]{{{0}}})", minLength);
+                filename = Regex.Replace(input, regexPattern, m => m.Value.ToUpperInvariant());
+            }
+
+            filename = filename.Trim();
 
             return filename;
         }

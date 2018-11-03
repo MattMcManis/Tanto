@@ -65,14 +65,23 @@ namespace Tanto
             // -------------------------
             // Create Preview List
             // -------------------------
-            for (var i = 0; i < MainWindow.listFilePaths.Count; i++)
+            try
             {
-                lsvPreview.Items.Add(new MyItem {
-                                Original = Path.GetFileNameWithoutExtension(MainWindow.listFilePaths[i]),
-                                New = Path.GetFileNameWithoutExtension(MainWindow.listNewFileNames[i])
-                });
+                for (var i = 0; i < MainWindow.listFilePaths.Count; i++)
+                {
+                    lsvPreview.Items.Add(new MyItem
+                    {
+                        Original = Path.GetFileNameWithoutExtension(MainWindow.listFilePaths[i]),
+                        New = Path.GetFileNameWithoutExtension(MainWindow.listNewFileNames[i])
+                    });
+
+                }
+            }
+            catch
+            {
 
             }
+
         }
 
         /// <summary>
@@ -93,7 +102,10 @@ namespace Tanto
             }
             catch
             {
-
+                MessageBox.Show("Error creating Preview. Reset Saved Settings to fix.",
+                            "Error",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Error);
             }
 
         }

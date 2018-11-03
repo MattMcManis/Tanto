@@ -442,21 +442,21 @@ namespace Tanto
             // Safeguard Against Corrupt Saved Settings
             try
             {
-                //// --------------------------
-                //// First time use
-                //// --------------------------
-                //if (string.IsNullOrEmpty(Settings.Default.Separator.ToString()))
-                //{
-                //    tbxSeparator.Text = " ";
-                //}
+                // --------------------------
+                // First time use
+                // --------------------------
+                if (string.IsNullOrEmpty(Settings.Default.Separator.ToString()))
+                {
+                    tbxSeparator.Text = " - ";
+                }
 
-                //// --------------------------
-                //// Load Saved
-                //// --------------------------
-                //else if (!string.IsNullOrEmpty(Settings.Default.Separator.ToString()))
-                //{
-                //    tbxSeparator.Text = Settings.Default.Separator;
-                //}
+                // --------------------------
+                // Load Saved
+                // --------------------------
+                else if (!string.IsNullOrEmpty(Settings.Default.Separator.ToString()))
+                {
+                    tbxSeparator.Text = Settings.Default.Separator;
+                }
             }
             catch
             {
@@ -467,6 +467,8 @@ namespace Tanto
             // -------------------------
             // Control Defaults
             // -------------------------
+
+            // Year
             string year = "Year";
 
             try
@@ -568,6 +570,22 @@ namespace Tanto
 
             // convert array to list
             List<string> files = new List<string>(dropFiles);
+
+            // Remove Folders
+            for (int i = files.Count - 1; i >= 0; --i)
+            {
+                if (files.Count > i && files.Count != 0)
+                {
+                    string fileExt = Path.GetExtension(files[i]);
+
+                    // Check for File Extension
+                    // Ignore if missing (Ignores folders)
+                    if (string.IsNullOrEmpty(fileExt))
+                    {
+                        files.RemoveAt(i);
+                    }
+                }
+            }
 
             AddFiles(files);
         }
@@ -775,7 +793,14 @@ the Free Software Foundation, either version 3 of the License, or
                 List<string> files = new List<string>();
                 for (var i = 0; i < selectFiles.FileNames.Length; i++)
                 {
-                    files.Add(selectFiles.FileNames[i]);
+                    string fileExt = Path.GetExtension(selectFiles.FileNames[i]);
+
+                    // Check for File Extension
+                    // Ignore if missing (Ignores folders)
+                    if (!string.IsNullOrEmpty(fileExt))
+                    {
+                        files.Add(selectFiles.FileNames[i]);
+                    }
                 }
 
                 AddFiles(files);
@@ -1072,6 +1097,7 @@ the Free Software Foundation, either version 3 of the License, or
                 || Keyboard.IsKeyDown(Key.LeftShift) && e.Key == Key.OemComma // <
                 || Keyboard.IsKeyDown(Key.RightShift) && e.Key == Key.OemComma // <
 
+                || e.Key == Key.Tab // tab
                 || e.Key == Key.Oem2 // forward slash
                 || e.Key == Key.OemBackslash // backslash
                 || e.Key == Key.OemQuestion // ?

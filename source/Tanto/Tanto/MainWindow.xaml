@@ -37,7 +37,9 @@
         
         Top="{Binding Top, Source={x:Static settings:Settings.Default}, Mode=TwoWay}"
         Left="{Binding Left, Source={x:Static settings:Settings.Default}, Mode=TwoWay}" 
-        Title="{Binding TitleVersion, RelativeSource={RelativeSource Mode=Self}}" Icon="Resources/images/icon.ico" 
+        Title="{Binding TitleVersion, RelativeSource={RelativeSource Mode=Self}}" 
+        
+        Icon="Resources/images/icon.ico" 
         >
 
     <Window.Resources>
@@ -499,7 +501,6 @@
                        ToolTip="Properties will be separated by this character(s)."
                        Grid.Row="11"/>
                         <TextBox x:Name="tbxSeparator"
-                                 Text=" " 
                                  HorizontalAlignment="Left" 
                                  Height="22"
                                  Margin="0,2,0,0" 
