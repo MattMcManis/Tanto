@@ -159,6 +159,8 @@ namespace Tanto
                         if (listEpisodeNames.Count > 0)
                         {
                             episodeName = Filter.FilterRemove(mainwindow, listEpisodeNames[i]);
+
+                            episodeName = Filter.FilterEpisodeName(mainwindow, episodeName);
                         }
 
                         //MessageBox.Show(string.Join("\n", MainWindow.listEpisodeNames)); //debug

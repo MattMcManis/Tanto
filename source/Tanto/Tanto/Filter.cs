@@ -149,6 +149,25 @@ namespace Tanto
         }
 
         /// <summary>
+        ///    Filter Episode Name (Method)
+        /// </summary>
+        public static String FilterEpisodeName(MainWindow mainwindow, string filename)
+        {
+            // -------------------------
+            // Title Case
+            // -------------------------
+            if (mainwindow.cbxFilterTitleCase.IsChecked == true)
+            {
+                string input = filename;
+                int minLength = 2;
+                string regexPattern = string.Format(@"(?<=(^|[.!?])\s*)\w|\b\w(?=[-\w]{{{0}}})", minLength);
+                filename = Regex.Replace(input, regexPattern, m => m.Value.ToUpperInvariant());
+            }
+
+            return filename;
+        }
+
+        /// <summary>
         ///    Filter Remove (Method)
         /// </summary>
         /// <remarks>
@@ -474,17 +493,6 @@ namespace Tanto
             if (mainwindow.cbxFilterOriginalSpacing.IsChecked == true)
             {
                 filename = Regex.Replace(filename, @"( )", "");
-            }
-
-            // -------------------------
-            // Title Case
-            // -------------------------
-            if (mainwindow.cbxFilterTitleCase.IsChecked == true)
-            {
-                string input = filename;
-                int minLength = 2;
-                string regexPattern = string.Format(@"(?<=(^|[.!?])\s*)\w|\b\w(?=[-\w]{{{0}}})", minLength);
-                filename = Regex.Replace(input, regexPattern, m => m.Value.ToUpperInvariant());
             }
 
             filename = filename.Trim();
