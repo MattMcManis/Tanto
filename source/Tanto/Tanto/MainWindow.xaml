@@ -338,7 +338,7 @@
                          Height="22"
                          Margin="95,2,0,0" 
                          TextWrapping="NoWrap"
-                         Text="1" 
+                         Text="01" 
                          VerticalAlignment="Top"
                          MaxLines="1"
                          Width="30"

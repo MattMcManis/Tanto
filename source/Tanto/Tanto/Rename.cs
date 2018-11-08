@@ -125,26 +125,26 @@ namespace Tanto
                 // -------------------------
                 // Episode
                 // -------------------------
+                // File List Count
                 string episodeNumber = string.Empty;
+                // User Input TextBox - Count Digits
+                int epCount = mainwindow.tbxStartEpisodeAt.Text.ToString().Length;
+
                 if (mainwindow.cbxEpisodeNumbering.IsChecked == true)
                 {
-                    // Episode count less than 100
-                    if (FileNames_Count < 100)
+                    // Episode count less than 100 (no padding, 1 instead of 01)
+                    if (FileNames_Count < 100 &&
+                        epCount <= 1)
                     {
                         ep++; // add 1 to filename
-                        episodeNumber = "E" + ep.ToString().PadLeft(2, '0');
+                        episodeNumber = "E" + ep.ToString();
                     }
                     // Episode count greater than 99
-                    else if (FileNames_Count >= 100)
+                    else if (FileNames_Count >= 100 ||
+                        epCount > 1)
                     {
                         ep++; // add 1 to filename
-                        episodeNumber = "E" + ep.ToString().PadLeft(3, '0');
-                    }
-                    // Episode count greater than 999
-                    else if (FileNames_Count >= 1000)
-                    {
-                        ep++; // add 1 to filename
-                        episodeNumber = "E" + ep.ToString().PadLeft(4, '0');
+                        episodeNumber = "E" + ep.ToString().PadLeft(epCount, '0');
                     }
                 }
 
