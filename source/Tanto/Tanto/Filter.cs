@@ -184,6 +184,7 @@ namespace Tanto
                 filename = Regex.Replace(
                                 filename
                                 //, @"(?i)\b(S\d\d\d?E\d\d\d?|(EP|EP((\s*)|-))\d\d\d?|E\d\d\d?|(?<![.])\d\d?\d?|(E(\s*)|EP(\s*))?(?<![.])^\d\d?\d?(x|v)\d\d?\d?)\b" //old
+                                , @"(?i)\b(S\d+E\d+)|(Episode(\s*)|(EP|EP((\s*)|-))\d+|E\d+|(?<![.])^\d+|(E(\s*)|EP(\s*))?(?<![.])\d\d?\d?(x|v)\d\d?\d?)\b"
                                 , ""
                                 , RegexOptions.IgnoreCase
                                 );
