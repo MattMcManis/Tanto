@@ -66,9 +66,19 @@ namespace Tanto
             // -------------------------
             if (mainwindow.cbxFilterPeriodSpacing.IsChecked == true)
             {
-                // replace with space
-                string regex = @"(?<!\.)\.(?!\.)";
-                filename = Regex.Replace(filename, Regex.Escape(regex), " ");
+                try
+                {
+                    // replace with space
+                    string regex = @"(?<!\.)\.(?!\.)";
+                    filename = Regex.Replace(filename, regex, " ");
+                }
+                catch
+                {
+                    MessageBox.Show("Could not remove periods.",
+                                    "Error",
+                                    MessageBoxButton.OK,
+                                    MessageBoxImage.Error);
+                }
             }
 
             // -------------------------
