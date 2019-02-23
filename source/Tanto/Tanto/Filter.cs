@@ -117,7 +117,6 @@ namespace Tanto
                 && mainwindow.cbxFilterHyphens.IsChecked == true)
             {
                 // remove dash, preserve hyphens
-                //filename = Regex.Replace(filename, @"((?<=[\s\.])\-+)|(\-+(?=[\s\.]))", "").Trim();
                 filename = Regex.Replace(filename, @"\b(-+)\b|-", "$1").Trim();
                 // multiple dashes to single dash
                 filename = Regex.Replace(filename, "[-]{2,}", "").Trim();
@@ -130,20 +129,6 @@ namespace Tanto
             {
                 filename = Regex.Replace(filename, @"(\((1|2)\d?\d?\d?\))", "");
             }
-
-            //// -------------------------
-            //// Remove Episode Numbering
-            //// -------------------------
-            //if (mainwindow.cbxFilterRemoveEpisodeNumbering.IsChecked == true)
-            //{
-            //    //S000E000, EP000, E000, 000x000, 000v000, 000, 000v0-9
-            //    filename = Regex.Replace(
-            //                    filename
-            //                    , @"(?i)\b(S\d\d\d?E\d\d\d?|(EP|EP((\s*)|-))\d\d\d?|E\d\d\d?|(?<![.])\d\d?\d?|(E(\s*)|EP(\s*))?(?<![.])\d\d?\d?(x|v)\d\d?\d?)\b"
-            //                    , ""
-            //                    , RegexOptions.IgnoreCase
-            //                    );
-            //}
 
             // -------------------------
             // Remove Double Spaces
@@ -190,10 +175,9 @@ namespace Tanto
             // -------------------------
             if (mainwindow.cbxFilterRemoveEpisodeNumbering.IsChecked == true)
             {
-                //S000E000, EP000, E000, 000x000, 000v000, 000, 000v0-9
+                // S000E000, EP000, E000, 000x000, 000v000, 000, 000v0-9
                 filename = Regex.Replace(
                                 filename
-                                //, @"(?i)\b(S\d\d\d?E\d\d\d?|(EP|EP((\s*)|-))\d\d\d?|E\d\d\d?|(?<![.])\d\d?\d?|(E(\s*)|EP(\s*))?(?<![.])^\d\d?\d?(x|v)\d\d?\d?)\b" //old
                                 , @"(?i)\b(S\d+E\d+)|(Episode(\s*)|(EP|EP((\s*)|-))\d+|E\d+|(?<![.])^\d+|(E(\s*)|EP(\s*))?(?<![.])\d\d?\d?(x|v)\d\d?\d?)\b"
                                 , ""
                                 , RegexOptions.IgnoreCase
@@ -203,7 +187,7 @@ namespace Tanto
             // -------------------------
             // Remove Words
             // -------------------------
-            if (mainwindow.tbxRemoveWords.Text != string.Empty)
+            if (!string.IsNullOrWhiteSpace(mainwindow.tbxRemoveWords.Text))
             {
                 try
                 {
@@ -211,7 +195,7 @@ namespace Tanto
 
                     string regex = @"\b(" + words + @")\b";
 
-                    filename = Regex.Replace(filename, Regex.Escape(regex), "");
+                    filename = Regex.Replace(filename, regex, "");
                 }
                 catch
                 {
@@ -225,14 +209,10 @@ namespace Tanto
             // -------------------------
             // Remove Characters
             // -------------------------
-            if (mainwindow.tbxRemoveChars.Text != string.Empty)
+            if (!string.IsNullOrWhiteSpace(mainwindow.tbxRemoveChars.Text))
             {
                 try
                 {
-                    //string characters = mainwindow.tbxRemoveChars.Text.Replace(",", "|");
-                    //string regex = characters;
-                    //filename = Regex.Replace(filename, Regex.Escape(regex), "");
-
                     List<string> removeChars = new List<string>(mainwindow.tbxRemoveChars.Text.Split(','));
 
                     List<string> removeCharsEscaped = new List<string>();
@@ -264,8 +244,10 @@ namespace Tanto
             // -------------------------
             // Remove Between Characters
             // -------------------------
-            if (mainwindow.tbxRemoveRangeStart.Text != string.Empty
-                && mainwindow.tbxRemoveRangeEnd.Text != string.Empty)
+            //if (mainwindow.tbxRemoveRangeStart.Text != string.Empty
+            //    && mainwindow.tbxRemoveRangeEnd.Text != string.Empty)
+            if (!string.IsNullOrWhiteSpace(mainwindow.tbxRemoveRangeStart.Text) &&
+                !string.IsNullOrWhiteSpace(mainwindow.tbxRemoveRangeEnd.Text))
             {
                 try
                 {
@@ -292,7 +274,7 @@ namespace Tanto
             {
                 filename = Regex.Replace(
                 filename
-                    , @"(?i)(\[).*?(\])|(\(*)(480p|576p|720p|1080p|2k|4k|8k|60fps|DVD|BD|BRD|Bluray|Blu-Ray|WebDL|Web-DL|WebRip|Web-Rip|RAW|HEVC|(h|x)(265|264)|AV1|VP8|VP9|Theora|AAC|AC3|Vorbis|Opus|FLAC|MP3|(DTS\s?|DD\s?)(5\.1|7\.1)(\s?CH)?|(2|6|5\.1|7\.1)\s?CH|Dual-Audio|Multi-Sub|English Dub)(\)*)(\,*)"
+                    , @"(?i)(\[).*?(\])|(\(*)(480p|576p|720p|1080p|2k|4k|8k|60fps|DVD|BD|BRD|Bluray|Blu-Ray|BrRip|WebDL|Web-DL|WebRip|Web-Rip|RAW|HEVC|(h|x)(265|264)|AV1|VP8|VP9|Theora|AAC|AC3|Vorbis|Opus|FLAC|MP3|(DTS\s?|DD\s?)(5\.1|7\.1)(\s?CH)?|(2|6|5\.1|7\.1)\s?CH|Dual-Audio|Multi-Sub|English Dub)(\)*)(\,*)"
                     , ""
                     , RegexOptions.IgnoreCase
                 );
@@ -322,29 +304,8 @@ namespace Tanto
         /// </remarks>
         public static String FilterReplace(MainWindow mainwindow, string filename)
         {
-            // Replace These Words With
-            if (mainwindow.tbxReplaceWords.Text != string.Empty)
-            {
-                try
-                {
-                    string words = mainwindow.tbxReplaceWords.Text.Replace(",", "|");
-                    string replacement = mainwindow.tbxReplaceWordsWith.Text;
-
-                    string regex = @"\b(" + words + @")\b";
-
-                    filename = Regex.Replace(filename, Regex.Escape(regex), Regex.Escape(replacement));
-                }
-                catch
-                {
-                    MessageBox.Show("Could not replace words.",
-                                    "Error",
-                                    MessageBoxButton.OK,
-                                    MessageBoxImage.Error);
-                }
-            }
-
             // Replace These Characters With
-            if (mainwindow.tbxReplaceChars.Text != string.Empty)
+            if (!string.IsNullOrWhiteSpace(mainwindow.tbxReplaceChars.Text))
             {
                 try
                 {
@@ -364,8 +325,29 @@ namespace Tanto
                 }
             }
 
+            // Replace These Words With
+            if (!string.IsNullOrWhiteSpace(mainwindow.tbxReplaceWords.Text))
+            {
+                try
+                {
+                    string words = mainwindow.tbxReplaceWords.Text.Replace(",", "|");
+                    string replacement = mainwindow.tbxReplaceWordsWith.Text;
+
+                    string regex = @"\b(" + words + @")\b";
+
+                    filename = Regex.Replace(filename, regex, replacement);
+                }
+                catch
+                {
+                    MessageBox.Show("Could not replace words.",
+                                    "Error",
+                                    MessageBoxButton.OK,
+                                    MessageBoxImage.Error);
+                }
+            }
+
             // Replace Spaces With
-            if (mainwindow.tbxReplaceSpacesWith.Text != string.Empty)
+            if (!string.IsNullOrWhiteSpace(mainwindow.tbxReplaceSpacesWith.Text))
             {
                 try
                 {
