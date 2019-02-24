@@ -252,6 +252,21 @@ namespace Tanto
 
             }
 
+            // Double Episode Numbers
+            //
+            // Safeguard Against Corrupt Saved Settings
+            try
+            {
+                // --------------------------
+                // First time use
+                // --------------------------
+                cbxDoubleEpisodeNumbers.IsChecked = Convert.ToBoolean(Settings.Default.FilterDoubleEpisodeNumbers);
+            }
+            catch
+            {
+
+            }
+
             // Filter Keep Episode Names
             //
             // Safeguard Against Corrupt Saved Settings
@@ -1693,6 +1708,60 @@ the Free Software Foundation, either version 3 of the License, or
 
 
         /// <summary>
+        ///    Double Episode Numbers Checkbox - Checked
+        /// </summary>
+        private void cbxDoubleEpisodeNumbers_Checked(object sender, RoutedEventArgs e)
+        {
+            //Prevent Saving Corrupt App.Config
+            try
+            {
+                // Save Toggle Settings
+
+                if (cbxDoubleEpisodeNumbers.IsChecked == true)
+                {
+                    Settings.Default.FilterDoubleEpisodeNumbers = true;
+                    Settings.Default.Save();
+                }
+                else if (cbxDoubleEpisodeNumbers.IsChecked == false)
+                {
+                    Settings.Default.FilterDoubleEpisodeNumbers = false;
+                    Settings.Default.Save();
+                }
+            }
+            catch
+            {
+            }
+        }
+
+        /// <summary>
+        ///    Double Episode Numbers Checkbox - Unchecked
+        /// </summary>
+        private void cbxDoubleEpisodeNumbers_Unchecked(object sender, RoutedEventArgs e)
+        {
+            // Prevent Saving Corrupt App.Config
+            try
+            {
+                // Save Toggle Settings
+
+                if (cbxDoubleEpisodeNumbers.IsChecked == true)
+                {
+                    Settings.Default.FilterDoubleEpisodeNumbers = true;
+                    Settings.Default.Save();
+                }
+                else if (cbxDoubleEpisodeNumbers.IsChecked == false)
+                {
+                    Settings.Default.FilterDoubleEpisodeNumbers = false;
+                    Settings.Default.Save();
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+
+        /// <summary>
         ///    Episode Names Checkbox - Checked
         /// </summary>
         private void cbxEpisodeNames_Checked(object sender, RoutedEventArgs e)
@@ -2336,6 +2405,7 @@ the Free Software Foundation, either version 3 of the License, or
             cbxFilterAutoYear.IsChecked = true;
             cbxAutoSeasonNumber.IsChecked = true;
             cbxAutoStartingEpisodeNumber.IsChecked = false;
+            cbxDoubleEpisodeNumbers.IsChecked = true;
 
             // Keep
             cbxEpisodeNames.IsChecked = true;

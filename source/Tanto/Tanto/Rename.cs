@@ -22,6 +22,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows;
 
@@ -123,7 +124,7 @@ namespace Tanto
                 }
 
                 // -------------------------
-                // Episode
+                // Episode Number
                 // -------------------------
                 // File List Count
                 string episodeNumber = string.Empty;
@@ -132,21 +133,77 @@ namespace Tanto
 
                 if (mainwindow.cbxEpisodeNumbering.IsChecked == true)
                 {
-                    // Episode count less than 100 (no padding, 1 instead of 01)
-                    if (FileNames_Count < 100 &&
-                        epCount <= 1)
+                    Regex regex = new Regex(@"(E\d+E\d+)");
+                    MatchCollection matches = regex.Matches(listFileNames[i]);
+
+                    string doubleEpisodeNumbersMatch = string.Empty;
+
+                    // -------------------------
+                    // Check for Double Episode
+                    // -------------------------
+                    if (mainwindow.cbxDoubleEpisodeNumbers.IsChecked == true)
                     {
-                        ep++; // add 1 to filename
-                        episodeNumber = "E" + ep.ToString();
+                        if (matches.Count > 0)
+                        {
+                            doubleEpisodeNumbersMatch = matches[0].Value.ToString();
+                        }
                     }
-                    // Episode count greater than 99
-                    else if (FileNames_Count >= 100 ||
-                        epCount > 1)
+
+
+                    // -------------------------
+                    // Single Episode - S01E01
+                    // -------------------------
+                    if (string.IsNullOrEmpty(doubleEpisodeNumbersMatch))
                     {
-                        ep++; // add 1 to filename
-                        episodeNumber = "E" + ep.ToString().PadLeft(epCount, '0');
+                        // Episode count less than 100 (no padding, 1 instead of 01)
+                        if (FileNames_Count < 100 &&
+                            epCount <= 1)
+                        {
+                            ep++; // add 1 to filename
+                            episodeNumber = "E" + ep.ToString();
+                        }
+                        // Episode count greater than 99
+                        else if (FileNames_Count >= 100 ||
+                            epCount > 1)
+                        {
+                            ep++; // add 1 to filename
+                            episodeNumber = "E" + ep.ToString().PadLeft(epCount, '0');
+                        }
+                    }
+
+                    // -------------------------
+                    // Double Episode - S01E01E02
+                    // -------------------------
+                    else if (!string.IsNullOrEmpty(doubleEpisodeNumbersMatch) &&
+                            mainwindow.cbxDoubleEpisodeNumbers.IsChecked == true)
+                    {
+                        // Episode count less than 100 (no padding, 1 instead of 01)
+                        if (FileNames_Count < 100 &&
+                            epCount <= 1)
+                        {
+                            // 1st ep
+                            ep++; // add 1 to filename
+                            episodeNumber = "E" + ep.ToString();
+
+                            // 2nd ep
+                            ep++;
+                            episodeNumber = episodeNumber + "E" + ep.ToString();
+                        }
+                        // Episode count greater than 99
+                        else if (FileNames_Count >= 100 ||
+                                 epCount > 1)
+                        {
+                            // 1st ep
+                            ep++; // add 1 to filename
+                            episodeNumber = "E" + ep.ToString().PadLeft(epCount, '0');
+
+                            // 2nd ep
+                            ep++;
+                            episodeNumber = episodeNumber + "E" + ep.ToString().PadLeft(epCount, '0');
+                        }
                     }
                 }
+
 
                 // -------------------------
                 // Episode Name

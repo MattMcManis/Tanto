@@ -74,5 +74,8 @@
     <Setting Name="FilterAutoStartingEpisodeNumber" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="FilterDoubleEpisodeNumbers" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

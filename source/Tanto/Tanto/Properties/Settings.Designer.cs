@@ -310,5 +310,17 @@ namespace Tanto.Properties {
                 this["FilterAutoStartingEpisodeNumber"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool FilterDoubleEpisodeNumbers {
+            get {
+                return ((bool)(this["FilterDoubleEpisodeNumbers"]));
+            }
+            set {
+                this["FilterDoubleEpisodeNumbers"] = value;
+            }
+        }
     }
 }

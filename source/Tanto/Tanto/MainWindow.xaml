@@ -804,7 +804,7 @@
                           VerticalAlignment="Top">
 
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="105"/>
+                            <RowDefinition Height="128"/>
                             <RowDefinition Height="105"/>
                             <RowDefinition Height="185"/>
                             <RowDefinition Height="65"/>
@@ -873,6 +873,18 @@
                           Grid.Column="1" 
                           Checked="cbxAutoStartingEpisodeNumber_Checked" 
                           Unchecked="cbxAutoStartingEpisodeNumber_Unchecked"/>
+
+                        <!-- Double Episode Numbers -->
+                        <CheckBox x:Name="cbxDoubleEpisodeNumbers"
+                          Content="Double Episodes"
+                          HorizontalAlignment="Left"
+                          Margin="0,94,0,0"
+                          VerticalAlignment="Top" 
+                          ToolTipService.InitialShowDelay="500" 
+                          ToolTip="Auto-Detect Double Episode Numbers."
+                          Grid.Column="1" 
+                          Checked="cbxDoubleEpisodeNumbers_Checked" 
+                          Unchecked="cbxDoubleEpisodeNumbers_Unchecked"/>
 
                         <!-- Episode Names -->
                         <CheckBox x:Name="cbxEpisodeNames"
