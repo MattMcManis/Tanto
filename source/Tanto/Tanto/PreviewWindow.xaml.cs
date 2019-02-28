@@ -1,6 +1,6 @@
 ﻿/* ----------------------------------------------------------------------
 Tanto
-Copyright (C) 2018 Matt McManis
+Copyright (C) 2018, 2019 Matt McManis
 http://github.com/MattMcManis/Tanto
 mattmcmanis@outlook.com
 

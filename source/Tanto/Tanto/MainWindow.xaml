@@ -1,6 +1,6 @@
 ﻿<!-- 
     Tanto
-    Copyright (C) 2018 Matt McManis
+    Copyright (C) 2018, 2019 Matt McManis
     http://github.com/MattMcManis/Tanto
 
     This program is free software: you can redistribute it and/or modify
@@ -263,88 +263,88 @@
 
                         <!-- Year TextBox -->
                         <Label Content="Year" 
-                       HorizontalAlignment="Left" 
-                       VerticalAlignment="Top"
-                       Width="75" 
-                       ToolTipService.InitialShowDelay="500" 
-                       ToolTip="Release Year"
-                       Grid.Row="1"/>
+                               HorizontalAlignment="Left" 
+                               VerticalAlignment="Top"
+                               Width="75" 
+                               ToolTipService.InitialShowDelay="500" 
+                               ToolTip="Release Year"
+                               Grid.Row="1"/>
                         <TextBox x:Name="tbxYear"
-                         HorizontalAlignment="Left" 
-                         Height="22"
-                         Margin="0,2,0,0" 
-                         TextWrapping="NoWrap"
-                         Text="" 
-                         VerticalAlignment="Top"
-                         MaxLines="1"
-                         Width="170"
-                         KeyDown="tbxYear_KeyDown" 
-                         Grid.Column="1" 
-                         Grid.Row="1"/>
+                                 HorizontalAlignment="Left" 
+                                 Height="22"
+                                 Margin="0,2,0,0" 
+                                 TextWrapping="NoWrap"
+                                 Text="" 
+                                 VerticalAlignment="Top"
+                                 MaxLines="1"
+                                 Width="170"
+                                 KeyDown="tbxYear_KeyDown" 
+                                 Grid.Column="1" 
+                                 Grid.Row="1"/>
 
                         <!-- Season TextBox -->
                         <Label Content="Season" 
-                       HorizontalAlignment="Left" 
-                       VerticalAlignment="Top"
-                       Width="75" 
-                       ToolTipService.InitialShowDelay="500" 
-                       ToolTip="Series Season Number"
-                       Grid.Row="2"/>
+                               HorizontalAlignment="Left" 
+                               VerticalAlignment="Top"
+                               Width="75" 
+                               ToolTipService.InitialShowDelay="500" 
+                               ToolTip="Series Season Number"
+                               Grid.Row="2"/>
                         <TextBox x:Name="tbxSeason"
-                         HorizontalAlignment="Left" 
-                         Height="22"
-                         Margin="0,2,0,0" 
-                         TextWrapping="NoWrap"
-                         Text="" 
-                         VerticalAlignment="Top"
-                         MaxLines="1"
-                         Width="170"
-                         KeyDown="tbxSeason_KeyDown" 
-                         Grid.Column="1" 
-                         Grid.Row="2" />
+                                 HorizontalAlignment="Left" 
+                                 Height="22"
+                                 Margin="0,2,0,0" 
+                                 TextWrapping="NoWrap"
+                                 Text="" 
+                                 VerticalAlignment="Top"
+                                 MaxLines="1"
+                                 Width="170"
+                                 KeyDown="tbxSeason_KeyDown" 
+                                 Grid.Column="1" 
+                                 Grid.Row="2" />
 
                         <!-- Episode -->
                         <Label Content="Episode" 
-                       HorizontalAlignment="Left" 
-                       VerticalAlignment="Top"
-                       Width="90" 
-                       ToolTipService.InitialShowDelay="500" 
-                       ToolTip="Preserve existing episode names in original filename."
-                       Grid.Row="3"/>
+                               HorizontalAlignment="Left" 
+                               VerticalAlignment="Top"
+                               Width="90" 
+                               ToolTipService.InitialShowDelay="500" 
+                               ToolTip="Preserve existing episode names in original filename."
+                               Grid.Row="3"/>
 
                         <!-- Episode Numbers -->
                         <CheckBox x:Name="cbxEpisodeNumbering"
-                          Content="Numbering"
-                          HorizontalAlignment="Left"
-                          Margin="0,6,0,0"
-                          VerticalAlignment="Top" 
-                          ToolTipService.InitialShowDelay="500" 
-                          ToolTip="Add Episode Numbering (E1, E2, E3)"
-                          Checked="cbxEpisodeNumbering_Checked" 
-                          Unchecked="cbxEpisodeNumbering_Unchecked"
-                          Grid.Column="1"
-                          Grid.Row="3"/>
+                                  Content="Numbering"
+                                  HorizontalAlignment="Left"
+                                  Margin="0,6,0,0"
+                                  VerticalAlignment="Top" 
+                                  ToolTipService.InitialShowDelay="500" 
+                                  ToolTip="Add Episode Numbering (E1, E2, E3)"
+                                  Checked="cbxEpisodeNumbering_Checked" 
+                                  Unchecked="cbxEpisodeNumbering_Unchecked"
+                                  Grid.Column="1"
+                                  Grid.Row="3"/>
 
                         <!-- Start Episode At -->
                         <Label Content="Sart At"
-                       HorizontalAlignment="Left"
-                       Margin="125,0,-3,0"
-                       VerticalAlignment="Top"
-                       Width="48" 
-                       Grid.Column="1" 
-                       Grid.Row="3"/>
+                               HorizontalAlignment="Left"
+                               Margin="125,0,-3,0"
+                               VerticalAlignment="Top"
+                               Width="48" 
+                               Grid.Column="1" 
+                               Grid.Row="3"/>
                         <TextBox x:Name="tbxStartEpisodeAt"
-                         HorizontalAlignment="Left" 
-                         Height="22"
-                         Margin="95,2,0,0" 
-                         TextWrapping="NoWrap"
-                         Text="01" 
-                         VerticalAlignment="Top"
-                         MaxLines="1"
-                         Width="30"
-                         KeyDown="tbxStartEpisodeAt_KeyDown" 
-                         Grid.Column="1" 
-                         Grid.Row="3" />
+                                 HorizontalAlignment="Left" 
+                                 Height="22"
+                                 Margin="95,2,0,0" 
+                                 TextWrapping="NoWrap"
+                                 Text="01" 
+                                 VerticalAlignment="Top"
+                                 MaxLines="1"
+                                 Width="30"
+                                 KeyDown="tbxStartEpisodeAt_KeyDown" 
+                                 Grid.Column="1" 
+                                 Grid.Row="3" />
 
 
                         <!-- Resolution TextBox -->
@@ -874,17 +874,17 @@
                           Checked="cbxAutoStartingEpisodeNumber_Checked" 
                           Unchecked="cbxAutoStartingEpisodeNumber_Unchecked"/>
 
-                        <!-- Double Episode Numbers -->
-                        <CheckBox x:Name="cbxDoubleEpisodeNumbers"
-                          Content="Double Episodes"
+                        <!-- Multi Episode Numbers -->
+                        <CheckBox x:Name="cbxMultiEpisodeNumbers"
+                          Content="Multi Episodes"
                           HorizontalAlignment="Left"
                           Margin="0,94,0,0"
                           VerticalAlignment="Top" 
                           ToolTipService.InitialShowDelay="500" 
-                          ToolTip="Auto-Detect Double Episode Numbers."
+                          ToolTip="Auto-Detect Multi Episode Numbers."
                           Grid.Column="1" 
-                          Checked="cbxDoubleEpisodeNumbers_Checked" 
-                          Unchecked="cbxDoubleEpisodeNumbers_Unchecked"/>
+                          Checked="cbxMultiEpisodeNumbers_Checked" 
+                          Unchecked="cbxMultiEpisodeNumbers_Unchecked"/>
 
                         <!-- Episode Names -->
                         <CheckBox x:Name="cbxEpisodeNames"

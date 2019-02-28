@@ -1,6 +1,6 @@
 ﻿/* ----------------------------------------------------------------------
 Tanto
-Copyright (C) 2018 Matt McManis
+Copyright (C) 2018, 2019 Matt McManis
 http://github.com/MattMcManis/Tanto
 mattmcmanis@outlook.com
 
@@ -74,6 +74,7 @@ namespace Tanto
         // File List
         public static List<string> listFilePaths = new List<string>();
         public static List<string> listNewFileNames = new List<string>();
+        public static List<string> listOriginalFileNamesBackup = new List<string>();
 
         // Series Titles
         public static List<string> listSeriesTitles = new List<string>();
@@ -252,7 +253,7 @@ namespace Tanto
 
             }
 
-            // Double Episode Numbers
+            // Multi-Episode Numbers
             //
             // Safeguard Against Corrupt Saved Settings
             try
@@ -260,7 +261,7 @@ namespace Tanto
                 // --------------------------
                 // First time use
                 // --------------------------
-                cbxDoubleEpisodeNumbers.IsChecked = Convert.ToBoolean(Settings.Default.FilterDoubleEpisodeNumbers);
+                cbxMultiEpisodeNumbers.IsChecked = Convert.ToBoolean(Settings.Default.FilterMultiEpisodeNumbers);
             }
             catch
             {
@@ -613,7 +614,7 @@ namespace Tanto
         private void btnInfo_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show(
-@"Copyright © 2018 Matt McManis
+@"Copyright © 2018, 2019 Matt McManis
 
 Logo by Kelig Le Luron from Noun Project.
 
@@ -1098,6 +1099,14 @@ the Free Software Foundation, either version 3 of the License, or
             {
                 lsvFileNames.Items.Clear();
             }
+
+            // Original Backup File Names
+            if (listOriginalFileNamesBackup != null && listOriginalFileNamesBackup.Count > 0)
+            {
+                listOriginalFileNamesBackup.Clear();
+                listOriginalFileNamesBackup.TrimExcess();
+            }
+            
         }
 
         public void  DenySpecialKeys(KeyEventArgs e)
@@ -1708,23 +1717,23 @@ the Free Software Foundation, either version 3 of the License, or
 
 
         /// <summary>
-        ///    Double Episode Numbers Checkbox - Checked
+        ///    Multi-Episode Numbers Checkbox - Checked
         /// </summary>
-        private void cbxDoubleEpisodeNumbers_Checked(object sender, RoutedEventArgs e)
+        private void cbxMultiEpisodeNumbers_Checked(object sender, RoutedEventArgs e)
         {
             //Prevent Saving Corrupt App.Config
             try
             {
                 // Save Toggle Settings
 
-                if (cbxDoubleEpisodeNumbers.IsChecked == true)
+                if (cbxMultiEpisodeNumbers.IsChecked == true)
                 {
-                    Settings.Default.FilterDoubleEpisodeNumbers = true;
+                    Settings.Default.FilterMultiEpisodeNumbers = true;
                     Settings.Default.Save();
                 }
-                else if (cbxDoubleEpisodeNumbers.IsChecked == false)
+                else if (cbxMultiEpisodeNumbers.IsChecked == false)
                 {
-                    Settings.Default.FilterDoubleEpisodeNumbers = false;
+                    Settings.Default.FilterMultiEpisodeNumbers = false;
                     Settings.Default.Save();
                 }
             }
@@ -1734,23 +1743,23 @@ the Free Software Foundation, either version 3 of the License, or
         }
 
         /// <summary>
-        ///    Double Episode Numbers Checkbox - Unchecked
+        ///    Multi-Episode Numbers Checkbox - Unchecked
         /// </summary>
-        private void cbxDoubleEpisodeNumbers_Unchecked(object sender, RoutedEventArgs e)
+        private void cbxMultiEpisodeNumbers_Unchecked(object sender, RoutedEventArgs e)
         {
             // Prevent Saving Corrupt App.Config
             try
             {
                 // Save Toggle Settings
 
-                if (cbxDoubleEpisodeNumbers.IsChecked == true)
+                if (cbxMultiEpisodeNumbers.IsChecked == true)
                 {
-                    Settings.Default.FilterDoubleEpisodeNumbers = true;
+                    Settings.Default.FilterMultiEpisodeNumbers = true;
                     Settings.Default.Save();
                 }
-                else if (cbxDoubleEpisodeNumbers.IsChecked == false)
+                else if (cbxMultiEpisodeNumbers.IsChecked == false)
                 {
-                    Settings.Default.FilterDoubleEpisodeNumbers = false;
+                    Settings.Default.FilterMultiEpisodeNumbers = false;
                     Settings.Default.Save();
                 }
             }
@@ -2405,7 +2414,7 @@ the Free Software Foundation, either version 3 of the License, or
             cbxFilterAutoYear.IsChecked = true;
             cbxAutoSeasonNumber.IsChecked = true;
             cbxAutoStartingEpisodeNumber.IsChecked = false;
-            cbxDoubleEpisodeNumbers.IsChecked = true;
+            cbxMultiEpisodeNumbers.IsChecked = true;
 
             // Keep
             cbxEpisodeNames.IsChecked = true;
@@ -2431,6 +2440,10 @@ the Free Software Foundation, either version 3 of the License, or
         private Boolean IsPreviewWindowOpened = false;
         private void btnPreview_Click(object sender, RoutedEventArgs e)
         {
+            // Original File Names Backup
+            // (Used for Undo Rename)
+            listOriginalFileNamesBackup = listNewFileNames;
+
             // Progress Info
             lblProgressInfo.Content = "";
 

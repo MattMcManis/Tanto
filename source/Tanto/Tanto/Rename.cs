@@ -1,6 +1,6 @@
 ﻿/* ----------------------------------------------------------------------
 Tanto
-Copyright (C) 2018 Matt McManis
+Copyright (C) 2018, 2019 Matt McManis
 http://github.com/MattMcManis/Tanto
 mattmcmanis@outlook.com
 
@@ -128,43 +128,49 @@ namespace Tanto
                 // -------------------------
                 // File List Count
                 string episodeNumber = string.Empty;
-                // User Input TextBox - Count Digits
+                // User Input TextBox - Count Digits Length (not amount)
                 int epCount = mainwindow.tbxStartEpisodeAt.Text.ToString().Length;
 
                 if (mainwindow.cbxEpisodeNumbering.IsChecked == true)
                 {
-                    Regex regex = new Regex(@"(E\d+E\d+)");
+                    // Multiple-Episodes
+                    // S01E01E02E03
+                    //Regex regex = new Regex(@"(E\d+)(E\d+)?"); 
+                    Regex regex = new Regex(@"(E\d+)(E\d+)+"); // Match must contain 2 or more episodes (E01E02)
                     MatchCollection matches = regex.Matches(listFileNames[i]);
 
-                    string doubleEpisodeNumbersMatch = string.Empty;
+                    // -------------------------
+                    // Check for Multi Episode
+                    // -------------------------
+                    string multiEpisodeNumbersMatch = string.Empty;
 
-                    // -------------------------
-                    // Check for Double Episode
-                    // -------------------------
-                    if (mainwindow.cbxDoubleEpisodeNumbers.IsChecked == true)
+                    if (mainwindow.cbxMultiEpisodeNumbers.IsChecked == true)
                     {
                         if (matches.Count > 0)
                         {
-                            doubleEpisodeNumbersMatch = matches[0].Value.ToString();
+                            multiEpisodeNumbersMatch = matches[0].Value.ToString();
                         }
                     }
-
 
                     // -------------------------
                     // Single Episode - S01E01
                     // -------------------------
-                    if (string.IsNullOrEmpty(doubleEpisodeNumbersMatch))
+                    if (string.IsNullOrEmpty(multiEpisodeNumbersMatch))
                     {
+                        // -------------------------
                         // Episode count less than 100 (no padding, 1 instead of 01)
+                        // -------------------------
                         if (FileNames_Count < 100 &&
                             epCount <= 1)
                         {
                             ep++; // add 1 to filename
                             episodeNumber = "E" + ep.ToString();
                         }
+                        // -------------------------
                         // Episode count greater than 99
+                        // -------------------------
                         else if (FileNames_Count >= 100 ||
-                            epCount > 1)
+                                 epCount > 1)
                         {
                             ep++; // add 1 to filename
                             episodeNumber = "E" + ep.ToString().PadLeft(epCount, '0');
@@ -172,24 +178,39 @@ namespace Tanto
                     }
 
                     // -------------------------
-                    // Double Episode - S01E01E02
+                    // Multi-Episode - S01E01E02E03
                     // -------------------------
-                    else if (!string.IsNullOrEmpty(doubleEpisodeNumbersMatch) &&
-                            mainwindow.cbxDoubleEpisodeNumbers.IsChecked == true)
+                    else if (!string.IsNullOrEmpty(multiEpisodeNumbersMatch) &&
+                            mainwindow.cbxMultiEpisodeNumbers.IsChecked == true)
                     {
+                        // -------------------------
                         // Episode count less than 100 (no padding, 1 instead of 01)
+                        // -------------------------
                         if (FileNames_Count < 100 &&
                             epCount <= 1)
                         {
-                            // 1st ep
+                            // 1st episode
                             ep++; // add 1 to filename
                             episodeNumber = "E" + ep.ToString();
 
-                            // 2nd ep
-                            ep++;
-                            episodeNumber = episodeNumber + "E" + ep.ToString();
+                            // Other episodes
+                            // Split Multi-Episode by Episode Number
+                            string[] episodes = multiEpisodeNumbersMatch.Split("E".ToCharArray(), StringSplitOptions.RemoveEmptyEntries)
+                                                .Select(tag => tag.Trim())
+                                                .Where(tag => !string.IsNullOrEmpty(tag))
+                                                .ToArray();
+
+                            // Combine into New Multi-Episode filename
+                            for (var p = 1; p < episodes.Length; p++)
+                            {
+                                ep++;
+                                episodeNumber = episodeNumber + "E" + ep.ToString();
+                            }
                         }
+
+                        // -------------------------
                         // Episode count greater than 99
+                        // -------------------------
                         else if (FileNames_Count >= 100 ||
                                  epCount > 1)
                         {
@@ -197,9 +218,21 @@ namespace Tanto
                             ep++; // add 1 to filename
                             episodeNumber = "E" + ep.ToString().PadLeft(epCount, '0');
 
-                            // 2nd ep
-                            ep++;
-                            episodeNumber = episodeNumber + "E" + ep.ToString().PadLeft(epCount, '0');
+                            // Other episodes
+                            // Split Multi-Episode by Episode Number
+                            string[] episodes = multiEpisodeNumbersMatch.Split("E".ToCharArray(), StringSplitOptions.RemoveEmptyEntries)
+                                                .Select(tag => tag.Trim())
+                                                .Where(tag => !string.IsNullOrEmpty(tag))
+                                                .ToArray();
+
+                            //MessageBox.Show(string.Join("",episodes)); //debug
+
+                            // Combine into New Multi-Episode filename
+                            for (var p = 1; p < episodes.Length; p++)
+                            {
+                                ep++;
+                                episodeNumber = episodeNumber + "E" + ep.ToString().PadLeft(epCount, '0');
+                            }
                         }
                     }
                 }
@@ -348,5 +381,17 @@ namespace Tanto
 
             return file;
         }
+
+
+
+        /// <summary>
+        ///    Undo Rename (Method)
+        /// </summary>
+        public static void UndoRename(MainWindow mainwindow)
+        {
+
+        }
+
+
     }
 }

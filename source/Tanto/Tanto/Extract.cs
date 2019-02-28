@@ -1,6 +1,6 @@
 ﻿/* ----------------------------------------------------------------------
 Tanto
-Copyright (C) 2018 Matt McManis
+Copyright (C) 2018, 2019 Matt McManis
 http://github.com/MattMcManis/Tanto
 mattmcmanis@outlook.com
 
@@ -59,7 +59,8 @@ namespace Tanto
             try
             {
                 // S00E00
-                Regex regex = new Regex(@"\b(S\d\d\d?E\d\d\d?)\b\s*", RegexOptions.IgnoreCase);
+                //Regex regex = new Regex(@"\b(S\d\d\d?E\d\d\d?)\b\s*", RegexOptions.IgnoreCase);
+                Regex regex = new Regex(@"\b(S\d+E\d+)\b\s*", RegexOptions.IgnoreCase);
                 MatchCollection matches = regex.Matches(Path.GetFileNameWithoutExtension(MainWindow.listFilePaths[0]));
                 string SeasonEpisode = string.Empty;
                 if (matches.Count > 0)
@@ -68,7 +69,8 @@ namespace Tanto
                 }
 
                 // S00
-                regex = new Regex(@"(S\d\d\d?)\s*", RegexOptions.IgnoreCase);
+                //regex = new Regex(@"(S\d\d\d?)\s*", RegexOptions.IgnoreCase);
+                regex = new Regex(@"(S\d+)\s*", RegexOptions.IgnoreCase);
                 matches = regex.Matches(SeasonEpisode);
                 string season = string.Empty;
                 if (matches.Count > 0)
@@ -77,7 +79,8 @@ namespace Tanto
                 }
 
                 // 00
-                regex = new Regex(@"(\d\d\d?)\s*", RegexOptions.IgnoreCase);
+                //regex = new Regex(@"(\d\d\d?)\s*", RegexOptions.IgnoreCase);
+                regex = new Regex(@"(\d+)\s*", RegexOptions.IgnoreCase);
                 matches = regex.Matches(season);
                 string number = string.Empty;
                 if (matches.Count > 0)
@@ -110,7 +113,9 @@ namespace Tanto
                 List<int> numbersList = new List<int>();
 
                 // S00E00
-                Regex regex = new Regex(@"\b(S\d\d\d?E\d\d\d?)\b\s*", RegexOptions.IgnoreCase);
+                //Regex regex = new Regex(@"\b(S\d\d\d?E\d\d\d?)\b\s*", RegexOptions.IgnoreCase);
+                //Regex regex = new Regex(@"\b(S\d+E\d+)\b\s*", RegexOptions.IgnoreCase);
+                Regex regex = new Regex(@"(S\d+E\d+)", RegexOptions.IgnoreCase);
 
                 for (var i = 0; i < MainWindow.listFilePaths.Count; i++)
                 {
@@ -124,10 +129,11 @@ namespace Tanto
                         }
                     }
                 }
-                   
+
 
                 // E00
-                regex = new Regex(@"(E\d\d\d?)\s*", RegexOptions.IgnoreCase);
+                //regex = new Regex(@"(E\d+)\s*", RegexOptions.IgnoreCase);
+                regex = new Regex(@"(E\d+)", RegexOptions.IgnoreCase);
 
                 for (var i = 0; i < seasonEpisodeNumbersList.Count; i++)
                 {
@@ -143,7 +149,8 @@ namespace Tanto
                 }
 
                 // 00
-                regex = new Regex(@"(\d\d\d?)\s*", RegexOptions.IgnoreCase);
+                //regex = new Regex(@"(\d+)\s*", RegexOptions.IgnoreCase);
+                regex = new Regex(@"(\d+)", RegexOptions.IgnoreCase);
 
                 for (var i = 0; i < episodeNumbersList.Count; i++)
                 {
@@ -162,10 +169,27 @@ namespace Tanto
                 if (numbersList.Count > 0)
                 {
                     int lowestNumber = numbersList.Min(c => c);
+                    //string highestNumber = numbersList.Max(c => c).ToString();
 
+                    //int highestNumberLength = highestNumber.Length;
+
+                    //MessageBox.Show(string.Join("\n", episodeNumbersList)); //debug
                     //MessageBox.Show(lowestNumber.ToString()); //debug
 
-                    mainwindow.tbxStartEpisodeAt.Text = lowestNumber.ToString();
+                    List<string> listFileNames = new List<string>();
+                    string FileNames_Count = MainWindow.listFilePaths.Count.ToString();
+                    int padLength = FileNames_Count.Length;
+
+
+                    // 0 Padding
+                    if (padLength <= 1)
+                    {
+                        mainwindow.tbxStartEpisodeAt.Text = lowestNumber.ToString().PadLeft(2, '0');
+                    }
+                    else if (padLength > 1)
+                    {
+                        mainwindow.tbxStartEpisodeAt.Text = lowestNumber.ToString().PadLeft(padLength, '0');
+                    }
                 }
             }
             catch
