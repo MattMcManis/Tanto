@@ -135,8 +135,10 @@ namespace Tanto
                 {
                     // Multiple-Episodes
                     // S01E01E02E03
-                    //Regex regex = new Regex(@"(E\d+)(E\d+)?"); 
-                    Regex regex = new Regex(@"(E\d+)(E\d+)+"); // Match must contain 2 or more episodes (E01E02)
+                    // Match must contain 2 or more episodes (E01E02)
+                    // eg. E01E02, E01-E02, E01-02
+                    //Regex regex = new Regex(@"(E\d+)(E\d+)+"); // Match must contain 2 or more episodes (E01E02)
+                    Regex regex = new Regex(@"((E\d+)(E\d+)+)|((E\d+)-(\d+-?)+)|((E\d+)-(E\d+-?)+)", RegexOptions.IgnoreCase); 
                     MatchCollection matches = regex.Matches(listFileNames[i]);
 
                     // -------------------------

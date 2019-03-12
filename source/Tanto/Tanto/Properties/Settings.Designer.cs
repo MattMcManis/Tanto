@@ -322,5 +322,17 @@ namespace Tanto.Properties {
                 this["FilterMultiEpisodeNumbers"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool FilterEpisodeNameSpacing {
+            get {
+                return ((bool)(this["FilterEpisodeNameSpacing"]));
+            }
+            set {
+                this["FilterEpisodeNameSpacing"] = value;
+            }
+        }
     }
 }

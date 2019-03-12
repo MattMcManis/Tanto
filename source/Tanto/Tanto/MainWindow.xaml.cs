@@ -328,7 +328,22 @@ namespace Tanto
 
             }
 
-            // Filter Keep Hyphens
+            // Episode Name Spacing
+            //
+            // Safeguard Against Corrupt Saved Settings
+            try
+            {
+                // --------------------------
+                // First time use
+                // --------------------------
+                cbxFilterEpisodeNameSpacing.IsChecked = Convert.ToBoolean(Settings.Default.FilterEpisodeNameSpacing);
+            }
+            catch
+            {
+
+            }
+
+            // Filter OriginalSpacing
             //
             // Safeguard Against Corrupt Saved Settings
             try
@@ -2059,6 +2074,63 @@ the Free Software Foundation, either version 3 of the License, or
 
 
         /// <summary>
+        ///     Filter Add - Episode Name Spacing
+        ///     Checkbox - Checked
+        /// </summary>
+        private void cbxFilterEpisodeNameSpacing_Checked(object sender, RoutedEventArgs e)
+        {
+            //Prevent Saving Corrupt App.Config
+            try
+            {
+                // Save Toggle Settings
+
+                if (cbxFilterEpisodeNameSpacing.IsChecked == true)
+                {
+                    Settings.Default.FilterEpisodeNameSpacing = true;
+                    Settings.Default.Save();
+                }
+                else if (cbxFilterEpisodeNameSpacing.IsChecked == false)
+                {
+                    Settings.Default.FilterEpisodeNameSpacing = false;
+                    Settings.Default.Save();
+                }
+            }
+            catch
+            {
+            }
+        }
+
+
+        /// <summary>
+        ///     Filter Add - Episode Name Spacing
+        ///     Checkbox - Unchecked
+        /// </summary>
+        private void cbxFilterEpisodeNameSpacing_Unchecked(object sender, RoutedEventArgs e)
+        {
+            // Prevent Saving Corrupt App.Config
+            try
+            {
+                // Save Toggle Settings
+
+                if (cbxFilterEpisodeNameSpacing.IsChecked == true)
+                {
+                    Settings.Default.FilterEpisodeNameSpacing = true;
+                    Settings.Default.Save();
+                }
+                else if (cbxFilterEpisodeNameSpacing.IsChecked == false)
+                {
+                    Settings.Default.FilterEpisodeNameSpacing = false;
+                    Settings.Default.Save();
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+
+        /// <summary>
         ///     Filter Remove - Episode Name Tags
         ///     Checkbox - Checked
         /// </summary>
@@ -2421,6 +2493,9 @@ the Free Software Foundation, either version 3 of the License, or
             cbxFilterTitleCase.IsChecked = false;
             cbxFilterOriginalSpacing.IsChecked = false;
             cbxFilterHyphens.IsChecked = true;
+
+            // Add
+            cbxFilterEpisodeNameSpacing.IsChecked = false;
 
             // Remove
             cbxFilterRemoveEpisodeNumbering.IsChecked = true;

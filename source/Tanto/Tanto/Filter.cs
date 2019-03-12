@@ -131,6 +131,19 @@ namespace Tanto
             }
 
             // -------------------------
+            // Remove Tags
+            // -------------------------
+            if (mainwindow.cbxFilterRemoveTags.IsChecked == true)
+            {
+                filename = Regex.Replace(
+                filename
+                    , @"(?i)(\[).*?(\])|(\(*)(\d+(mb|MB)|480p|576p|720p|1080p|2k|4k|8k|60fps|DVD|BD|BRD|Bluray|Blu-Ray|BrRip|WebDL|Web-DL|WebRip|Web-Rip|RAW|HEVC|(h|x)(265|264)|AV1|VP8|VP9|Theora|AAC|AC3|Vorbis|Opus|FLAC|MP3|(DTS\s?|DD\s?)(5\.1|7\.1)(\s?CH)?|(2|6|5\.1|7\.1)\s?CH|Dual-Audio|Multi-Sub|English Dub)(\)*)(\,*)"
+                    , ""
+                    , RegexOptions.IgnoreCase
+                );
+            }
+
+            // -------------------------
             // Remove Double Spaces
             // -------------------------
             // Use at the very end of all filters
@@ -149,8 +162,20 @@ namespace Tanto
         public static String FilterEpisodeName(MainWindow mainwindow, string filename)
         {
             // -------------------------
+            // Episode Name Spacing
+            // -------------------------
+            // Separate title string with no spaces into words
+            // e.g. ThisIsATitle -> This Is A Title
+            if (mainwindow.cbxFilterEpisodeNameSpacing.IsChecked == true)
+            {
+                Regex regex = new Regex("(?<!^|[\\sA-Z\\p{P}])[A-Z]|(?<=\\p{P})\\p{P}|(?<=[a-z])(?=\\d)|(?<=\\d)(?=[a-z])|(?<=[A-Z])(?=\\d)|(?<=\\d)(?=[A-Z])|(((?<!^)(?<![\\s'([{])[A-Z](?=[a-z]))|((?<=[a-z])[A-Z]))|(?<!^)(?=[[({&])|(?<=[)\\]}!&}])", RegexOptions.Multiline);
+                filename = regex.Replace(filename, @" $0");
+            }
+
+            // -------------------------
             // Title Case
             // -------------------------
+            // e.g. this is an episode name -> This Is An Episode Name
             if (mainwindow.cbxFilterTitleCase.IsChecked == true)
             {
                 string input = filename;
@@ -178,7 +203,7 @@ namespace Tanto
                 // S000E000, EP000, E000, 000x000, 000v000, 000, 000v0-9
                 filename = Regex.Replace(
                                 filename
-                                , @"(?i)\b(S\d+E\d+)|(Episode(\s*)|(EP|EP((\s*)|-))\d+|E\d+|(?<![.])^\d+|(E(\s*)|EP(\s*))?(?<![.])\d\d?\d?(x|v)\d\d?\d?)\b"
+                                , @"(?i)\b((S\d+\-?((E|EP)?\-?\d+\-?)+)|((E\d+)+)|((E\d+)-(\d+-?)+)|((E\d+)-(E\d+-?)+)|(Episode\s?\d+?)|(EP|EP((\s*)|-))\d+|E\d+|(?<![.])^(\d+-?)+|(^E(\s*)|EP(\s*))?(?<![.])\d+(x|v)\d+)\b"
                                 , ""
                                 , RegexOptions.IgnoreCase
                                 );
@@ -265,19 +290,6 @@ namespace Tanto
                                     MessageBoxButton.OK,
                                     MessageBoxImage.Error);
                 }
-            }
-
-            // -------------------------
-            // Remove Tags
-            // -------------------------
-            if (mainwindow.cbxFilterRemoveTags.IsChecked == true)
-            {
-                filename = Regex.Replace(
-                filename
-                    , @"(?i)(\[).*?(\])|(\(*)(480p|576p|720p|1080p|2k|4k|8k|60fps|DVD|BD|BRD|Bluray|Blu-Ray|BrRip|WebDL|Web-DL|WebRip|Web-Rip|RAW|HEVC|(h|x)(265|264)|AV1|VP8|VP9|Theora|AAC|AC3|Vorbis|Opus|FLAC|MP3|(DTS\s?|DD\s?)(5\.1|7\.1)(\s?CH)?|(2|6|5\.1|7\.1)\s?CH|Dual-Audio|Multi-Sub|English Dub)(\)*)(\,*)"
-                    , ""
-                    , RegexOptions.IgnoreCase
-                );
             }
 
             // -------------------------

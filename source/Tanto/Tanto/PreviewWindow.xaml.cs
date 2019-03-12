@@ -25,6 +25,8 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System;
 using System.Linq;
+using Microsoft.WindowsAPICodePack.Shell;
+using Microsoft.WindowsAPICodePack.Shell.PropertySystem;
 
 namespace Tanto
 {
@@ -140,7 +142,9 @@ namespace Tanto
             mainwindow.lblProgressInfo.Content = "Working";
 
             // Start
-            if (MainWindow.ReadyCheck(mainwindow) == true)
+            if (MainWindow.ReadyCheck(mainwindow) == true /*&&
+                MainWindow.listFilePaths != null &&
+                MainWindow.listFilePaths.Count > 0*/)
             {
                 // -------------------------
                 // Call Rename Method
@@ -159,48 +163,71 @@ namespace Tanto
                     // File
                     // -------------------------
                     string filename = Path.GetFileNameWithoutExtension(MainWindow.listFilePaths[i]);
+                    string originalFile = MainWindow.listFilePaths[i]; // path + filename + ext
+                    string originalFileName = Path.GetFileNameWithoutExtension(MainWindow.listFilePaths[i]); // filename
+                    string newFile = MainWindow.listNewFileNames[i]; // path + filename + ext
+                    string newFileName = Path.GetFileNameWithoutExtension(MainWindow.listFilePaths[i]); // filename
 
-                    string original = MainWindow.listFilePaths[i]; // path + filename + ext
-                    string newName = MainWindow.listNewFileNames[i]; // path + filename + ext
 
                     // -------------------------
                     // Rename
                     // -------------------------
                     try
                     {
+                        // -------------------------
                         // If original file exists
-                        if (File.Exists(original))
+                        // -------------------------
+                        if (File.Exists(originalFile))
                         {
-                            // If new filename does not already exist
-                            if (!File.Exists(newName))
+                            // -------------------------
+                            // New filename does not already exist
+                            // -------------------------
+                            if (!File.Exists(newFile))
                             {
+                                //// Rename Extended Properties
+                                //var file = ShellFile.FromFilePath(originalFile);
+                                ////var file = ShellObject.FromParsingName(newFile);
+                                //ShellPropertyWriter propertyWriter = file.Properties.GetPropertyWriter();
+                                //propertyWriter.WriteProperty(SystemProperties.System.Title, new string[] { newFileName });
+                                //propertyWriter.Close();
+
                                 // Rename File
-                                File.Move(original, newName);
+                                File.Move(originalFile, newFile);
                             }
 
+                            // -------------------------
                             // New filename already exists
+                            // -------------------------
                             else
                             {
-                                // Handle file duplicate rename
-                                // Yes/No Dialog Confirmation
-                                MessageBoxResult result = MessageBox.Show(
-                                                          newName + " already exists.",
-                                                          "Append Duplicate Number",
-                                                          MessageBoxButton.YesNoCancel);
+                                //// Handle file duplicate rename
+                                //// Yes/No Dialog Confirmation
+                                //MessageBoxResult result = MessageBox.Show(
+                                //                          newFile + " already exists.",
+                                //                          "Replace?",
+                                //                          MessageBoxButton.YesNoCancel);
 
-                                switch (result)
-                                {
-                                    case MessageBoxResult.Yes:
-                                        // Rename File
-                                        File.Move(original, Rename.DuplicateAppend(newName));
-                                        break;
-                                    case MessageBoxResult.No:
-                                        break;
-                                    case MessageBoxResult.Cancel:
-                                        // Progress Info
-                                        mainwindow.lblProgressInfo.Content = "Canceled";
-                                        return;
-                                }
+                                //switch (result)
+                                //{
+                                //    case MessageBoxResult.Yes:
+                                //        // Rename File
+                                //        //File.Move(original, Rename.DuplicateAppend(newFile));
+                                //        //File.Move(original, newFile);
+
+                                //        // Rename Extended Properties
+                                //        //var file = ShellFile.FromFilePath(originalFile);
+                                //        //ShellPropertyWriter propertyWriter = file.Properties.GetPropertyWriter();
+                                //        //propertyWriter.WriteProperty(SystemProperties.System.Title, new string[] { newFileName });
+                                //        //propertyWriter.Close();
+
+                                //        break;
+                                //    case MessageBoxResult.No:
+                                //        break;
+                                //    case MessageBoxResult.Cancel:
+                                //        // Progress Info
+                                //        mainwindow.lblProgressInfo.Content = "Canceled";
+                                //        return;
+                                //}
                             }
                         }
 
@@ -208,10 +235,10 @@ namespace Tanto
                         else
                         {
                             // Handle write permissions
-                            MessageBox.Show(original + " does not exist.",
-                                "Error",
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Warning);
+                            MessageBox.Show(originalFile + " does not exist.",
+                                            "Error",
+                                            MessageBoxButton.OK,
+                                            MessageBoxImage.Warning);
                         }
                     }
 
@@ -219,10 +246,10 @@ namespace Tanto
                     catch (IOException)
                     {
                         // Handle write permissions
-                        MessageBox.Show(filename + " Could not be renamed.\nSaving to" + newName + " may require Admin Privileges.",
-                            "Error",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Error);
+                        MessageBox.Show(filename + " Could not be renamed.\nSaving to" + newFile + " may require Admin Privileges.",
+                                        "Error",
+                                        MessageBoxButton.OK,
+                                        MessageBoxImage.Error);
                     }
                 }
 
@@ -230,6 +257,17 @@ namespace Tanto
                 mainwindow.lblProgressInfo.Content = "Complete";
             }
 
+            // -------------------------
+            // Could not Rename
+            // -------------------------
+            //else
+            //{
+            //    // Error - New File Names Empty
+            //    MessageBox.Show("Could not Rename. Please check Title, Episode Numbering, or Filters.",
+            //              "Error",
+            //              MessageBoxButton.OK,
+            //              MessageBoxImage.Warning);
+            //}
 
 
             // -------------------------
@@ -247,7 +285,11 @@ namespace Tanto
                 MainWindow.listFilePaths.Add(MainWindow.listNewFileNames[i]);
 
                 // ListView Display File Names + Ext
-                mainwindow.lsvFileNames.Items.Add(Path.GetFileName(MainWindow.listNewFileNames[i]));
+                mainwindow.lsvFileNames.Items.Add(
+                    Path.GetFileName(
+                        MainWindow.listNewFileNames[i]
+                        )
+                    );
             }
 
             // -------------------------
