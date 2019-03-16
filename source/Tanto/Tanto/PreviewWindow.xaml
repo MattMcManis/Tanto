@@ -54,19 +54,26 @@
             </ListView.Resources>
             <ListView.View>
                 <GridView>
-                    <!-- Original Column -->
+                    <!-- Original File Name -->
                     <GridViewColumn HeaderTemplate="{StaticResource Templ}" 
-                                        HeaderContainerStyle="{StaticResource HeaderStyle}"
-                                        DisplayMemberBinding="{Binding Original}"
-                                        Width="Auto" 
-                                        Header="Original" />
-                    <!-- New Column -->
+                                    HeaderContainerStyle="{StaticResource HeaderStyle}"
+                                    DisplayMemberBinding="{Binding Original}"
+                                    Width="Auto" 
+                                    Header="Original"/>
+                    
+                    <!-- Arrow -->
                     <GridViewColumn HeaderTemplate="{StaticResource Templ}" 
-                                        HeaderContainerStyle="{StaticResource HeaderStyle}"
-                                        DisplayMemberBinding="{Binding New}"
-                                        Width="Auto"
-                                        >
-                    </GridViewColumn>
+                                    HeaderContainerStyle="{StaticResource HeaderStyle}"
+                                    DisplayMemberBinding="{Binding Arrow}"
+                                    Width="Auto" 
+                                    Header=""/>
+
+                    <!-- New File Name -->
+                    <GridViewColumn HeaderTemplate="{StaticResource Templ}" 
+                                    HeaderContainerStyle="{StaticResource HeaderStyle}"
+                                    DisplayMemberBinding="{Binding New}"
+                                    Width="Auto"/>
+
                 </GridView>
             </ListView.View>
         </ListView>

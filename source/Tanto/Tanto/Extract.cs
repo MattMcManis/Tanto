@@ -59,8 +59,7 @@ namespace Tanto
             try
             {
                 // S00E00
-                //Regex regex = new Regex(@"\b(S\d\d\d?E\d\d\d?)\b\s*", RegexOptions.IgnoreCase);
-                Regex regex = new Regex(@"\b(S\d+E\d+)\b\s*", RegexOptions.IgnoreCase);
+                Regex regex = new Regex(@"\b(S\d+E\d+|\d+x\d+)\b\s*", RegexOptions.IgnoreCase);
                 MatchCollection matches = regex.Matches(Path.GetFileNameWithoutExtension(MainWindow.listFilePaths[0]));
                 string SeasonEpisode = string.Empty;
                 if (matches.Count > 0)
@@ -69,8 +68,7 @@ namespace Tanto
                 }
 
                 // S00
-                //regex = new Regex(@"(S\d\d\d?)\s*", RegexOptions.IgnoreCase);
-                regex = new Regex(@"(S\d+)\s*", RegexOptions.IgnoreCase);
+                regex = new Regex(@"(S\d+|\d+x)\s*", RegexOptions.IgnoreCase);
                 matches = regex.Matches(SeasonEpisode);
                 string season = string.Empty;
                 if (matches.Count > 0)
@@ -79,7 +77,6 @@ namespace Tanto
                 }
 
                 // 00
-                //regex = new Regex(@"(\d\d\d?)\s*", RegexOptions.IgnoreCase);
                 regex = new Regex(@"(\d+)\s*", RegexOptions.IgnoreCase);
                 matches = regex.Matches(season);
                 string number = string.Empty;
@@ -112,10 +109,8 @@ namespace Tanto
                 List<string> episodeNumbersList = new List<string>();
                 List<int> numbersList = new List<int>();
 
-                // S00E00
-                //Regex regex = new Regex(@"\b(S\d\d\d?E\d\d\d?)\b\s*", RegexOptions.IgnoreCase);
-                //Regex regex = new Regex(@"\b(S\d+E\d+)\b\s*", RegexOptions.IgnoreCase);
-                Regex regex = new Regex(@"(S\d+E\d+)", RegexOptions.IgnoreCase);
+                // S00E00, 00x00
+                Regex regex = new Regex(@"(S\d+E\d+|\d+x\d+)", RegexOptions.IgnoreCase);
 
                 for (var i = 0; i < MainWindow.listFilePaths.Count; i++)
                 {
@@ -131,9 +126,8 @@ namespace Tanto
                 }
 
 
-                // E00
-                //regex = new Regex(@"(E\d+)\s*", RegexOptions.IgnoreCase);
-                regex = new Regex(@"(E\d+)", RegexOptions.IgnoreCase);
+                // E00, x00
+                regex = new Regex(@"(E\d+|x\d+)", RegexOptions.IgnoreCase);
 
                 for (var i = 0; i < seasonEpisodeNumbersList.Count; i++)
                 {
@@ -149,7 +143,6 @@ namespace Tanto
                 }
 
                 // 00
-                //regex = new Regex(@"(\d+)\s*", RegexOptions.IgnoreCase);
                 regex = new Regex(@"(\d+)", RegexOptions.IgnoreCase);
 
                 for (var i = 0; i < episodeNumbersList.Count; i++)

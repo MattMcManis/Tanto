@@ -58,6 +58,11 @@ namespace Tanto
             });
             gridView.Columns.Add(new GridViewColumn
             {
+                Header = "",
+                DisplayMemberBinding = new Binding("Arrow")
+            });
+            gridView.Columns.Add(new GridViewColumn
+            {
                 Header = "New",
                 DisplayMemberBinding = new Binding("New")
             });
@@ -74,6 +79,7 @@ namespace Tanto
                     lsvPreview.Items.Add(new MyItem
                     {
                         Original = Path.GetFileNameWithoutExtension(MainWindow.listFilePaths[i]),
+                        Arrow = "🠚",
                         New = Path.GetFileNameWithoutExtension(MainWindow.listNewFileNames[i])
                     });
 
@@ -331,6 +337,7 @@ namespace Tanto
     {
         public string Original { get; set; }
 
+        public string Arrow  { get; set; }
         public string New { get; set; }
     }
 }

@@ -136,7 +136,6 @@ namespace Tanto
                     // Multiple-Episodes
                     // S01E01E02E03
                     // Match must contain 2 or more episodes (E01E02)
-                    // eg. E01E02, E01-E02, E01-02
                     //Regex regex = new Regex(@"(E\d+)(E\d+)+"); // Match must contain 2 or more episodes (E01E02)
                     Regex regex = new Regex(@"((E\d+)(E\d+)+)|((E\d+)-(\d+-?)+)|((E\d+)-(E\d+-?)+)", RegexOptions.IgnoreCase); 
                     MatchCollection matches = regex.Matches(listFileNames[i]);
@@ -144,13 +143,23 @@ namespace Tanto
                     // -------------------------
                     // Check for Multi Episode
                     // -------------------------
+                    // Add Matches to Multi Episode Numbers Match
                     string multiEpisodeNumbersMatch = string.Empty;
 
                     if (mainwindow.cbxMultiEpisodeNumbers.IsChecked == true)
                     {
                         if (matches.Count > 0)
                         {
+                            // eg. E01E02, E01-E02, E01-02
                             multiEpisodeNumbersMatch = matches[0].Value.ToString();
+
+                            // Replace Dashes with E
+                            // eg. E01-02 -> E01E02
+                            multiEpisodeNumbersMatch = multiEpisodeNumbersMatch.Replace("-", "E");
+
+                            // Replace Double EE with E
+                            // eg. E01-E02 -> E01EE02 -> E01E02
+                            multiEpisodeNumbersMatch = multiEpisodeNumbersMatch.Replace("EE", "E");
                         }
                     }
 
@@ -222,6 +231,9 @@ namespace Tanto
 
                             // Other episodes
                             // Split Multi-Episode by Episode Number
+                            // eg. E01E02  -> E01|E02
+                            //     E01-E02 -> E01-|E02
+                            //     E01-02  -> E01|-02
                             string[] episodes = multiEpisodeNumbersMatch.Split("E".ToCharArray(), StringSplitOptions.RemoveEmptyEntries)
                                                 .Select(tag => tag.Trim())
                                                 .Where(tag => !string.IsNullOrEmpty(tag))

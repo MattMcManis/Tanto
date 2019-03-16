@@ -244,22 +244,22 @@
 
                         <!-- Title TextBox -->
                         <Label Content="Title" 
-                       HorizontalAlignment="Left" 
-                       VerticalAlignment="Top"
-                       Width="75"
-                       ToolTipService.InitialShowDelay="500" 
-                       ToolTip="Series Title" />
+                               HorizontalAlignment="Left" 
+                               VerticalAlignment="Top"
+                               Width="75"
+                               ToolTipService.InitialShowDelay="500" 
+                               ToolTip="Series Title" />
                         <TextBox x:Name="tbxTitle"
-                         HorizontalAlignment="Left" 
-                         Height="22"
-                         Margin="0,2,0,0" 
-                         TextWrapping="NoWrap"
-                         Text="" 
-                         VerticalAlignment="Top"
-                         MaxLines="1"
-                         Width="170" 
-                         KeyDown="tbxTitle_KeyDown"
-                         Grid.Column="1"/>
+                                 HorizontalAlignment="Left" 
+                                 Height="22"
+                                 Margin="0,2,0,0" 
+                                 TextWrapping="NoWrap"
+                                 Text="" 
+                                 VerticalAlignment="Top"
+                                 MaxLines="1"
+                                 Width="170" 
+                                 KeyDown="tbxTitle_KeyDown"
+                                 Grid.Column="1"/>
 
                         <!-- Year TextBox -->
                         <Label Content="Year" 
@@ -349,157 +349,157 @@
 
                         <!-- Resolution TextBox -->
                         <Label Content="Resolution" 
-                       HorizontalAlignment="Left" 
-                       VerticalAlignment="Top"
-                       Width="75" 
-                       ToolTipService.InitialShowDelay="500" 
-                       ToolTip="e.g. 720p, 1080p, 4K"
-                       Grid.Row="4"/>
+                               HorizontalAlignment="Left" 
+                               VerticalAlignment="Top"
+                               Width="75" 
+                               ToolTipService.InitialShowDelay="500" 
+                               ToolTip="e.g. 720p, 1080p, 4K"
+                               Grid.Row="4"/>
                         <TextBox x:Name="tbxResolution"
-                         HorizontalAlignment="Left" 
-                         Height="22"
-                         Margin="0,3,0,0" 
-                         TextWrapping="NoWrap"
-                         Text="" 
-                         VerticalAlignment="Top"
-                         MaxLines="1"
-                         Width="170" 
-                         KeyDown="tbxResolution_KeyDown"
-                         Grid.Column="1" 
-                         Grid.Row="4" />
+                                 HorizontalAlignment="Left" 
+                                 Height="22"
+                                 Margin="0,3,0,0" 
+                                 TextWrapping="NoWrap"
+                                 Text="" 
+                                 VerticalAlignment="Top"
+                                 MaxLines="1"
+                                 Width="170" 
+                                 KeyDown="tbxResolution_KeyDown"
+                                 Grid.Column="1" 
+                                 Grid.Row="4" />
 
                         <!-- Format TextBox -->
                         <Label Content="Format" 
-                       HorizontalAlignment="Left" 
-                       VerticalAlignment="Top"
-                       Width="75" 
-                       ToolTipService.InitialShowDelay="500" 
-                       ToolTip="e.g. DVD, BluRay, WEB-DL"
-                       Grid.Row="5"/>
+                               HorizontalAlignment="Left" 
+                               VerticalAlignment="Top"
+                               Width="75" 
+                               ToolTipService.InitialShowDelay="500" 
+                               ToolTip="e.g. DVD, BluRay, WEB-DL"
+                               Grid.Row="5"/>
                         <TextBox x:Name="tbxFormat"
-                         HorizontalAlignment="Left" 
-                         Height="22"
-                         Margin="0,2,0,0" 
-                         TextWrapping="NoWrap"
-                         Text="" 
-                         VerticalAlignment="Top"
-                         MaxLines="1"
-                         Width="170"
-                         KeyDown="tbxFormat_KeyDown"
-                         Grid.Column="1"
-                         Grid.Row="5" />
+                                 HorizontalAlignment="Left" 
+                                 Height="22"
+                                 Margin="0,2,0,0" 
+                                 TextWrapping="NoWrap"
+                                 Text="" 
+                                 VerticalAlignment="Top"
+                                 MaxLines="1"
+                                 Width="170"
+                                 KeyDown="tbxFormat_KeyDown"
+                                 Grid.Column="1"
+                                 Grid.Row="5" />
 
                         <!-- Audio Channels -->
                         <Label Content="Channels" 
-                       HorizontalAlignment="Left" 
-                       VerticalAlignment="Top"
-                       Width="75" 
-                       ToolTipService.InitialShowDelay="500" 
-                       ToolTip="Audio Channels (e.g. 2CH, 6CH, DD5.1, Stereo, Mono)"
-                       Grid.Row="6"/>
+                               HorizontalAlignment="Left" 
+                               VerticalAlignment="Top"
+                               Width="75" 
+                               ToolTipService.InitialShowDelay="500" 
+                               ToolTip="Audio Channels (e.g. 2CH, 6CH, DD5.1, Stereo, Mono)"
+                               Grid.Row="6"/>
                         <TextBox x:Name="tbxAudioChannels"
-                         HorizontalAlignment="Left" 
-                         Height="22"
-                         Margin="0,2,0,0" 
-                         TextWrapping="NoWrap"
-                         Text="" 
-                         VerticalAlignment="Top"
-                         MaxLines="1"
-                         Width="170"
-                         KeyDown="tbxAudioChannels_KeyDown"
-                         Grid.Column="1"
-                         Grid.Row="6" />
+                                 HorizontalAlignment="Left" 
+                                 Height="22"
+                                 Margin="0,2,0,0" 
+                                 TextWrapping="NoWrap"
+                                 Text="" 
+                                 VerticalAlignment="Top"
+                                 MaxLines="1"
+                                 Width="170"
+                                 KeyDown="tbxAudioChannels_KeyDown"
+                                 Grid.Column="1"
+                                 Grid.Row="6" />
 
                         <!-- Language -->
                         <Label Content="Language" 
-                       HorizontalAlignment="Left" 
-                       VerticalAlignment="Top"
-                       Width="75" 
-                       ToolTipService.InitialShowDelay="500" 
-                       ToolTip="e.g. ENG"
-                       Grid.Row="7"/>
+                               HorizontalAlignment="Left" 
+                               VerticalAlignment="Top"
+                               Width="75" 
+                               ToolTipService.InitialShowDelay="500" 
+                               ToolTip="e.g. ENG"
+                               Grid.Row="7"/>
                         <TextBox x:Name="tbxLanguage"
-                         HorizontalAlignment="Left" 
-                         Height="22"
-                         Margin="0,2,0,0" 
-                         TextWrapping="NoWrap"
-                         Text="" 
-                         VerticalAlignment="Top"
-                         MaxLines="1"
-                         Width="170"
-                         KeyDown="tbxLanguage_KeyDown"
-                         Grid.Column="1"
-                         Grid.Row="7" />
+                                 HorizontalAlignment="Left" 
+                                 Height="22"
+                                 Margin="0,2,0,0" 
+                                 TextWrapping="NoWrap"
+                                 Text="" 
+                                 VerticalAlignment="Top"
+                                 MaxLines="1"
+                                 Width="170"
+                                 KeyDown="tbxLanguage_KeyDown"
+                                 Grid.Column="1"
+                                 Grid.Row="7" />
 
                         <!-- Subtitles -->
                         <Label Content="Subtitles" 
-                       HorizontalAlignment="Left" 
-                       VerticalAlignment="Top"
-                       Width="75" 
-                       ToolTipService.InitialShowDelay="500" 
-                       ToolTip="e.g. JPN"
-                       Grid.Row="8"/>
+                               HorizontalAlignment="Left" 
+                               VerticalAlignment="Top"
+                               Width="75" 
+                               ToolTipService.InitialShowDelay="500" 
+                               ToolTip="e.g. JPN"
+                               Grid.Row="8"/>
                         <TextBox x:Name="tbxSubtitles"
-                         HorizontalAlignment="Left" 
-                         Height="22"
-                         Margin="0,2,0,0" 
-                         TextWrapping="NoWrap"
-                         Text="" 
-                         VerticalAlignment="Top"
-                         MaxLines="1"
-                         Width="170"
-                         KeyDown="tbxSubtitles_KeyDown"
-                         Grid.Column="1"
-                         Grid.Row="8" />
+                                 HorizontalAlignment="Left" 
+                                 Height="22"
+                                 Margin="0,2,0,0" 
+                                 TextWrapping="NoWrap"
+                                 Text="" 
+                                 VerticalAlignment="Top"
+                                 MaxLines="1"
+                                 Width="170"
+                                 KeyDown="tbxSubtitles_KeyDown"
+                                 Grid.Column="1"
+                                 Grid.Row="8" />
 
                         <!-- Encoding TextBox -->
                         <Label Content="Encoding" 
-                       HorizontalAlignment="Left" 
-                       VerticalAlignment="Top"
-                       Width="75" 
-                       ToolTipService.InitialShowDelay="500" 
-                       ToolTip="e.g. h264, HEVC, VP8, MP3, AAC"
-                       Grid.Row="9"/>
+                               HorizontalAlignment="Left" 
+                               VerticalAlignment="Top"
+                               Width="75" 
+                               ToolTipService.InitialShowDelay="500" 
+                               ToolTip="e.g. h264, HEVC, VP8, MP3, AAC"
+                               Grid.Row="9"/>
                         <TextBox x:Name="tbxEncoding"
-                         HorizontalAlignment="Left" 
-                         Height="22"
-                         Margin="0,2,0,0" 
-                         TextWrapping="NoWrap"
-                         Text="" 
-                         VerticalAlignment="Top"
-                         MaxLines="1"
-                         Width="170"
-                         KeyDown="tbxEncoding_KeyDown"
-                         Grid.Column="1" 
-                         Grid.Row="9" />
+                                 HorizontalAlignment="Left" 
+                                 Height="22"
+                                 Margin="0,2,0,0" 
+                                 TextWrapping="NoWrap"
+                                 Text="" 
+                                 VerticalAlignment="Top"
+                                 MaxLines="1"
+                                 Width="170"
+                                 KeyDown="tbxEncoding_KeyDown"
+                                 Grid.Column="1" 
+                                 Grid.Row="9" />
 
                         <!-- Misc TextBox -->
                         <Label Content="Misc" 
-                       HorizontalAlignment="Left" 
-                       VerticalAlignment="Top"
-                       Width="75" 
-                       Grid.Row="10"/>
+                               HorizontalAlignment="Left" 
+                               VerticalAlignment="Top"
+                               Width="75" 
+                               Grid.Row="10"/>
                         <TextBox x:Name="tbxMisc"
-                         HorizontalAlignment="Left" 
-                         Height="22"
-                         Margin="0,2,0,0" 
-                         TextWrapping="NoWrap"
-                         Text="" 
-                         VerticalAlignment="Top"
-                         MaxLines="1"
-                         Width="170" 
-                         KeyDown="tbxMisc_KeyDown"
-                         Grid.Column="1" 
-                         Grid.Row="10" />
+                                 HorizontalAlignment="Left" 
+                                 Height="22"
+                                 Margin="0,2,0,0" 
+                                 TextWrapping="NoWrap"
+                                 Text="" 
+                                 VerticalAlignment="Top"
+                                 MaxLines="1"
+                                 Width="170" 
+                                 KeyDown="tbxMisc_KeyDown"
+                                 Grid.Column="1" 
+                                 Grid.Row="10" />
 
                         <!-- Separator TextBox -->
                         <Label Content="Separator" 
-                       HorizontalAlignment="Left" 
-                       VerticalAlignment="Top"
-                       Width="75" 
-                       ToolTipService.InitialShowDelay="500" 
-                       ToolTip="Properties will be separated by this character(s)."
-                       Grid.Row="11"/>
+                               HorizontalAlignment="Left" 
+                               VerticalAlignment="Top"
+                               Width="75" 
+                               ToolTipService.InitialShowDelay="500" 
+                               ToolTip="Properties will be separated by this character(s)."
+                               Grid.Row="11"/>
                         <TextBox x:Name="tbxSeparator"
                                  HorizontalAlignment="Left" 
                                  Height="22"
@@ -515,25 +515,25 @@
 
                         <!-- Spacing TextBox -->
                         <Label Content="Spacing" 
-                       HorizontalAlignment="Left" 
-                       VerticalAlignment="Top"
-                       Width="75" 
-                       ToolTipService.InitialShowDelay="500" 
-                       ToolTip="Spaces will be replaced by this character(s)."
-                       Grid.Row="12"/>
+                               HorizontalAlignment="Left" 
+                               VerticalAlignment="Top"
+                               Width="75" 
+                               ToolTipService.InitialShowDelay="500" 
+                               ToolTip="Spaces will be replaced by this character(s)."
+                               Grid.Row="12"/>
                         <TextBox x:Name="tbxSpacing"
-                         HorizontalAlignment="Left" 
-                         Height="22"
-                         Margin="0,2,0,0" 
-                         TextWrapping="NoWrap"
-                         Text="" 
-                         VerticalAlignment="Top"
-                         MaxLines="1"
-                         Width="170" 
-                         TextChanged="tbxSpacing_TextChanged" 
-                         KeyDown="tbxSpacing_KeyDown"
-                         Grid.Column="1" 
-                         Grid.Row="12" />
+                                 HorizontalAlignment="Left" 
+                                 Height="22"
+                                 Margin="0,2,0,0" 
+                                 TextWrapping="NoWrap"
+                                 Text="" 
+                                 VerticalAlignment="Top"
+                                 MaxLines="1"
+                                 Width="170" 
+                                 TextChanged="tbxSpacing_TextChanged" 
+                                 KeyDown="tbxSpacing_KeyDown"
+                                 Grid.Column="1" 
+                                 Grid.Row="12" />
 
                     </Grid>
 
@@ -552,9 +552,9 @@
                     </LinearGradientBrush>
                 </TabItem.Background>
                 <ScrollViewer HorizontalAlignment="Right" 
-                      Width="281"
-                      Padding="10,10,10,10" 
-                      Background="Transparent">
+                              Width="281"
+                              Padding="10,10,10,10" 
+                              Background="Transparent">
 
                     <Grid Margin="0,0,0,0" 
                           HorizontalAlignment="Right"
@@ -580,19 +580,19 @@
 
                         <!-- Remove Characters TextBox -->
                         <Label Content="Applied to Extracted Episode Name." 
-                       HorizontalAlignment="Left" 
-                       VerticalAlignment="Top"
-                       Width="245" 
-                       Grid.Row="0" 
+                               HorizontalAlignment="Left" 
+                               VerticalAlignment="Top"
+                               Width="245" 
+                               Grid.Row="0" 
                                Grid.ColumnSpan="2"/>
 
                         <!-- Remove -->
                         <Label Content="Remove" 
-                       VerticalAlignment="Top" 
-                       FontSize="14"
-                       HorizontalAlignment="Left" 
-                       Width="90" 
-                       Grid.Row="1"/>
+                               VerticalAlignment="Top" 
+                               FontSize="14"
+                               HorizontalAlignment="Left" 
+                               Width="90" 
+                               Grid.Row="1"/>
 
                         <!-- Remove Characters TextBox -->
                         <Label Content="Characters" 
@@ -676,108 +676,108 @@
 
                         <!-- Replace -->
                         <Label Content="Replace" 
-                       VerticalAlignment="Top" 
-                       FontSize="14"
-                       HorizontalAlignment="Left" 
-                       Width="90" 
-                       Grid.Row="5"/>
+                               VerticalAlignment="Top" 
+                               FontSize="14"
+                               HorizontalAlignment="Left" 
+                               Width="90" 
+                               Grid.Row="5"/>
                         <!-- Characters -->
                         <Label Content="Characters" 
-                       VerticalAlignment="Top" 
-                       HorizontalAlignment="Left" 
-                       Width="65" 
-                       Grid.Row="6"/>
+                               VerticalAlignment="Top" 
+                               HorizontalAlignment="Left" 
+                               Width="65" 
+                               Grid.Row="6"/>
                         <TextBox x:Name="tbxReplaceChars"
-                         HorizontalAlignment="Left" 
-                         Height="22"
-                         Margin="0,2,0,0" 
-                         TextWrapping="NoWrap"
-                         VerticalAlignment="Top"
-                         MaxLines="1"
-                         Width="67"
-                         KeyDown="tbxReplaceChars_KeyDown"
-                         Grid.Column="1" 
-                         Grid.Row="6" />
+                                 HorizontalAlignment="Left" 
+                                 Height="22"
+                                 Margin="0,2,0,0" 
+                                 TextWrapping="NoWrap"
+                                 VerticalAlignment="Top"
+                                 MaxLines="1"
+                                 Width="67"
+                                 KeyDown="tbxReplaceChars_KeyDown"
+                                 Grid.Column="1" 
+                                 Grid.Row="6" />
                         <!-- with -->
                         <Label Content="with" 
-                       VerticalAlignment="Top" 
-                       HorizontalAlignment="Left" 
-                       HorizontalContentAlignment="Center"
-                       Width="36" 
-                       Grid.Column="1"
-                       Grid.Row="6" 
-                       Margin="67,0,0,0"/>
+                               VerticalAlignment="Top" 
+                               HorizontalAlignment="Left" 
+                               HorizontalContentAlignment="Center"
+                               Width="36" 
+                               Grid.Column="1"
+                               Grid.Row="6" 
+                               Margin="67,0,0,0"/>
                         <TextBox x:Name="tbxReplaceCharsWith"
-                         HorizontalAlignment="Left" 
-                         Height="22"
-                         Margin="103,2,0,0" 
-                         TextWrapping="NoWrap"
-                         VerticalAlignment="Top"
-                         MaxLines="1"
-                         Width="67"
-                         KeyDown="tbxReplaceCharsWith_KeyDown"
-                         Grid.Column="1" 
-                         Grid.Row="6" />
+                                 HorizontalAlignment="Left" 
+                                 Height="22"
+                                 Margin="103,2,0,0" 
+                                 TextWrapping="NoWrap"
+                                 VerticalAlignment="Top"
+                                 MaxLines="1"
+                                 Width="67"
+                                 KeyDown="tbxReplaceCharsWith_KeyDown"
+                                 Grid.Column="1" 
+                                 Grid.Row="6" />
 
                         <!-- Words -->
                         <Label Content="Words" 
-                       VerticalAlignment="Top" 
-                       HorizontalAlignment="Left" 
-                       Width="65" 
-                       Grid.Row="7"/>
+                               VerticalAlignment="Top" 
+                               HorizontalAlignment="Left" 
+                               Width="65" 
+                               Grid.Row="7"/>
                         <TextBox x:Name="tbxReplaceWords"
-                         HorizontalAlignment="Left" 
-                         Height="22"
-                         Margin="0,2,0,0" 
-                         TextWrapping="NoWrap"
-                         VerticalAlignment="Top"
-                         MaxLines="1"
-                         Width="67"
-                         KeyDown="tbxReplaceWords_KeyDown"
-                         Grid.Column="1" 
-                         Grid.Row="7" />
+                                 HorizontalAlignment="Left" 
+                                 Height="22"
+                                 Margin="0,2,0,0" 
+                                 TextWrapping="NoWrap"
+                                 VerticalAlignment="Top"
+                                 MaxLines="1"
+                                 Width="67"
+                                 KeyDown="tbxReplaceWords_KeyDown"
+                                 Grid.Column="1" 
+                                 Grid.Row="7" />
                         <!-- with -->
                         <Label Content="with" 
-                       VerticalAlignment="Top" 
-                       HorizontalAlignment="Left" 
-                       HorizontalContentAlignment="Center"
-                       Width="36" 
-                       Grid.Column="1"
-                       Grid.Row="7" 
-                       Margin="67,0,0,0"/>
+                               VerticalAlignment="Top" 
+                               HorizontalAlignment="Left" 
+                               HorizontalContentAlignment="Center"
+                               Width="36" 
+                               Grid.Column="1"
+                               Grid.Row="7" 
+                               Margin="67,0,0,0"/>
                         <TextBox x:Name="tbxReplaceWordsWith"
-                         HorizontalAlignment="Left" 
-                         Height="22"
-                         Margin="103,2,0,0" 
-                         TextWrapping="NoWrap"
-                         VerticalAlignment="Top"
-                         MaxLines="1"
-                         Width="67"
-                         KeyDown="tbxReplaceWordsWith_KeyDown"
-                         Grid.Column="1" 
-                         Grid.Row="7" />
+                                 HorizontalAlignment="Left" 
+                                 Height="22"
+                                 Margin="103,2,0,0" 
+                                 TextWrapping="NoWrap"
+                                 VerticalAlignment="Top"
+                                 MaxLines="1"
+                                 Width="67"
+                                 KeyDown="tbxReplaceWordsWith_KeyDown"
+                                 Grid.Column="1" 
+                                 Grid.Row="7" />
 
 
                         <!-- Spaces -->
                         <Label Content="Spaces" 
-                       VerticalAlignment="Top" 
-                       HorizontalAlignment="Left" 
-                       Width="65" 
-                       ToolTipService.InitialShowDelay="500" 
-                       ToolTip="Replace all spaces with this character(s)."
-                       Grid.Row="8"/>
+                               VerticalAlignment="Top" 
+                               HorizontalAlignment="Left" 
+                               Width="65" 
+                               ToolTipService.InitialShowDelay="500" 
+                               ToolTip="Replace all spaces with this character(s)."
+                               Grid.Row="8"/>
                         <!-- with -->
                         <TextBox x:Name="tbxReplaceSpacesWith"
-                         HorizontalAlignment="Left" 
-                         Height="22"
-                         Margin="0,2,0,0" 
-                         TextWrapping="NoWrap"
-                         VerticalAlignment="Top"
-                         MaxLines="1"
-                         Width="170"
-                         KeyDown="tbxReplaceSpacesWith_KeyDown"
-                         Grid.Column="1" 
-                         Grid.Row="8" />
+                                 HorizontalAlignment="Left" 
+                                 Height="22"
+                                 Margin="0,2,0,0" 
+                                 TextWrapping="NoWrap"
+                                 VerticalAlignment="Top"
+                                 MaxLines="1"
+                                 Width="170"
+                                 KeyDown="tbxReplaceSpacesWith_KeyDown"
+                                 Grid.Column="1" 
+                                 Grid.Row="8" />
 
                     </Grid>
 
@@ -794,9 +794,9 @@
                     </LinearGradientBrush>
                 </TabItem.Background>
                 <ScrollViewer HorizontalAlignment="Right" 
-                      Width="281"
-                      Padding="10,10,10,10" 
-                      Background="Transparent">
+                              Width="281"
+                              Padding="10,10,10,10" 
+                              Background="Transparent">
 
                     <Grid Margin="0,0,0,0" 
                           HorizontalAlignment="Right"
@@ -865,15 +865,15 @@
 
                         <!-- Auto Starting Episode Number -->
                         <CheckBox x:Name="cbxAutoStartingEpisodeNumber"
-                          Content="Auto Episode Number"
-                          HorizontalAlignment="Left"
-                          Margin="0,72,0,0"
-                          VerticalAlignment="Top" 
-                          ToolTipService.InitialShowDelay="500" 
-                          ToolTip="Auto-Detect Starting Episode Number."
-                          Grid.Column="1" 
-                          Checked="cbxAutoStartingEpisodeNumber_Checked" 
-                          Unchecked="cbxAutoStartingEpisodeNumber_Unchecked"/>
+                                  Content="Auto Episode Number"
+                                  HorizontalAlignment="Left"
+                                  Margin="0,72,0,0"
+                                  VerticalAlignment="Top" 
+                                  ToolTipService.InitialShowDelay="500" 
+                                  ToolTip="Auto-Detect Starting Episode Number."
+                                  Grid.Column="1" 
+                                  Checked="cbxAutoStartingEpisodeNumber_Checked" 
+                                  Unchecked="cbxAutoStartingEpisodeNumber_Unchecked"/>
 
                         <!-- Multi Episode Numbers -->
                         <CheckBox x:Name="cbxMultiEpisodeNumbers"
