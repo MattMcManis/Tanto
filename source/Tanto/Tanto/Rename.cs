@@ -163,6 +163,10 @@ namespace Tanto
                         }
                     }
 
+                    // Episode Number Letter (E)
+                    string letter = mainwindow.tbxEpisodeNumberLetter.Text;
+
+
                     // -------------------------
                     // Single Episode - S01E01
                     // -------------------------
@@ -175,7 +179,8 @@ namespace Tanto
                             epCount <= 1)
                         {
                             ep++; // add 1 to filename
-                            episodeNumber = "E" + ep.ToString();
+                            episodeNumber = letter + ep.ToString();
+                            //episodeNumber = "E" + ep.ToString();
                         }
                         // -------------------------
                         // Episode count greater than 99
@@ -184,7 +189,8 @@ namespace Tanto
                                  epCount > 1)
                         {
                             ep++; // add 1 to filename
-                            episodeNumber = "E" + ep.ToString().PadLeft(epCount, '0');
+                            episodeNumber = letter + ep.ToString().PadLeft(epCount, '0');
+                            //episodeNumber = "E" + ep.ToString().PadLeft(epCount, '0');
                         }
                     }
 
@@ -202,7 +208,8 @@ namespace Tanto
                         {
                             // 1st episode
                             ep++; // add 1 to filename
-                            episodeNumber = "E" + ep.ToString();
+                            episodeNumber = letter + ep.ToString();
+                            //episodeNumber = "E" + ep.ToString();
 
                             // Other episodes
                             // Split Multi-Episode by Episode Number
@@ -215,7 +222,8 @@ namespace Tanto
                             for (var p = 1; p < episodes.Length; p++)
                             {
                                 ep++;
-                                episodeNumber = episodeNumber + "E" + ep.ToString();
+                                episodeNumber = letter + ep.ToString();
+                                //episodeNumber = episodeNumber + "E" + ep.ToString();
                             }
                         }
 
@@ -227,7 +235,8 @@ namespace Tanto
                         {
                             // 1st ep
                             ep++; // add 1 to filename
-                            episodeNumber = "E" + ep.ToString().PadLeft(epCount, '0');
+                            episodeNumber = letter + ep.ToString().PadLeft(epCount, '0');
+                            //episodeNumber = "E" + ep.ToString().PadLeft(epCount, '0');
 
                             // Other episodes
                             // Split Multi-Episode by Episode Number
@@ -245,7 +254,8 @@ namespace Tanto
                             for (var p = 1; p < episodes.Length; p++)
                             {
                                 ep++;
-                                episodeNumber = episodeNumber + "E" + ep.ToString().PadLeft(epCount, '0');
+                                episodeNumber = episodeNumber + letter + ep.ToString().PadLeft(epCount, '0');
+                                //episodeNumber = episodeNumber + "E" + ep.ToString().PadLeft(epCount, '0');
                             }
                         }
                     }

@@ -193,6 +193,34 @@ namespace Tanto
 
             }
 
+
+            // Episode Number Letter
+            //
+            // Safeguard Against Corrupt Saved Settings
+            try
+            {
+                // --------------------------
+                // First time use
+                // --------------------------
+                if (string.IsNullOrEmpty(Settings.Default.EpisodeNumberLetter))
+                {
+                    tbxEpisodeNumberLetter.Text = "E";
+                }
+
+                // --------------------------
+                // Load Saved
+                // --------------------------
+                else if (!string.IsNullOrEmpty(Settings.Default.EpisodeNumberLetter))
+                {
+                    tbxEpisodeNumberLetter.Text = Settings.Default.EpisodeNumberLetter;
+                }
+            }
+            catch
+            {
+
+            }
+
+
             // Filter Keep Auto Year
             //
             // Safeguard Against Corrupt Saved Settings
@@ -476,7 +504,7 @@ namespace Tanto
                 // --------------------------
                 // First time use
                 // --------------------------
-                if (string.IsNullOrEmpty(Settings.Default.Separator.ToString()))
+                if (string.IsNullOrEmpty(Settings.Default.Separator))
                 {
                     tbxSeparator.Text = " - ";
                 }
@@ -484,7 +512,7 @@ namespace Tanto
                 // --------------------------
                 // Load Saved
                 // --------------------------
-                else if (!string.IsNullOrEmpty(Settings.Default.Separator.ToString()))
+                else if (!string.IsNullOrEmpty(Settings.Default.Separator))
                 {
                     tbxSeparator.Text = Settings.Default.Separator;
                 }
@@ -1191,7 +1219,21 @@ the Free Software Foundation, either version 3 of the License, or
         }
 
         /// <summary>
-        ///     Start Episode At TextBox
+        ///     Episode Number Letter (E)
+        /// </summary>
+        private void tbxEpisodeNumberLetter_KeyDown(object sender, KeyEventArgs e)
+        {
+            DenySpecialKeys(e);
+        }
+        private void tbxEpisodeNumberLetter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            // Save Settings
+            Settings.Default.EpisodeNumberLetter = tbxEpisodeNumberLetter.Text;
+            Settings.Default.Save();
+        }
+
+        /// <summary>
+        ///     Episode Number (01)
         /// </summary>
         private void tbxStartEpisodeAt_KeyDown(object sender, KeyEventArgs e)
         {
@@ -1268,7 +1310,7 @@ the Free Software Foundation, either version 3 of the License, or
         private void tbxSeparator_TextChanged(object sender, TextChangedEventArgs e)
         {
             // Save Settings
-            Settings.Default.Separator = tbxSeparator.Text.ToString();
+            Settings.Default.Separator = tbxSeparator.Text;
             Settings.Default.Save();
         }
 
@@ -2609,22 +2651,23 @@ the Free Software Foundation, either version 3 of the License, or
             }
 
             // -------------------------
-            // Original Spacing was checked without entinger Spacing Character
+            // Original Spacing was checked without entering Spacing Character
             // -------------------------
-            if (string.IsNullOrWhiteSpace(mainwindow.tbxSpacing.Text) 
-                && mainwindow.cbxFilterOriginalSpacing.IsChecked == true)
-            {
-                ready = false;
+            //if (string.IsNullOrWhiteSpace(mainwindow.tbxSpacing.Text) &&
+            //    mainwindow.cbxFilterOriginalSpacing.IsChecked == true)
+            //{
+            //    ready = false;
 
-                MessageBox.Show("Must use Original Spacing CheckBox with Spacing TextBox.",
-                          "Error",
-                          MessageBoxButton.OK,
-                          MessageBoxImage.Warning);
-            }
+            //    MessageBox.Show("Must use Original Spacing CheckBox with Spacing TextBox.",
+            //              "Error",
+            //              MessageBoxButton.OK,
+            //              MessageBoxImage.Warning);
+            //}
 
 
             return ready;
         }
+
 
     }
     // End Main Class

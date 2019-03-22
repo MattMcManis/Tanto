@@ -216,7 +216,7 @@ namespace Tanto
             {
                 try
                 {
-                    string words = mainwindow.tbxRemoveWords.Text.Replace(",", "|");
+                    string words = mainwindow.tbxRemoveWords.Text.Replace(",", "|").Replace(" ", "");
 
                     string regex = @"\b(" + words + @")\b";
 
@@ -245,7 +245,7 @@ namespace Tanto
                     // Escape special characters in list
                     foreach (string character in removeChars)
                     {
-                        removeCharsEscaped.Add(Regex.Escape(character));
+                        removeCharsEscaped.Add(Regex.Escape(character.Replace(" ", "")));
                     }
 
                     // Separate with |
@@ -321,7 +321,7 @@ namespace Tanto
             {
                 try
                 {
-                    string characters = mainwindow.tbxReplaceChars.Text.Replace(",", "|");
+                    string characters = mainwindow.tbxReplaceChars.Text.Replace(",", "|").Replace(" ", "");
                     string replacement = mainwindow.tbxReplaceCharsWith.Text;
 
                     string regex = characters;
@@ -342,7 +342,7 @@ namespace Tanto
             {
                 try
                 {
-                    string words = mainwindow.tbxReplaceWords.Text.Replace(",", "|");
+                    string words = mainwindow.tbxReplaceWords.Text.Replace(",", "|").Replace(" ", "");
                     string replacement = mainwindow.tbxReplaceWordsWith.Text;
 
                     string regex = @"\b(" + words + @")\b";

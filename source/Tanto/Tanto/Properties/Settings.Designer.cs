@@ -334,5 +334,17 @@ namespace Tanto.Properties {
                 this["FilterEpisodeNameSpacing"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string EpisodeNumberLetter {
+            get {
+                return ((string)(this["EpisodeNumberLetter"]));
+            }
+            set {
+                this["EpisodeNumberLetter"] = value;
+            }
+        }
     }
 }

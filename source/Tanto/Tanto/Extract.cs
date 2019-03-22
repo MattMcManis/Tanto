@@ -109,8 +109,8 @@ namespace Tanto
                 List<string> episodeNumbersList = new List<string>();
                 List<int> numbersList = new List<int>();
 
-                // S00E00, 00x00
-                Regex regex = new Regex(@"(S\d+E\d+|\d+x\d+)", RegexOptions.IgnoreCase);
+                // S00E00, 00x00, S00Ep00, S00.Ep.00
+                Regex regex = new Regex(@"(S\d+E\d+|\d+x\d+|S\d+Ep\d+|S\d+\.Ep\.\d+)", RegexOptions.IgnoreCase);
 
                 for (var i = 0; i < MainWindow.listFilePaths.Count; i++)
                 {
@@ -127,7 +127,7 @@ namespace Tanto
 
 
                 // E00, x00
-                regex = new Regex(@"(E\d+|x\d+)", RegexOptions.IgnoreCase);
+                regex = new Regex(@"(E\d+|x\d+|Ep\d+|Ep\.\d+)", RegexOptions.IgnoreCase);
 
                 for (var i = 0; i < seasonEpisodeNumbersList.Count; i++)
                 {
