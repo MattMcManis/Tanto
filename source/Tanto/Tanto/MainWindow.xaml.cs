@@ -1,6 +1,6 @@
 ﻿/* ----------------------------------------------------------------------
 Tanto
-Copyright (C) 2018, 2019 Matt McManis
+Copyright (C) 2018-2020 Matt McManis
 http://github.com/MattMcManis/Tanto
 mattmcmanis@outlook.com
 
@@ -36,6 +36,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Xml.Linq;
 
 namespace Tanto
 {
@@ -514,7 +515,16 @@ namespace Tanto
                 // --------------------------
                 else if (!string.IsNullOrEmpty(Settings.Default.Separator))
                 {
-                    tbxSeparator.Text = Settings.Default.Separator;
+                    if (Settings.Default.Separator == "u0020")
+                    {
+                        tbxSeparator.Text = Settings.Default.Separator.Replace("u0020", " "); ;
+                        //MessageBox.Show(tbxSeparator.Text); //debug
+                    }
+                    else
+                    {
+                        tbxSeparator.Text = Settings.Default.Separator;
+                        //MessageBox.Show(Settings.Default.Separator);
+                    }
                 }
             }
             catch
@@ -574,23 +584,37 @@ namespace Tanto
                 Settings.Default.Maximized = false;
             }
 
+            Settings.Default.EpisodeNumberLetter = tbxEpisodeNumberLetter.Text;
+
+            if (!string.IsNullOrEmpty(tbxSeparator.Text) &&
+                tbxSeparator.Text.Length > 0 &&
+                tbxSeparator.Text.Trim().Length == 0) // single space
+            {
+                Settings.Default.Separator = "u0020";
+                //MessageBox.Show("whitespace"); //debug
+            }
+            else
+            {
+                Settings.Default.Separator = tbxSeparator.Text;
+            }
+            
             Settings.Default.Save();
 
             // Exit
             e.Cancel = true;
-            System.Windows.Forms.Application.ExitThread();
+            //System.Windows.Forms.Application.ExitThread();
             Environment.Exit(0);
         }
 
         /// <summary>
         ///     Close / Exit (Method)
         /// </summary>
-        protected override void OnClosed(EventArgs e)
-        {
-            // Force Exit All Executables
-            base.OnClosed(e);
-            Application.Current.Shutdown();
-        }
+        //protected override void OnClosed(EventArgs e)
+        //{
+        //    // Force Exit All Executables
+        //    //base.OnClosed(e);
+        //    //Application.Current.Shutdown();
+        //}
 
         // --------------------------------------------------------------------------------------------------------
         // --------------------------------------------------------------------------------------------------------
@@ -665,6 +689,14 @@ This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see http://www.gnu.org/licenses/.
 "
 );
         }
@@ -1155,22 +1187,24 @@ the Free Software Foundation, either version 3 of the License, or
         public void  DenySpecialKeys(KeyEventArgs e)
         {
             // Disallow Special Characters
-            if (Keyboard.IsKeyDown(Key.LeftShift) && e.Key == Key.D8 // *
-                || Keyboard.IsKeyDown(Key.RightShift) && e.Key == Key.D8 // *
+            if ((Keyboard.IsKeyDown(Key.LeftShift) && e.Key == Key.D8) ||  // *
+                (Keyboard.IsKeyDown(Key.RightShift) && e.Key == Key.D8) ||  // *
 
-                || Keyboard.IsKeyDown(Key.LeftShift) && e.Key == Key.OemPeriod // >
-                || Keyboard.IsKeyDown(Key.RightShift) && e.Key == Key.OemPeriod // >
+                (Keyboard.IsKeyDown(Key.LeftShift) && e.Key == Key.OemPeriod) ||  // >
+                (Keyboard.IsKeyDown(Key.RightShift) && e.Key == Key.OemPeriod) ||  // >
 
-                || Keyboard.IsKeyDown(Key.LeftShift) && e.Key == Key.OemComma // <
-                || Keyboard.IsKeyDown(Key.RightShift) && e.Key == Key.OemComma // <
+                (Keyboard.IsKeyDown(Key.LeftShift) && e.Key == Key.OemComma) ||  // <
+                (Keyboard.IsKeyDown(Key.RightShift) && e.Key == Key.OemComma) ||  // <
 
-                || e.Key == Key.Tab // tab
-                || e.Key == Key.Oem2 // forward slash
-                || e.Key == Key.OemBackslash // backslash
-                || e.Key == Key.OemQuestion // ?
-                || e.Key == Key.OemQuotes // "
-                || e.Key == Key.OemSemicolon // ;
-                || e.Key == Key.OemPipe // |
+                (Keyboard.IsKeyDown(Key.LeftShift) && e.Key == Key.OemQuotes) ||  // <
+                (Keyboard.IsKeyDown(Key.RightShift) && e.Key == Key.OemQuotes) ||  // <
+
+                e.Key == Key.Tab ||  // tab
+                e.Key == Key.Oem2 ||  // forward slash
+                e.Key == Key.OemBackslash ||  // backslash
+                e.Key == Key.OemQuestion ||  // ?
+                e.Key == Key.OemSemicolon ||  // ;
+                e.Key == Key.OemPipe // |
                 )
             {
                 e.Handled = true;
@@ -1228,8 +1262,8 @@ the Free Software Foundation, either version 3 of the License, or
         private void tbxEpisodeNumberLetter_TextChanged(object sender, TextChangedEventArgs e)
         {
             // Save Settings
-            Settings.Default.EpisodeNumberLetter = tbxEpisodeNumberLetter.Text;
-            Settings.Default.Save();
+            //Settings.Default.EpisodeNumberLetter = tbxEpisodeNumberLetter.Text;
+            //Settings.Default.Save();
         }
 
         /// <summary>
@@ -1310,8 +1344,8 @@ the Free Software Foundation, either version 3 of the License, or
         private void tbxSeparator_TextChanged(object sender, TextChangedEventArgs e)
         {
             // Save Settings
-            Settings.Default.Separator = tbxSeparator.Text;
-            Settings.Default.Save();
+            //Settings.Default.Separator = tbxSeparator.Text;
+            //Settings.Default.Save();
         }
 
         /// <summary>
